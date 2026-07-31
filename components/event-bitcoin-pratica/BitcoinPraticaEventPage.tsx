@@ -139,16 +139,23 @@ export function BitcoinPraticaEventPage() {
         </section>
 
         {/* Detalhes + mapa */}
-        <section id="detalhes" className="relative overflow-hidden bg-background py-20 md:py-28">
+        <section
+          id="detalhes"
+          className="relative overflow-hidden bg-[#000b1f] py-20 md:py-28"
+        >
           <div className="absolute inset-0">
             <Image
               src="/images/events/dominando-bitcoin/ocean.jpg"
               alt=""
               fill
               sizes="100vw"
-              className="object-cover opacity-35"
+              className="object-cover opacity-15"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-[#0d2544]/80 to-background" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#000b1f]/92 via-[#00122e]/90 to-[#00081a]" />
+            <div
+              className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_25%,rgba(0,0,0,0.5)_100%)]"
+              aria-hidden
+            />
           </div>
 
           <div className="relative mx-auto max-w-6xl px-5 md:px-8">
@@ -160,7 +167,7 @@ export function BitcoinPraticaEventPage() {
             </h2>
 
             <div className="mt-12 grid gap-6 lg:grid-cols-2">
-              <div className="ocean-panel flex flex-col gap-6 rounded-[1.75rem] border p-6 md:p-8">
+              <div className="flex flex-col gap-6 rounded-[1.75rem] border border-white/10 bg-black/45 p-6 backdrop-blur-md md:p-8">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
                     <CalendarDays className="text-accent" size={22} />
@@ -183,7 +190,7 @@ export function BitcoinPraticaEventPage() {
                   </p>
                 </div>
 
-                <div className="mt-auto rounded-2xl border border-white/10 bg-black/25 p-5">
+                <div className="mt-auto rounded-2xl border border-white/10 bg-black/40 p-5">
                   <p className="font-semibold">Cronograma de Palestras</p>
                   <p className="mt-1 text-sm text-foreground/70">
                     Veja a grade completa no Google Sheets.
@@ -200,7 +207,7 @@ export function BitcoinPraticaEventPage() {
                 </div>
               </div>
 
-              <div className="ocean-panel overflow-hidden rounded-[1.75rem] border">
+              <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/45 backdrop-blur-md">
                 <iframe
                   title="Mapa do evento em São Paulo"
                   src={eventMeta.mapEmbedUrl}

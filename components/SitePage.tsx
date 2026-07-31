@@ -18,8 +18,8 @@ export function SitePage() {
         <FounderSection />
         <GallerySection />
         <ContentSection />
-        <FaqSection />
         <CommunityForm />
+        <FaqSection />
       </main>
       <SiteFooter />
     </div>

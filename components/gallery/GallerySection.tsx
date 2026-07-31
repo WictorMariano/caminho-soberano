@@ -198,8 +198,7 @@ export function GallerySection() {
 
   if (reduceMotion) {
     return (
-      <section id="galeria" className="relative bg-background py-20 md:py-28">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--cs-glow),_transparent_55%)] opacity-40" />
+      <section id="galeria" className="relative bg-black py-20 md:py-28">
         <div className="relative">
           <GalleryHeadingStatic />
           <div className="mt-12 space-y-4">
@@ -212,10 +211,9 @@ export function GallerySection() {
   }
 
   return (
-    <section id="galeria" className="relative bg-background">
+    <section id="galeria" className="relative bg-black">
       <ScrollXCarousel className="h-[280vh]">
-        <ScrollXCarouselContainer className="flex h-[100svh] flex-col justify-center bg-background py-10 md:py-14">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--cs-glow),_transparent_55%)] opacity-40" />
+        <ScrollXCarouselContainer className="flex h-[100svh] flex-col justify-center bg-black py-10 md:py-14">
           <div className="relative z-10">
             <GalleryHeadingAnimated />
 

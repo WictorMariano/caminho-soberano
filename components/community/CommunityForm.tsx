@@ -96,12 +96,29 @@ export function CommunityForm() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_right,_rgba(70,160,255,0.12),_transparent_55%)]" />
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 md:grid-cols-2 md:gap-10 md:px-8 lg:gap-16">
+        {/* Celulares com prints da comunidade */}
+        <div className="relative mx-auto flex h-[420px] w-full max-w-md items-center justify-center order-2 md:order-1 sm:h-[480px] md:max-w-none">
+          <PhoneMock
+            src="/images/events/story-2.jpg"
+            alt="Comunidade Caminho Soberano no WhatsApp — grupos por cidade"
+            delay={0.05}
+            className="absolute left-[6%] top-[8%] z-0 -rotate-[18deg] scale-95 opacity-90 sm:left-[10%]"
+          />
+          <PhoneMock
+            src="/images/events/story-1.jpg"
+            alt="Aviso da comunidade Caminho Soberano sobre Bitcoin"
+            delay={0.15}
+            className="absolute right-[8%] top-[4%] z-10 -rotate-[8deg] sm:right-[12%]"
+          />
+        </div>
+
         {/* Texto + formulário */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5 }}
+          className="order-1 md:order-2"
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-white/85">
             <Users size={14} className="text-white/70" />
@@ -171,22 +188,6 @@ export function CommunityForm() {
             ) : null}
           </form>
         </motion.div>
-
-        {/* Celulares com prints da comunidade */}
-        <div className="relative mx-auto flex h-[420px] w-full max-w-md items-center justify-center sm:h-[480px] md:max-w-none">
-          <PhoneMock
-            src="/images/events/story-2.jpg"
-            alt="Comunidade Caminho Soberano no WhatsApp — grupos por cidade"
-            delay={0.05}
-            className="absolute left-[6%] top-[8%] z-0 -rotate-[18deg] scale-95 opacity-90 sm:left-[10%]"
-          />
-          <PhoneMock
-            src="/images/events/story-1.jpg"
-            alt="Aviso da comunidade Caminho Soberano sobre Bitcoin"
-            delay={0.15}
-            className="absolute right-[8%] top-[4%] z-10 -rotate-[8deg] sm:right-[12%]"
-          />
-        </div>
       </div>
     </section>
   );

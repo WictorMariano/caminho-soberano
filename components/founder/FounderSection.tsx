@@ -7,7 +7,7 @@ export function FounderSection() {
   return (
     <section
       id="fundador"
-      className="relative overflow-hidden bg-background py-16 md:py-24"
+      className="relative overflow-hidden bg-[#0b1f38] py-16 md:py-24"
     >
       {/* Fundo azul em código — sem imagem */}
       <div className="founder-bg" aria-hidden>

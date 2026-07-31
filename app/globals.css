@@ -315,19 +315,20 @@ body {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 50% 120%, rgba(20, 70, 120, 0.45), transparent 55%),
-    linear-gradient(155deg, #03111f 0%, #061a30 42%, #020b16 100%);
+    radial-gradient(ellipse 70% 55% at 80% 15%, rgba(70, 160, 255, 0.28), transparent 58%),
+    radial-gradient(ellipse 60% 50% at 15% 70%, rgba(40, 120, 200, 0.22), transparent 55%),
+    linear-gradient(165deg, #0d2a4a 0%, #0b1f38 40%, #071525 100%);
 }
 
 .founder-bg__mesh {
   position: absolute;
   inset: 0;
-  opacity: 0.22;
+  opacity: 0.18;
   background-image:
     linear-gradient(rgba(90, 160, 220, 0.12) 1px, transparent 1px),
     linear-gradient(90deg, rgba(90, 160, 220, 0.12) 1px, transparent 1px);
   background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 70% 65% at 50% 45%, #000 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 65% at 50% 40%, #000 20%, transparent 75%);
 }
 
 .founder-bg__orb {
@@ -357,10 +358,10 @@ body {
 
 .founder-bg__orb--c {
   left: 28%;
-  bottom: -22%;
+  bottom: -8%;
   width: min(70vw, 580px);
   height: min(70vw, 580px);
-  background: radial-gradient(circle, rgba(20, 90, 160, 0.48) 0%, transparent 68%);
+  background: radial-gradient(circle, rgba(20, 90, 160, 0.35) 0%, transparent 68%);
   animation: founder-orb-drift 26s ease-in-out infinite reverse;
 }
 
@@ -368,7 +369,8 @@ body {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 75% 70% at 50% 45%, transparent 35%, rgba(2, 11, 22, 0.72) 100%);
+    radial-gradient(ellipse 75% 65% at 50% 35%, transparent 40%, rgba(2, 11, 22, 0.35) 100%),
+    linear-gradient(to bottom, transparent 55%, rgba(0, 0, 0, 0.55) 82%, #000 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {

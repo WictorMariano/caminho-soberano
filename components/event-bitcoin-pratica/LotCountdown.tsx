@@ -1,9 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Timer } from "lucide-react";
 
 /** Virada do 1º lote — 18/08/2026 00:00 (horário de Brasília, UTC-3) */
 const LOTE_DEADLINE = new Date("2026-08-18T03:00:00.000Z").getTime();
+
+/** Azul forte — glow no estilo AccentBenefitCard da IA Divulgadora */
+const GLOW = "#3b9eff";
+const GLOW_RGB = "59,158,255";
 
 type TimeLeft = {
   days: number;
@@ -43,12 +48,12 @@ function DigitBlock({ value, label }: { value: number; label: string }) {
 
   return (
     <div className="flex min-w-0 flex-1 flex-col items-center gap-2.5">
-      <div className="relative w-full overflow-hidden rounded-[0.65rem] border border-white/12 bg-white/[0.06] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+      <div className="relative w-full overflow-hidden rounded-xl border border-white/10 bg-black/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
         <div
-          className="pointer-events-none absolute inset-x-0 top-1/2 h-px -translate-y-px bg-black/30"
+          className="pointer-events-none absolute inset-x-0 top-1/2 h-px -translate-y-px bg-black/40"
           aria-hidden
         />
-        <p className="relative py-4 text-center font-mono text-[1.85rem] font-bold tabular-nums leading-none tracking-tight text-white sm:py-5 sm:text-4xl md:text-[2.75rem]">
+        <p className="relative py-3.5 text-center font-mono text-[1.75rem] font-bold tabular-nums leading-none tracking-tight text-white sm:py-4 sm:text-3xl md:text-[2.5rem]">
           {digits}
         </p>
       </div>
@@ -65,8 +70,20 @@ function Separator() {
       className="flex shrink-0 flex-col justify-center gap-2 self-stretch pb-7 pt-1"
       aria-hidden
     >
-      <span className="h-1.5 w-1.5 rounded-full bg-white/35" />
-      <span className="h-1.5 w-1.5 rounded-full bg-white/35" />
+      <span
+        className="h-1.5 w-1.5 rounded-full"
+        style={{
+          background: GLOW,
+          boxShadow: `0 0 10px rgba(${GLOW_RGB},0.55)`,
+        }}
+      />
+      <span
+        className="h-1.5 w-1.5 rounded-full"
+        style={{
+          background: GLOW,
+          boxShadow: `0 0 10px rgba(${GLOW_RGB},0.55)`,
+        }}
+      />
     </div>
   );
 }
@@ -91,14 +108,44 @@ export function LotCountdown() {
 
   return (
     <div className="mx-auto mt-14 max-w-2xl md:mt-16">
-      <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-surface-elevated px-5 py-8 sm:px-8 sm:py-10">
-        <div className="relative text-center">
-          <h3 className="text-2xl font-bold tracking-tight text-white md:text-[1.85rem]">
+      <div
+        className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-black/35 backdrop-blur-md transition hover:border-white/20"
+        style={{
+          boxShadow: `0 0 0 1px rgba(${GLOW_RGB},0.18), 0 24px 48px -24px rgba(${GLOW_RGB},0.4)`,
+        }}
+      >
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-28 opacity-70"
+          style={{
+            background: `linear-gradient(to top, rgba(${GLOW_RGB},0.28), transparent)`,
+          }}
+          aria-hidden
+        />
+
+        <div className="relative z-10 px-5 py-7 sm:px-8 sm:py-9">
+          <div className="mb-4 flex items-center justify-center gap-2.5">
+            <div
+              className="flex h-10 w-10 items-center justify-center rounded-full border backdrop-blur-sm sm:h-11 sm:w-11"
+              style={{
+                borderColor: `${GLOW}66`,
+                background: `rgba(${GLOW_RGB},0.16)`,
+                boxShadow: `0 0 22px rgba(${GLOW_RGB},0.35)`,
+              }}
+            >
+              <Timer
+                className="h-5 w-5"
+                style={{ color: GLOW }}
+                strokeWidth={1.75}
+              />
+            </div>
+          </div>
+
+          <h3 className="text-center text-xl font-semibold leading-snug tracking-tight text-white sm:text-2xl md:text-[1.75rem]">
             {display.expired
               ? "O 1º lote encerrou"
               : "O 1º lote fecha em breve"}
           </h3>
-          <p className="mx-auto mt-2.5 max-w-md text-sm leading-relaxed text-white/60 md:text-[0.95rem]">
+          <p className="mx-auto mt-2.5 max-w-md text-center text-xs leading-relaxed text-white/55 sm:text-sm">
             Em{" "}
             <strong className="font-semibold text-white">18/08/2026</strong> o
             preço sobe{" "}
@@ -107,7 +154,7 @@ export function LotCountdown() {
           </p>
 
           <div
-            className="mt-8 flex items-start justify-center gap-1.5 sm:gap-2.5"
+            className="mt-7 flex items-start justify-center gap-1.5 sm:gap-2.5"
             aria-live="polite"
             aria-atomic="true"
           >
@@ -120,11 +167,20 @@ export function LotCountdown() {
           </div>
 
           {!display.expired ? (
-            <p className="mt-7 text-xs font-medium tracking-wide text-white/40">
+            <p className="mt-6 text-center text-xs font-medium tracking-wide text-white/40">
               Após a virada, o mesmo ingresso custa mais — sem exceção.
             </p>
           ) : null}
         </div>
+
+        <div
+          className="absolute inset-x-4 bottom-0 h-px rounded-full opacity-90"
+          style={{
+            background: `linear-gradient(90deg, transparent, ${GLOW}, transparent)`,
+            boxShadow: `0 0 14px ${GLOW}`,
+          }}
+          aria-hidden
+        />
       </div>
     </div>
   );
