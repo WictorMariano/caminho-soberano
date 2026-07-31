@@ -1,12 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import { useReducedMotion } from "framer-motion";
+import { useRef } from "react";
+import {
+  motion,
+  useMotionValue,
+  useMotionValueEvent,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 
 import {
   ScrollXCarousel,
   ScrollXCarouselContainer,
   ScrollXCarouselWrap,
+  useScrollXCarousel,
 } from "@/components/ui/scroll-x-carousel";
 import { cn } from "@/lib/utils";
 
@@ -56,6 +65,105 @@ function GalleryCard({
   );
 }
 
+function GalleryHeadingStatic() {
+  return (
+    <div className="mx-auto w-full max-w-6xl shrink-0 px-5 md:px-8">
+      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
+        Galeria
+      </p>
+      <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
+        O que já aconteceu em nossos eventos?
+      </h2>
+      <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/75 md:text-lg">
+        Confira nossos encontros presenciais que reuniram indivíduos de
+        diferentes regiões do país, todos movidos pela mesma inquietação: não
+        viver sob tutela.
+      </p>
+    </div>
+  );
+}
+
+/** Título desce e subtítulo some de forma suave; só volta ao subir */
+function GalleryHeadingAnimated() {
+  const { scrollYProgress } = useScrollXCarousel();
+  const lockedRef = useRef(false);
+  const effectiveProgress = useMotionValue(0);
+
+  useMotionValueEvent(scrollYProgress, "change", (progress) => {
+    // Colapso completo — trava até o usuário voltar ao topo da seção
+    if (progress >= 0.42) {
+      lockedRef.current = true;
+      effectiveProgress.set(0.42);
+      return;
+    }
+
+    if (lockedRef.current) {
+      if (progress <= 0.05) {
+        lockedRef.current = false;
+        effectiveProgress.set(progress);
+      } else {
+        effectiveProgress.set(0.42);
+      }
+      return;
+    }
+
+    effectiveProgress.set(progress);
+  });
+
+  const smoothProgress = useSpring(effectiveProgress, {
+    stiffness: 55,
+    damping: 28,
+    mass: 0.45,
+    restDelta: 0.001,
+  });
+
+  const eyebrowOpacity = useTransform(
+    smoothProgress,
+    [0, 0.18, 0.42],
+    [1, 0.4, 0],
+  );
+  const eyebrowY = useTransform(smoothProgress, [0, 0.42], [0, -14]);
+
+  const titleY = useTransform(smoothProgress, [0, 0.42], [0, 78]);
+  const titleScale = useTransform(smoothProgress, [0, 0.42], [1, 0.97]);
+
+  const subtitleOpacity = useTransform(
+    smoothProgress,
+    [0, 0.14, 0.36, 0.42],
+    [1, 0.55, 0.08, 0],
+  );
+  const subtitleY = useTransform(smoothProgress, [0, 0.42], [0, 20]);
+
+  return (
+    <div className="relative mx-auto w-full max-w-6xl shrink-0 px-5 md:px-8">
+      <div className="relative min-h-[11.5rem] md:min-h-[13rem] lg:min-h-[14.5rem]">
+        <motion.p
+          className="text-sm font-semibold uppercase tracking-[0.2em] text-accent will-change-transform"
+          style={{ opacity: eyebrowOpacity, y: eyebrowY }}
+        >
+          Galeria
+        </motion.p>
+
+        <motion.h2
+          className="mt-3 max-w-2xl origin-left text-3xl font-bold tracking-tight text-white will-change-transform md:text-4xl lg:text-5xl"
+          style={{ y: titleY, scale: titleScale }}
+        >
+          O que já aconteceu em nossos eventos?
+        </motion.h2>
+
+        <motion.p
+          className="mt-4 max-w-2xl text-base leading-relaxed text-white/75 will-change-transform md:text-lg"
+          style={{ opacity: subtitleOpacity, y: subtitleY }}
+        >
+          Confira nossos encontros presenciais que reuniram indivíduos de
+          diferentes regiões do país, todos movidos pela mesma inquietação: não
+          viver sob tutela.
+        </motion.p>
+      </div>
+    </div>
+  );
+}
+
 function AutoMarqueeRow({
   items,
   reverse = false,
@@ -88,50 +196,33 @@ function AutoMarqueeRow({
 export function GallerySection() {
   const reduceMotion = useReducedMotion();
 
-  return (
-    <section id="galeria" className="bg-black">
-      {reduceMotion ? (
-        <div className="py-20 md:py-28">
-          <div className="mx-auto max-w-6xl px-5 md:px-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
-              Galeria
-            </p>
-            <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight md:text-4xl">
-              O que já aconteceu em nossos eventos?
-            </h2>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-foreground/75 md:text-lg">
-              Confira nossos encontros presenciais que reuniram indivíduos de
-              diferentes regiões do país, todos movidos pela mesma inquietação:
-              não viver sob tutela.
-            </p>
-          </div>
+  if (reduceMotion) {
+    return (
+      <section id="galeria" className="relative bg-background py-20 md:py-28">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--cs-glow),_transparent_55%)] opacity-40" />
+        <div className="relative">
+          <GalleryHeadingStatic />
           <div className="mt-12 space-y-4">
             <AutoMarqueeRow items={rowOne} />
             <AutoMarqueeRow items={rowTwo} reverse />
           </div>
         </div>
-      ) : (
-        <ScrollXCarousel className="h-[260vh]">
-          <ScrollXCarouselContainer className="flex h-[100svh] flex-col justify-center py-10 md:py-14">
-            <div className="mx-auto w-full max-w-6xl shrink-0 px-5 md:px-8">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
-                Galeria
-              </p>
-              <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight md:text-5xl">
-                O que já aconteceu em nossos eventos?
-              </h2>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-foreground/75 md:text-lg">
-                Confira nossos encontros presenciais que reuniram indivíduos de
-                diferentes regiões do país, todos movidos pela mesma
-                inquietação: não viver sob tutela.
-              </p>
-            </div>
+      </section>
+    );
+  }
 
-            <div className="mt-10 space-y-3 md:mt-12 md:space-y-4">
-              {/* Linha 1 — rola para a esquerda */}
+  return (
+    <section id="galeria" className="relative bg-background">
+      <ScrollXCarousel className="h-[280vh]">
+        <ScrollXCarouselContainer className="flex h-[100svh] flex-col justify-center bg-background py-10 md:py-14">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--cs-glow),_transparent_55%)] opacity-40" />
+          <div className="relative z-10">
+            <GalleryHeadingAnimated />
+
+            <div className="mt-8 space-y-3 md:mt-10 md:space-y-4">
               <div className="overflow-hidden">
                 <ScrollXCarouselWrap
-                  xRange={["5%", "-40%"]}
+                  xRange={["8%", "-55%"]}
                   className="gap-3 px-5 md:gap-4 md:px-8"
                 >
                   {[...rowOne, ...rowOne].map((item, index) => (
@@ -144,10 +235,9 @@ export function GallerySection() {
                 </ScrollXCarouselWrap>
               </div>
 
-              {/* Linha 2 — rola para a direita */}
               <div className="overflow-hidden">
                 <ScrollXCarouselWrap
-                  xRange={["-40%", "5%"]}
+                  xRange={["-55%", "8%"]}
                   className="gap-3 px-5 md:gap-4 md:px-8"
                 >
                   {[...rowTwo, ...rowTwo].map((item, index) => (
@@ -160,9 +250,9 @@ export function GallerySection() {
                 </ScrollXCarouselWrap>
               </div>
             </div>
-          </ScrollXCarouselContainer>
-        </ScrollXCarousel>
-      )}
+          </div>
+        </ScrollXCarouselContainer>
+      </ScrollXCarousel>
     </section>
   );
 }

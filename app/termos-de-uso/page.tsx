@@ -4,7 +4,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
 
 export const metadata: Metadata = {
-  title: "Termos de Uso | Caminho Soberano",
+  title: "Termos de Uso",
   description:
     "Termos e condições de uso do site e dos serviços do Caminho Soberano.",
 };

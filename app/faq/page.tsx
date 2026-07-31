@@ -6,7 +6,7 @@ import { PageShell } from "@/components/PageShell";
 import { EVENT_PATH } from "@/lib/event-bitcoin-pratica";
 
 export const metadata: Metadata = {
-  title: "FAQ | Caminho Soberano",
+  title: "FAQ",
   description:
     "Perguntas frequentes sobre o Caminho Soberano, eventos, inscrição e comunidade.",
 };

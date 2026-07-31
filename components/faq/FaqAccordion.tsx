@@ -25,7 +25,7 @@ export function FaqAccordion({
         return (
           <div
             key={faq.question}
-            className="overflow-hidden rounded-2xl border border-border bg-black/40"
+            className="overflow-hidden rounded-2xl border border-border bg-surface-elevated/80 backdrop-blur-sm"
           >
             <button
               type="button"

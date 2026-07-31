@@ -60,53 +60,69 @@ export const eventBenefits = [
     description:
       "Do zero à autocustódia: wallets, segurança, operação real e erros que custam caro.",
     icon: "bitcoin" as const,
+    image: "/images/gallery/gallery-06.jpg",
+    tags: ["Wallets", "Autocustódia", "Operação real"],
   },
   {
     title: "Proteção patrimonial",
     description:
       "Estratégias para blindar seu patrimônio e reduzir exposição a bloqueios e confiscos.",
     icon: "shield" as const,
+    image: "/images/gallery/gallery-09.jpg",
+    tags: ["Blindagem", "Menos risco", "Patrimônio seguro"],
   },
   {
     title: "Networking soberano",
     description:
       "Conexão direta com lideranças, empresários e rede pró-liberdade de todo o Brasil.",
     icon: "network" as const,
+    image: "/images/gallery/gallery-08.jpg",
+    tags: ["Conexões reais", "Negócios", "Comunidade"],
   },
   {
     title: "Independência financeira",
     description:
       "Clareza para separar seu dinheiro do Estado e construir autonomia com Bitcoin.",
     icon: "freedom" as const,
+    image: "/images/gallery/gallery-03.png",
+    tags: ["Autonomia", "Soberania", "Liberdade"],
   },
   {
     title: "Imersão presencial",
     description:
       "Dois dias intensivos, com palestras, prática e ambiente para tirar dúvidas ao vivo.",
     icon: "users" as const,
+    image: "/images/gallery/gallery-11.webp",
+    tags: ["Presencial", "Prática", "Dúvidas ao vivo"],
   },
   {
     title: "Conteúdo estratégico",
     description:
       "Visão filosófica e operacional sobre soberania — sem enrolação e sem teoria solta.",
     icon: "compass" as const,
+    image: "/images/gallery/gallery-02.png",
+    tags: ["Filosofia", "Estratégia", "Aplicável"],
   },
 ];
 
 export const exclusiveBonuses = [
   {
-    title: "Grupo de network exclusivo",
+    title: "Grupo VIP de WhatsApp",
     description:
-      "Acesso ao grupo privado com os participantes do evento para trocar experiências, oportunidades e manter o networking vivo depois da imersão.",
+      "Acesso ao grupo VIP exclusivo dos participantes — networking contínuo, trocas de oportunidades e suporte direto depois do evento.",
     icon: "group" as const,
     badge: "Bônus 01",
+    image: "/images/gallery/gallery-01.png",
+    tags: ["WhatsApp VIP", "Networking", "Pós-evento"],
   },
   {
-    title: "Desconto em produtos futuros",
+    title: "Descontos no portfólio Caminho Soberano",
     description:
-      "Condição especial de desconto em produtos e formações futuras do Caminho Soberano — benefício exclusivo para quem participar deste evento.",
+      "Condição especial de desconto em produtos e formações futuras do portfólio Caminho Soberano — benefício exclusivo para quem participar deste evento.",
     icon: "discount" as const,
     badge: "Bônus 02",
+    image: "/images/gallery/gallery-05.png",
+    tags: ["Descontos", "Portfólio", "Exclusivo"],
   },
 ];
 
@@ -122,19 +138,19 @@ export const tickets = [
   {
     id: "bronze",
     name: "Ingresso Bronze",
-    price: "R$297",
+    price: "R$ 297",
     featured: false,
   },
   {
     id: "prata",
     name: "Ingresso Prata",
-    price: "R$997",
+    price: "R$ 997",
     featured: false,
   },
   {
     id: "ouro",
     name: "Ingresso Ouro",
-    price: "R$1497",
+    price: "R$ 1.497",
     featured: true,
   },
 ] as const;

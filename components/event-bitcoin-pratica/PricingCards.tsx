@@ -23,6 +23,12 @@ const tierBg: Record<(typeof tickets)[number]["id"], string> = {
   ouro: styles.tierOuro,
 };
 
+const tierTitleColor: Record<(typeof tickets)[number]["id"], string> = {
+  bronze: styles.titleBronze,
+  prata: styles.titlePrata,
+  ouro: styles.titleOuro,
+};
+
 function TicketBumpFilter({ id }: { id: string }) {
   return (
     <svg className={styles.filter} aria-hidden>
@@ -79,10 +85,14 @@ export function PricingCards() {
               </div>
 
               <div className={styles.header}>
-                {tierLabel[ticket.id]}
-                <div className={styles.symbol} aria-hidden>
-                  ✁
-                </div>
+                <p className={cn(styles.tierTitle, tierTitleColor[ticket.id])}>
+                  {tierLabel[ticket.id]}
+                </p>
+                <p className={styles.lotLabel}>Lot. 1</p>
+              </div>
+
+              <div className={styles.barcodeOnTear} aria-hidden>
+                <div className={styles.barcode} />
               </div>
 
               <div className={styles.body}>
@@ -92,7 +102,7 @@ export function PricingCards() {
                   {eventMeta.location}
                 </p>
                 <p className={styles.meta} style={{ marginTop: "0.35rem" }}>
-                  Pague via PIX
+                  Pague via PIX ou cartão
                 </p>
 
                 <ul className={styles.benefits}>
@@ -107,8 +117,6 @@ export function PricingCards() {
 
               <div className={styles.footer}>
                 <p className={styles.price}>{ticket.price}</p>
-                <p className={styles.tierName}>{tierLabel[ticket.id]}</p>
-                <div className={styles.barcode} aria-hidden />
                 <a
                   href="https://www.instagram.com/ocaminhosoberano/"
                   target="_blank"

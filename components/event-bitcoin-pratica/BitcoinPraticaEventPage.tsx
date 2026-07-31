@@ -14,7 +14,9 @@ import { AudienceSection } from "@/components/event-bitcoin-pratica/AudienceSect
 import { BenefitsSection } from "@/components/event-bitcoin-pratica/BenefitsSection";
 import { BonusSection } from "@/components/event-bitcoin-pratica/BonusSection";
 import { HeroStoriesSlider } from "@/components/event-bitcoin-pratica/HeroStoriesSlider";
+import { NetworkSection } from "@/components/event-bitcoin-pratica/NetworkSection";
 import { PricingCards } from "@/components/event-bitcoin-pratica/PricingCards";
+import { LotCountdown } from "@/components/event-bitcoin-pratica/LotCountdown";
 import { SpeakerFlipCard } from "@/components/event-bitcoin-pratica/SpeakerFlipCard";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -111,6 +113,9 @@ export function BitcoinPraticaEventPage() {
         {/* Benefícios */}
         <BenefitsSection />
 
+        {/* Network + vídeo expansivo */}
+        <NetworkSection />
+
         {/* Palestrantes */}
         <section id="palestrantes" className="bg-background py-20 md:py-28">
           <div className="mx-auto max-w-6xl px-5 md:px-8">
@@ -143,7 +148,7 @@ export function BitcoinPraticaEventPage() {
               sizes="100vw"
               className="object-cover opacity-35"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#020b16]/90 via-[#041830]/80 to-[#020b16]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-[#0d2544]/80 to-background" />
           </div>
 
           <div className="relative mx-auto max-w-6xl px-5 md:px-8">
@@ -212,10 +217,22 @@ export function BitcoinPraticaEventPage() {
         {/* Ingressos */}
         <section id="ingresso" className="bg-surface py-20 md:py-28">
           <div className="mx-auto max-w-6xl px-5 md:px-8">
-            <h2 className="text-center text-3xl font-bold tracking-tight md:text-5xl">
-              Escolha o melhor para você
-            </h2>
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
+                Garanta o ingresso pelo menor preço
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-white/70 md:text-lg">
+                Os valores abaixo são do{" "}
+                <strong className="font-semibold text-white">
+                  1º lote
+                </strong>
+                . Em 18/08 o preço sobe{" "}
+                <strong className="font-semibold text-accent">20%</strong> —
+                escolha seu acesso e trave o valor de hoje.
+              </p>
+            </div>
             <PricingCards />
+            <LotCountdown />
           </div>
         </section>
 
@@ -225,7 +242,7 @@ export function BitcoinPraticaEventPage() {
         {/* CTA final */}
         <section className="bg-background py-16 md:py-24">
           <div className="mx-auto max-w-6xl px-5 md:px-8">
-            <div className="relative min-h-[440px] overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#041830] md:min-h-[500px] md:rounded-[2rem]">
+            <div className="relative min-h-[440px] overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#0d2544] md:min-h-[500px] md:rounded-[2rem]">
               {/* Foto só à direita */}
               <div className="absolute inset-y-0 right-0 w-full md:w-[58%]">
                 <Image
@@ -239,7 +256,7 @@ export function BitcoinPraticaEventPage() {
 
               {/* Degradê azul → foto */}
               <div
-                className="absolute inset-0 bg-gradient-to-r from-[#041830] from-0% via-[#041830] via-35% to-transparent to-78% md:from-[#041830] md:from-0% md:via-[#041830] md:via-42% md:to-transparent md:to-72%"
+                className="absolute inset-0 bg-gradient-to-r from-[#0d2544] from-0% via-[#0d2544] via-35% to-transparent to-78% md:from-[#0d2544] md:from-0% md:via-[#0d2544] md:via-42% md:to-transparent md:to-72%"
                 aria-hidden
               />
 

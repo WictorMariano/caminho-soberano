@@ -18,7 +18,7 @@ interface ScrollXCarouselContextValue {
 const ScrollXCarouselContext =
   React.createContext<ScrollXCarouselContextValue | null>(null);
 
-function useScrollXCarousel() {
+export function useScrollXCarousel() {
   const context = React.useContext(ScrollXCarouselContext);
   if (!context) {
     throw new Error("useScrollXCarousel must be used within a ScrollXCarousel");

@@ -147,7 +147,7 @@ export function SpeakerFlipCard({
             : `Ver biografia de ${name}`
         }
         className={cn(
-          "speaker-flip-card relative aspect-[3/4] w-full cursor-pointer will-change-transform outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#020b16]",
+          "speaker-flip-card relative aspect-[3/4] w-full cursor-pointer will-change-transform outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]",
           flipped && "is-flipped",
         )}
         style={cardStyle}
@@ -177,14 +177,13 @@ export function SpeakerFlipCard({
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#020b16] via-[#020b16]/40 to-transparent" />
           </div>
 
           <div className="absolute inset-x-0 bottom-0 z-10 p-5 md:p-6 [transform:translate3d(0,0,48px)]">
-            <h3 className="text-2xl font-semibold tracking-[-0.03em] text-white md:text-[1.65rem]">
+            <h3 className="text-2xl font-semibold tracking-[-0.03em] text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.55)] md:text-[1.65rem]">
               {name}
             </h3>
-            <span className="mt-4 block text-base font-semibold text-white/90">
+            <span className="mt-4 block text-base font-semibold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.55)]">
               ver mais
             </span>
           </div>

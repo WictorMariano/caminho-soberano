@@ -27,7 +27,7 @@ function AudienceChips({ ariaHidden = false }: { ariaHidden?: boolean }) {
         return (
           <div
             key={item.label}
-            className="audience-card flex shrink-0 items-center gap-3 rounded-2xl border border-[#2a3a55] bg-[#0c1526] px-4 py-3.5"
+            className="audience-card flex shrink-0 items-center gap-3 rounded-2xl border border-[#2a4a6e] bg-[#122a48] px-4 py-3.5"
           >
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-[#1a2740] text-white">
               <Icon size={18} strokeWidth={1.75} />

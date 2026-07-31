@@ -24,9 +24,22 @@ export const ctaNav = {
 
 export const socialLinks = {
   instagram: "https://www.instagram.com/ocaminhosoberano/",
+  x: "https://x.com/",
+  youtube: "https://www.youtube.com/",
   /** Comunidade gratuita — conteúdo semanal e lives */
   whatsappCommunity: "https://chat.whatsapp.com/",
 } as const;
+
+export const siteContact = {
+  email: "contato@caminhosoberano.com.br",
+  supportPhone: "+55 11 99999-9999",
+  supportPhoneHref: "tel:+5511999999999",
+} as const;
+
+export const legalLinks = [
+  { href: "/politica-de-privacidade", label: "Política de Privacidade" },
+  { href: "/termos-de-uso", label: "Termos de Uso" },
+] as const;
 
 export const educationProducts = [
   {
@@ -68,36 +81,26 @@ export const siteFaqs = [
   {
     question: "Como faço para participar dos eventos?",
     answer:
-      "Acompanhe os anúncios no Instagram @ocaminhosoberano ou acesse a página do evento desejado. Quando as vagas abrirem, você encontra o link de inscrição e as orientações de pagamento.",
+      'Basta clicar no botão "Inscreva-se Agora" e preencher o formulário com seus dados.',
   },
   {
     question: "Os eventos são presenciais ou online?",
     answer:
-      "Os encontros principais do Caminho Soberano são presenciais, para networking e prática. Alguns conteúdos e alertas também circulam online para quem está na comunidade.",
+      "Nossos eventos são presenciais, realizados mensalmente em locais estratégicos.",
   },
   {
     question: "Existe algum pré-requisito para participar?",
     answer:
-      "Não é necessário ser especialista. Basta interesse genuíno em Bitcoin, soberania financeira e disposição para aprender na prática.",
+      "Não. Qualquer pessoa interessada em liberdade e soberania pode participar.",
   },
   {
     question: "Qual o valor de inscrição?",
     answer:
-      "O valor varia conforme o evento, a cidade e o tipo de ingresso. Os detalhes e condições atuais são divulgados na página de cada edição.",
+      "Os valores variam de R$500,00 a R$5.000,00, dependendo do tipo de evento.",
   },
   {
     question: "Como o Caminho Soberano se diferencia de outros eventos?",
     answer:
-      "Foco em prática, soberania e comunidade: imersões presenciais, networking real e conteúdo voltado a retomar o controle do próprio patrimônio — fora das amarras estatais e bancárias.",
-  },
-  {
-    question: "O que é o Caminho Soberano?",
-    answer:
-      "É um projeto com propósito: capacitar pessoas a alcançarem independência financeira real através do Bitcoin e de soluções descentralizadas, com formação prática e comunidade.",
-  },
-  {
-    question: "Como entrar em contato?",
-    answer:
-      "Pelo Instagram oficial @ocaminhosoberano ou pelos canais divulgados nas páginas de cada evento.",
+      "Oferecemos uma experiência única de aprendizado e conexões profundas com um networking de altíssimo nível.",
   },
 ];

@@ -9,7 +9,7 @@ import {
   Radio,
 } from "lucide-react";
 
-import { PageHero } from "@/components/PageHero";
+import { ConteudoHero } from "@/components/content/ConteudoHero";
 import { PageShell } from "@/components/PageShell";
 import {
   educationProducts,
@@ -17,27 +17,10 @@ import {
 } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Conteúdo | Caminho Soberano",
+  title: "Conteúdo",
   description:
     "Conteúdo nas redes, comunidade gratuita no WhatsApp e treinamentos educacionais do Caminho Soberano.",
 };
-
-function InstagramIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      aria-hidden
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-    >
-      <rect x="3" y="3" width="18" height="18" rx="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
 
 const communityBenefits = [
   {
@@ -60,32 +43,7 @@ const communityBenefits = [
 export default function ConteudoPage() {
   return (
     <PageShell>
-      <PageHero
-        eyebrow="Conteúdo"
-        title="Aprenda soberania onde você já está"
-        description="Redes sociais, comunidade gratuita e treinamentos para quem quer dominar Bitcoin na prática — com clareza e consistência."
-      >
-        <div className="flex flex-wrap gap-3">
-          <a
-            href={socialLinks.instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-ink transition hover:brightness-95"
-          >
-            <InstagramIcon className="h-[18px] w-[18px]" />
-            Seguir no Instagram
-          </a>
-          <a
-            href={socialLinks.whatsappCommunity}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold transition hover:border-accent hover:text-accent"
-          >
-            <MessageCircle size={18} />
-            Entrar na comunidade
-          </a>
-        </div>
-      </PageHero>
+      <ConteudoHero />
 
       {/* Redes — Instagram */}
       <section className="border-t border-border py-16 md:py-24">

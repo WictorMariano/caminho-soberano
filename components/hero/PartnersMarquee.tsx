@@ -47,7 +47,7 @@ function PartnerRow({ ariaHidden = false }: { ariaHidden?: boolean }) {
 export function PartnersMarquee() {
   return (
     <div
-      className="partners-marquee relative w-full overflow-hidden border-t border-white/10 bg-black/35 py-3 backdrop-blur-[2px] md:py-3.5"
+      className="partners-marquee relative w-full overflow-hidden border-t border-white/10 bg-[#020b16]/55 py-3 backdrop-blur-[2px] md:py-3.5"
       aria-label="Empresas parceiras"
     >
       <div className="partners-marquee-track">

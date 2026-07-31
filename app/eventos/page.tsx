@@ -11,12 +11,12 @@ import {
   BookOpen,
 } from "lucide-react";
 
-import { PageHero } from "@/components/PageHero";
+import { EventosHero } from "@/components/events/EventosHero";
 import { PageShell } from "@/components/PageShell";
 import { EVENT_PATH, eventMeta } from "@/lib/event-bitcoin-pratica";
 
 export const metadata: Metadata = {
-  title: "Eventos | Caminho Soberano",
+  title: "Eventos",
   description:
     "Confira os eventos presenciais do Caminho Soberano e garanta sua vaga.",
 };
@@ -27,7 +27,7 @@ const events = [
     title: eventMeta.title,
     location: eventMeta.location,
     date: eventMeta.dateShort,
-    image: "/images/events/card-bitcoin-pratica.png",
+    image: "/images/gallery/gallery-06.jpg",
     href: EVENT_PATH,
   },
 ];
@@ -81,14 +81,16 @@ const etapas = [
 export default function EventosPage() {
   return (
     <PageShell>
-      <PageHero
-        eyebrow="Eventos"
+      <EventosHero
         title="Encontros que transformam sua relação com o dinheiro"
         description="Imersões presenciais com prática, networking e foco em soberania financeira."
       />
 
       {/* Lista de eventos */}
-      <section className="border-t border-border pb-16 pt-4 md:pb-24">
+      <section
+        id="lista-eventos"
+        className="border-t border-border pb-16 pt-4 md:pb-24"
+      >
         <div className="mx-auto max-w-6xl px-5 md:px-8">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {events.map((event) => (

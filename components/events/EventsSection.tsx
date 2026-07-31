@@ -43,7 +43,7 @@ const events: EventItem[] = [
     location: "São Paulo - SP",
     date: "30 de Setembro",
     region: "Sudeste",
-    image: "/images/events/card-bitcoin-pratica.png",
+    image: "/images/gallery/gallery-06.jpg",
     href: EVENT_PATH,
   },
   {
@@ -68,8 +68,9 @@ export function EventsSection() {
   );
 
   return (
-    <section id="eventos" className="relative bg-black py-20 md:py-28">
-      <div className="mx-auto max-w-6xl px-5 md:px-8">
+    <section id="eventos" className="relative overflow-hidden bg-background py-20 md:py-28">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--cs-glow),_transparent_55%)] opacity-70" />
+      <div className="relative mx-auto max-w-6xl px-5 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -151,7 +152,7 @@ export function EventsSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{ duration: 0.45, delay: index * 0.08 }}
-                  className="group h-full overflow-hidden rounded-3xl border border-border bg-surface"
+                  className="ocean-panel group h-full overflow-hidden rounded-3xl border"
                 >
                   {event.href ? (
                     <Link href={event.href} className="block h-full">

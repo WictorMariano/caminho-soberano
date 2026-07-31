@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { footerNav } from "@/lib/site";
+import { legalLinks, siteContact, socialLinks } from "@/lib/site";
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -48,54 +48,93 @@ function XIcon({ className }: { className?: string }) {
 
 const socials = [
   {
-    href: "https://www.instagram.com/ocaminhosoberano/",
+    href: socialLinks.instagram,
     label: "Instagram",
     icon: InstagramIcon,
   },
   {
-    href: "https://x.com/",
+    href: socialLinks.x,
     label: "X / Twitter",
     icon: XIcon,
   },
   {
-    href: "https://www.youtube.com/",
+    href: socialLinks.youtube,
     label: "YouTube",
     icon: YoutubeIcon,
   },
 ];
 
 export function SiteFooter() {
+  const year = new Date().getFullYear();
+
   return (
     <footer className="border-t border-border bg-background">
-      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-5 py-12 md:px-8">
-        <div className="flex flex-col items-center gap-8 md:flex-row md:items-start md:justify-between">
-          <div className="flex flex-col items-center gap-3 md:items-start">
+      <div className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-12">
+        {/* Linha superior: marca | contato + links | redes */}
+        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between md:gap-8">
+          <Link href="/" className="flex shrink-0 items-center gap-2.5">
             <Image
               src="/images/brand/logo-mark.png"
               alt="Caminho Soberano"
-              width={48}
-              height={48}
-              className="h-12 w-auto"
+              width={36}
+              height={36}
+              className="h-9 w-auto"
             />
-            <p className="text-sm text-muted">
-              Copyright © {new Date().getFullYear()} — Todos os direitos
-              reservados
-            </p>
+            <span className="leading-none">
+              <span className="block text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-white/75">
+                Caminho
+              </span>
+              <span className="block text-sm font-semibold uppercase tracking-[0.14em] text-white">
+                Soberano
+              </span>
+            </span>
+          </Link>
+
+          <div className="grid flex-1 gap-8 sm:grid-cols-2 md:max-w-xl md:justify-self-center lg:gap-12">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/45">
+                Contato
+              </p>
+              <ul className="mt-3 space-y-2 text-sm text-white/75">
+                <li>
+                  <a
+                    href={`mailto:${siteContact.email}`}
+                    className="transition hover:text-accent"
+                  >
+                    {siteContact.email}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={siteContact.supportPhoneHref}
+                    className="transition hover:text-accent"
+                  >
+                    Suporte: {siteContact.supportPhone}
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/45">
+                Links úteis
+              </p>
+              <ul className="mt-3 space-y-2 text-sm text-white/75">
+                {legalLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="transition hover:text-accent"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
-            {footerNav.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm text-foreground/70 transition hover:text-accent"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-4">
+          <div className="flex shrink-0 items-center gap-5 md:pt-1">
             {socials.map(({ href, label, icon: Icon }) => (
               <a
                 key={label}
@@ -103,26 +142,21 @@ export function SiteFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground/80 transition hover:border-accent hover:text-accent"
+                className="text-white/80 transition hover:text-accent"
               >
-                <Icon className="h-4 w-4" />
+                <Icon className="h-[18px] w-[18px]" />
               </a>
             ))}
           </div>
         </div>
 
-        <div className="flex flex-col items-center gap-2 border-t border-border pt-8 md:items-end">
-          <Image
-            src="/images/brand/machado-digital.png"
-            alt="Agência Machado Digital"
-            width={140}
-            height={140}
-            className="h-16 w-auto opacity-90"
-          />
-          <p className="text-xs uppercase tracking-[0.18em] text-muted">
-            Agência Machado Digital
-          </p>
-          <p className="text-xs text-muted">26.098.577/0001-71</p>
+        {/* Linha inferior: copyright | agência */}
+        <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/45 sm:flex-row sm:items-end sm:justify-between">
+          <p>Copyright © {year} — Todos os direitos reservados</p>
+          <div className="sm:text-right">
+            <p className="uppercase tracking-[0.16em]">Agência Machado Digital</p>
+            <p className="mt-1">26.098.577/0001-71</p>
+          </div>
         </div>
       </div>
     </footer>

@@ -201,12 +201,12 @@ body {
 
 /* Tema oceano — página do evento Dominando o Bitcoin */
 .theme-ocean {
-  --background: #020b16;
+  --background: #0b1f38;
   --foreground: #e8f1fa;
-  --muted: #7d97b3;
-  --surface: #071525;
-  --surface-elevated: #0c1f35;
-  --border: rgba(120, 175, 230, 0.16);
+  --muted: #8aa5c0;
+  --surface: #102849;
+  --surface-elevated: #163456;
+  --border: rgba(120, 175, 230, 0.18);
   /* CTA marca (amarelo) sobre atmosfera oceano */
   --accent: #fff100;
   --accent-ink: #0a0a0a;
@@ -223,15 +223,160 @@ body {
 
 .theme-ocean .ocean-hero-bg {
   background:
-    radial-gradient(ellipse 70% 55% at 78% 18%, rgba(70, 160, 255, 0.28), transparent 60%),
-    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(20, 70, 120, 0.35), transparent 55%),
-    linear-gradient(155deg, #03111f 0%, #061a30 42%, #020b16 100%);
+    radial-gradient(ellipse 70% 55% at 78% 18%, rgba(70, 160, 255, 0.22), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(30, 90, 150, 0.28), transparent 55%),
+    linear-gradient(155deg, #0d2544 0%, #0b1f38 42%, #091a30 100%);
 }
 
 .theme-ocean .ocean-panel {
-  background: rgba(7, 21, 37, 0.72);
+  background: rgba(16, 40, 73, 0.78);
   border-color: var(--border);
   backdrop-filter: blur(10px);
+}
+
+/* Cards de benefícios — inspirados no "Em breve" do ClickEpico */
+.benefit-soon-card {
+  background:
+    linear-gradient(
+      155deg,
+      rgba(28, 68, 110, 0.92) 0%,
+      rgba(16, 42, 72, 0.95) 45%,
+      rgba(12, 34, 60, 0.98) 100%
+    );
+  backdrop-filter: blur(14px);
+}
+
+.benefit-soon-card:hover {
+  background:
+    linear-gradient(
+      155deg,
+      rgba(34, 78, 122, 0.95) 0%,
+      rgba(18, 48, 80, 0.97) 50%,
+      rgba(14, 40, 68, 0.99) 100%
+    );
+  border-color: rgba(90, 180, 255, 0.35);
+}
+
+.benefit-soon-card__shine {
+  background:
+    linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 32%,
+      transparent 68%,
+      rgba(70, 160, 255, 0.08) 100%
+    );
+}
+
+.benefit-soon-card__noise {
+  background-image:
+    radial-gradient(rgba(140, 190, 255, 0.07) 0.6px, transparent 0.6px);
+  background-size: 4px 4px;
+  mask-image: linear-gradient(180deg, #000 30%, transparent 100%);
+}
+
+/* Fundo azul em código — apenas seção Fundador */
+@keyframes founder-orb-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.55;
+  }
+  40% {
+    transform: translate3d(4%, -6%, 0) scale(1.08);
+    opacity: 0.85;
+  }
+  70% {
+    transform: translate3d(-5%, 4%, 0) scale(0.94);
+    opacity: 0.65;
+  }
+}
+
+@keyframes founder-orb-drift-alt {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate3d(-6%, 5%, 0) scale(1.12);
+    opacity: 0.75;
+  }
+}
+
+.founder-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.founder-bg__base {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 120%, rgba(20, 70, 120, 0.45), transparent 55%),
+    linear-gradient(155deg, #03111f 0%, #061a30 42%, #020b16 100%);
+}
+
+.founder-bg__mesh {
+  position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  background-image:
+    linear-gradient(rgba(90, 160, 220, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(90, 160, 220, 0.12) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 70% 65% at 50% 45%, #000 20%, transparent 75%);
+}
+
+.founder-bg__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(64px);
+  will-change: transform, opacity;
+}
+
+.founder-bg__orb--a {
+  top: -12%;
+  left: -8%;
+  width: min(62vw, 520px);
+  height: min(62vw, 520px);
+  background: radial-gradient(circle, rgba(70, 160, 255, 0.55) 0%, transparent 70%);
+  animation: founder-orb-drift 18s ease-in-out infinite;
+}
+
+.founder-bg__orb--b {
+  right: -10%;
+  top: 18%;
+  width: min(55vw, 460px);
+  height: min(55vw, 460px);
+  background: radial-gradient(circle, rgba(40, 120, 200, 0.5) 0%, transparent 70%);
+  animation: founder-orb-drift-alt 22s ease-in-out infinite;
+}
+
+.founder-bg__orb--c {
+  left: 28%;
+  bottom: -22%;
+  width: min(70vw, 580px);
+  height: min(70vw, 580px);
+  background: radial-gradient(circle, rgba(20, 90, 160, 0.48) 0%, transparent 68%);
+  animation: founder-orb-drift 26s ease-in-out infinite reverse;
+}
+
+.founder-bg__vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 75% 70% at 50% 45%, transparent 35%, rgba(2, 11, 22, 0.72) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .founder-bg__orb--a,
+  .founder-bg__orb--b,
+  .founder-bg__orb--c {
+    animation: none;
+  }
 }
 
 /* Flip 3D dos palestrantes — perspective + preserve-3d (padrão Gobime) */

@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { PageHero } from "@/components/PageHero";
+import { SobreHero } from "@/components/sobre/SobreHero";
 import { PageShell } from "@/components/PageShell";
 import { EVENT_PATH } from "@/lib/event-bitcoin-pratica";
 
 export const metadata: Metadata = {
-  title: "Sobre | Caminho Soberano",
+  title: "Sobre",
   description:
     "Conheça Tarcísio, o Caminho Soberano e a missão de formar pessoas soberanas através do Bitcoin.",
 };
@@ -49,11 +49,7 @@ const pilares = [
 export default function SobrePage() {
   return (
     <PageShell>
-      <PageHero
-        eyebrow="Sobre"
-        title="Caminho Soberano"
-        description="Um projeto com propósito: capacitar pessoas a retomarem o controle do próprio patrimônio e construírem independência financeira real."
-      />
+      <SobreHero />
 
       {/* Projeto */}
       <section className="border-t border-border py-16 md:py-24">
@@ -92,7 +88,7 @@ export default function SobrePage() {
       </section>
 
       {/* Missão */}
-      <section className="border-t border-border bg-surface py-16 md:py-24">
+      <section id="missao" className="border-t border-border bg-surface py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-5 md:px-8">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
             Missão

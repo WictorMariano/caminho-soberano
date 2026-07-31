@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/PageShell";
 
 export const metadata: Metadata = {
-  title: "Política de Privacidade | Caminho Soberano",
+  title: "Política de Privacidade",
   description:
     "Saiba como o Caminho Soberano coleta, usa e protege seus dados pessoais.",
 };
