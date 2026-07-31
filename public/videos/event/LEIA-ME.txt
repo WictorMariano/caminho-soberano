@@ -1,0 +1,4 @@
+﻿# Coloque aqui os vídeos verticais do hero (9:16), por exemplo:
+# video-01.mp4
+# video-02.mp4
+# video-03.mp4
