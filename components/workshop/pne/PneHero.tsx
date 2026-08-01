@@ -147,9 +147,9 @@ export function PneHero() {
             <PneCtaLink />
           </div>
 
-          {/* Mobile: carousel after CTA */}
+          {/* Mobile: carousel after CTA — altura limitada, loop contínuo */}
           <div className="relative mt-10 md:hidden">
-            <PneHeroPhotoMarquee className="min-h-[460px]" />
+            <PneHeroPhotoMarquee />
           </div>
         </motion.div>
 

@@ -86,10 +86,10 @@ function MarqueeColumn({
   const loop = [...items, ...items];
 
   return (
-    <div className="relative flex-1 overflow-hidden">
+    <div className="relative h-full flex-1 overflow-hidden">
       <div
         className={cn(
-          "flex flex-col gap-3 will-change-transform",
+          "flex flex-col gap-2.5 will-change-transform md:gap-3",
           reverse ? "pne-hero-marquee-track--reverse" : "pne-hero-marquee-track",
           paused && "pne-hero-marquee-track--paused",
         )}
@@ -99,7 +99,7 @@ function MarqueeColumn({
           <div
             key={`${item.src}-${i}`}
             className={cn(
-              "relative w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5",
+              "relative w-full shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-white/5",
               item.tall ? "aspect-[3/4]" : "aspect-[4/3]",
             )}
           >
@@ -149,11 +149,12 @@ export function PneHeroPhotoMarquee({ className }: PneHeroPhotoMarqueeProps) {
         }
       }}
       className={cn(
-        "pne-hero-marquee relative h-full min-h-[420px] w-full cursor-pointer overflow-hidden",
+        "pne-hero-marquee relative w-full cursor-pointer overflow-hidden",
+        "h-[min(300px,42svh)] md:h-full md:min-h-0",
         className,
       )}
     >
-      <div className="flex h-full gap-3 px-1">
+      <div className="flex h-full gap-2.5 px-1 md:gap-3">
         <MarqueeColumn items={columnA} duration={48} paused={paused} />
         <MarqueeColumn
           items={columnB}
@@ -164,11 +165,11 @@ export function PneHeroPhotoMarquee({ className }: PneHeroPhotoMarqueeProps) {
       </div>
 
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 z-10 h-20 bg-gradient-to-b from-[#020b16] via-[#020b16]/75 to-transparent md:h-28"
+        className="pointer-events-none absolute inset-x-0 top-0 z-10 h-14 bg-gradient-to-b from-[#020b16] via-[#020b16]/75 to-transparent md:h-28"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-t from-[#020b16] via-[#020b16]/80 to-transparent md:h-32"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-16 bg-gradient-to-t from-[#020b16] via-[#020b16]/80 to-transparent md:h-32"
         aria-hidden
       />
     </div>
