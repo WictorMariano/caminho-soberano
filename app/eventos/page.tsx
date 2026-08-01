@@ -57,7 +57,7 @@ const expectativas = [
   {
     icon: Shield,
     title: "Foco em soberania",
-    text: "Tudo pensado para você retomar o controle do próprio dinheiro — na prática.",
+    text: "Tudo pensado para você retomar o controle do próprio dinheiro, na prática.",
   },
   {
     icon: Users,
@@ -220,7 +220,7 @@ export default function EventosPage() {
             </h2>
             <p className="mt-5 text-base leading-relaxed text-foreground/75 md:text-lg">
               Profissionais liberais, empresários, investidores, pró-liberdade e
-              qualquer pessoa que queira aprender Bitcoin na prática — com
+              qualquer pessoa que queira aprender Bitcoin na prática, com
               segurança, clareza e comunidade.
             </p>
             <ul className="mt-6 space-y-3 text-base text-foreground/75">
@@ -248,7 +248,7 @@ export default function EventosPage() {
             Próximo encontro: São Paulo
           </h2>
           <p className="mt-4 text-base leading-relaxed text-foreground/70 md:text-lg">
-            {eventMeta.title} — {eventMeta.dateShort}, em{" "}
+            {eventMeta.title}, {eventMeta.dateShort}, em{" "}
             {eventMeta.location}. Vagas limitadas.
           </p>
           <Link

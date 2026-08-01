@@ -83,7 +83,7 @@ export function ConteudoHero() {
             className="mt-6 max-w-xl text-base leading-relaxed text-white/75 md:text-lg"
           >
             Redes sociais, comunidade gratuita e treinamentos para quem quer
-            dominar Bitcoin na prática — com clareza e consistência. Tutoriais
+            dominar Bitcoin na prática, com clareza e consistência. Tutoriais
             reais, como o de hard wallet ao lado.
           </motion.p>
 

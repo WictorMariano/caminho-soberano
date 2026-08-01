@@ -13,6 +13,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 
+import { PneCtaLink } from "@/components/workshop/pne/PneCtaLink";
 import { pneLearning } from "@/lib/workshop-pne";
 import { cn } from "@/lib/utils";
 
@@ -43,18 +44,20 @@ export function PneLearning() {
   };
 
   return (
-    <section className="relative border-t border-white/8 bg-[#03111f] py-16 md:py-24">
-      <div className="mx-auto max-w-6xl px-5 md:px-8">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div className="max-w-xl">
-            <h2 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl">
-              O que você vai aprender
-            </h2>
-            <p className="mt-3 text-base text-white/65 md:text-lg">
-              Seis blocos para conectar tecnologia, negócio e carreira.
-            </p>
-          </div>
-          <div className="flex items-center gap-2">
+    <section className="relative border-t border-white/5 bg-black py-16 md:py-24">
+      <div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black via-[#03111f] to-[#03111f]"
+        aria-hidden
+      />
+      <div className="relative mx-auto max-w-6xl px-5 md:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl">
+            O que você vai aprender
+          </h2>
+          <p className="mt-3 text-base text-white/65 md:text-lg">
+            Seis blocos para conectar tecnologia, negócio e carreira.
+          </p>
+          <div className="mt-5 flex items-center justify-center gap-2">
             <button
               type="button"
               onClick={prev}
@@ -173,6 +176,10 @@ export function PneLearning() {
           <span className="text-xs tabular-nums text-white/50">
             {index + 1}/{total}
           </span>
+        </div>
+
+        <div className="mt-12 flex justify-center">
+          <PneCtaLink />
         </div>
       </div>
     </section>

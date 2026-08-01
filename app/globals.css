@@ -72,6 +72,34 @@ body {
   }
 }
 
+@keyframes marquee-y {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+.pne-hero-marquee-track {
+  animation: marquee-y 48s linear infinite;
+}
+
+.pne-hero-marquee-track--reverse {
+  animation: marquee-y 56s linear infinite reverse;
+}
+
+.pne-hero-marquee-track--paused {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pne-hero-marquee-track,
+  .pne-hero-marquee-track--reverse {
+    animation: none;
+  }
+}
+
 .animate-fade-up {
   animation: fade-up 0.8s ease-out both;
 }

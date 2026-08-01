@@ -54,7 +54,7 @@ export const educationProducts = [
     id: "trilha-autocustodia",
     title: "Trilha de Autocustódia",
     description:
-      "Passo a passo para guardar seus próprios bitcoin com segurança — sem depender de corretoras.",
+      "Passo a passo para guardar seus próprios bitcoin com segurança, sem depender de corretoras.",
     tag: "Treinamento",
     href: "/conteudo#educacao",
   },
@@ -70,7 +70,7 @@ export const educationProducts = [
     id: "lives-semanais",
     title: "Lives e Conteúdo Semanal",
     description:
-      "Atualizações, alertas e aulas ao vivo na comunidade — para manter o aprendizado em movimento.",
+      "Atualizações, alertas e aulas ao vivo na comunidade, para manter o aprendizado em movimento.",
     tag: "Comunidade",
     href: "https://chat.whatsapp.com/",
     external: true,

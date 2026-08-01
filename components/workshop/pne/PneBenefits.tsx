@@ -37,13 +37,13 @@ export function PneBenefits() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.45 }}
-          className="max-w-2xl"
+          className="mx-auto max-w-2xl text-center"
         >
           <h2 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl">
             O que você leva deste workshop
           </h2>
           <p className="mt-3 text-base text-white/65 md:text-lg">
-            Clareza, diagnóstico, prática e um primeiro plano — em um único dia.
+            Clareza, diagnóstico, prática e um primeiro plano, em um único dia.
           </p>
         </motion.div>
 

@@ -168,7 +168,7 @@ export function LotCountdown() {
 
           {!display.expired ? (
             <p className="mt-6 text-center text-xs font-medium tracking-wide text-white/40">
-              Após a virada, o mesmo ingresso custa mais — sem exceção.
+              Após a virada, o mesmo ingresso custa mais, sem exceção.
             </p>
           ) : null}
         </div>

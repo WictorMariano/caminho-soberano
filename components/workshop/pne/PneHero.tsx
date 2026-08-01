@@ -1,26 +1,105 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { CalendarDays, Clock3, MapPin } from "lucide-react";
+import { CalendarDays, Clock3, MapPin, Users } from "lucide-react";
+import type { ReactNode } from "react";
 
 import { PneCtaLink } from "@/components/workshop/pne/PneCtaLink";
-import { pneExpert, pneHeroThemes, pneMeta } from "@/lib/workshop-pne";
+import { PneHeroPhotoMarquee } from "@/components/workshop/pne/PneHeroPhotoMarquee";
+import { pneHeroThemes, pneMeta } from "@/lib/workshop-pne";
+import { cn } from "@/lib/utils";
+
+function HeroMetaChip({
+  children,
+  accent = false,
+}: {
+  children: ReactNode;
+  accent?: boolean;
+}) {
+  return (
+    <span
+      className={cn(
+        "relative inline-flex items-center overflow-hidden rounded-full border px-3.5 py-1.5 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.55)]",
+        accent
+          ? "border-accent/40 font-medium text-accent"
+          : "border-white/10 text-white/88",
+      )}
+      style={{
+        background: accent
+          ? "linear-gradient(160deg, rgba(255,241,0,0.12) 0%, rgba(8,10,16,0.96) 55%, rgba(6,8,12,0.98) 100%)"
+          : "linear-gradient(160deg, rgb(18,22,30) 0%, rgb(8,10,16) 55%, rgb(6,8,12) 100%)",
+      }}
+    >
+      {/* Soft top-left light sheen */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: accent
+            ? "radial-gradient(ellipse 90% 120% at 12% 0%, rgba(255,241,0,0.18), transparent 58%)"
+            : "radial-gradient(ellipse 90% 120% at 12% 0%, rgba(255,255,255,0.14), transparent 58%)",
+        }}
+      />
+      {/* Dot-grid texture (same language as IA Divulgadora bento cards) */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-90"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at center, rgba(255,255,255,0.055) 1px, transparent 1px)",
+          backgroundSize: "4px 4px",
+        }}
+      />
+      <span className="relative z-10 inline-flex items-center gap-1.5">
+        {children}
+      </span>
+    </span>
+  );
+}
 
 export function PneHero() {
   const reduce = useReducedMotion();
 
   return (
-    <section id="pne-hero" className="relative overflow-hidden pt-24 md:pt-28">
+    <section
+      id="pne-hero"
+      className="relative overflow-hidden md:min-h-[100svh]"
+    >
       <div className="absolute inset-0 ocean-hero-bg" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#020b16]/40 via-transparent to-[#020b16]" />
 
-      <div className="relative z-10 mx-auto grid max-w-6xl gap-10 px-5 pb-16 pt-8 md:grid-cols-2 md:items-center md:gap-12 md:px-8 md:pb-24 md:pt-12">
+      <div className="relative z-10 mx-auto grid max-w-6xl md:min-h-[100svh] md:grid-cols-2 md:items-stretch">
+        {/* Copy column */}
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55 }}
+          className="flex flex-col justify-center px-5 py-10 md:px-8 md:py-16 lg:pr-10"
         >
+          <Link
+            href="/"
+            className="mb-7 inline-flex w-fit items-center gap-3"
+          >
+            <Image
+              src="/images/brand/logo-mark.png"
+              alt="Caminho Soberano"
+              width={40}
+              height={40}
+              className="h-9 w-auto md:h-10"
+              priority
+            />
+            <span className="leading-none">
+              <span className="block text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-white/75 md:text-[0.7rem]">
+                Caminho
+              </span>
+              <span className="block text-sm font-semibold uppercase tracking-[0.14em] text-white md:text-base">
+                Soberano
+              </span>
+            </span>
+          </Link>
+
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">
             {pneMeta.brandLine}
           </p>
@@ -31,19 +110,23 @@ export function PneHero() {
             {pneMeta.tagline}
           </p>
 
-          <div className="mt-5 flex flex-wrap gap-2.5 text-sm text-white/85">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/12 bg-white/[0.06] px-3 py-1.5">
+          <div className="mt-5 flex flex-wrap gap-2.5 text-sm">
+            <HeroMetaChip>
               <CalendarDays size={14} className="text-accent" />
               {pneMeta.dateFull} · {pneMeta.weekday}
-            </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/12 bg-white/[0.06] px-3 py-1.5">
+            </HeroMetaChip>
+            <HeroMetaChip>
               <Clock3 size={14} className="text-accent" />
               {pneMeta.time}
-            </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/12 bg-white/[0.06] px-3 py-1.5">
+            </HeroMetaChip>
+            <HeroMetaChip>
               <MapPin size={14} className="text-accent" />
               {pneMeta.location}
-            </span>
+            </HeroMetaChip>
+            <HeroMetaChip accent>
+              <Users size={14} />
+              {pneMeta.capacity} vagas
+            </HeroMetaChip>
           </div>
 
           <div className="mt-5 flex flex-wrap gap-2">
@@ -64,33 +147,20 @@ export function PneHero() {
             <PneCtaLink />
           </div>
 
-          <p className="mt-4 text-sm text-white/50">{pneMeta.audienceLine}</p>
+          {/* Mobile: carousel after CTA */}
+          <div className="relative mt-10 md:hidden">
+            <PneHeroPhotoMarquee className="min-h-[460px]" />
+          </div>
         </motion.div>
 
+        {/* Desktop: full-height carousel from top to bottom of hero */}
         <motion.div
           initial={reduce ? false : { opacity: 0, x: 24 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="relative mx-auto w-full max-w-md md:max-w-none"
+          className="relative hidden min-h-full md:block"
         >
-          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
-            <Image
-              src={pneExpert.heroImage}
-              alt={pneExpert.name}
-              fill
-              priority
-              sizes="(max-width: 768px) 90vw, 420px"
-              className="object-cover object-top"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#020b16] via-transparent to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-5">
-              <p className="text-lg font-bold text-white">{pneExpert.name}</p>
-              <p className="text-sm text-white/70">{pneExpert.role}</p>
-            </div>
-          </div>
-          <div className="pointer-events-none absolute -right-4 -top-4 rounded-full border border-accent/40 bg-accent px-4 py-2 text-xs font-bold uppercase tracking-wide text-accent-ink shadow-lg md:-right-6">
-            {pneMeta.capacity} vagas
-          </div>
+          <PneHeroPhotoMarquee className="absolute inset-0 min-h-0" />
         </motion.div>
       </div>
     </section>

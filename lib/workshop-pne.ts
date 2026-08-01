@@ -2,10 +2,10 @@ export const PNE_SLUG = "programa-nova-economia" as const;
 export const PNE_PATH = `/eventos/${PNE_SLUG}` as const;
 
 /** Número comercial (editar quando houver oficial). Digits only for wa.me */
-export const pneWhatsAppDigits = "5511999999999";
+export const pneWhatsAppDigits = "5511911485536";
 
 export const pneWhatsAppMessage =
-  "Olá! Quero garantir minha vaga no Workshop Profissionais da Nova Economia.";
+  "olá, quero garantir a minha vaga para o WorkShop!";
 
 export function pneWhatsAppUrl(customMessage = pneWhatsAppMessage) {
   return `https://wa.me/${pneWhatsAppDigits}?text=${encodeURIComponent(customMessage)}`;
@@ -14,12 +14,12 @@ export function pneWhatsAppUrl(customMessage = pneWhatsAppMessage) {
 export const pneMeta = {
   title: "Profissionais da Nova Economia",
   shortName: "PNE",
-  brandLine: "Workshop / Imersão Presencial",
+  brandLine: "Workshop · Imersão Presencial",
   tagline:
     "Prepare seu negócio e sua carreira para as oportunidades da Nova Economia",
-  location: "CDL Florianópolis — SC",
-  city: "Florianópolis - SC",
-  venue: "CDL Florianópolis — SC",
+  location: "CDL Florianópolis, SC",
+  city: "Florianópolis, SC",
+  venue: "CDL Florianópolis, SC",
   region: "Sul" as const,
   dateShort: "29 de agosto",
   dateFull: "29 de agosto de 2026",
@@ -27,7 +27,7 @@ export const pneMeta = {
   time: "08h às 17h",
   format: "Presencial",
   capacity: 50,
-  /** Contador administrável — sem fake countdown */
+  /** Contador administrável (sem fake countdown) */
   remainingSeats: 50,
   description:
     "Um dia completo para você compreender o que está mudando, diagnosticar sua realidade, experimentar tecnologias emergentes e planejar os primeiros passos da sua transformação.",
@@ -174,7 +174,7 @@ export const pneJourney = [
     id: "diagnostique",
     label: "Diagnostique",
     title: "BT Model",
-    text: "Modele sua empresa ou carreira e visualize a realidade atual (AS-IS).",
+    text: "Modele sua empresa ou carreira e visualize a realidade atual.",
   },
   {
     id: "caminho",
@@ -273,7 +273,7 @@ export const pneSchedule: ScheduleItem[] = [
       "BT Model",
       "Diagnóstico individual",
       "Análise dos 11 componentes",
-      "Relatório AS-IS",
+      "Relatório do estado atual",
       "Realidade atual revelada",
     ],
     visual: "Gráfico sendo preenchido progressivamente.",
@@ -283,7 +283,7 @@ export const pneSchedule: ScheduleItem[] = [
     id: "break",
     time: "12h30 às 13h30",
     title: "Almoço e networking",
-    objective: "Conectar-se com outros profissionais.",
+    objective: "Conectar com outros profissionais.",
     contents: ["Troca de experiências", "Networking entre participantes"],
     visual: "Avatares se conectando.",
     color: "#fb923c",
@@ -348,7 +348,7 @@ export const pneBonuses = [
   {
     id: "p2p",
     title: "Benefício P2P por 90 dias",
-    text: "Condições especiais de desconto, durante 90 dias, no serviço P2P utilizado para aquisição de ativos digitais — conforme os termos da oferta.",
+    text: "Condições especiais de desconto, durante 90 dias, no serviço P2P utilizado para aquisição de ativos digitais, conforme os termos da oferta.",
     badge: "90 dias de benefício",
     tone: "gold" as const,
     disclaimer:
@@ -363,7 +363,7 @@ export const pneExpert = {
   image: "/images/founder/tarcisio-machado-expert.png",
   bio: "Tarcísio conduzirá o workshop conectando tecnologia, novos modelos de negócio, estratégia e oportunidades profissionais a partir da visão do Caminho Soberano: Soberania, Propósito e Transformação. Ao longo da imersão, ajudará os participantes a compreender o novo contexto, analisar sua realidade e experimentar ferramentas da Nova Economia de forma orientada e aplicável.",
   quote:
-    "Prepare-se hoje para prosperar no futuro. O futuro não acontece, é construído.",
+    "Prepare hoje para prosperar no futuro. O futuro não acontece, é construído.",
   pillars: ["Soberania", "Propósito", "Transformação"] as const,
 } as const;
 
@@ -406,12 +406,87 @@ export const pneFaqs = [
   {
     question: "Onde será o evento?",
     answer:
-      "Na CDL Florianópolis — SC. O endereço completo será informado aos participantes.",
+      "Na CDL Florianópolis, SC. O endereço completo será informado aos participantes.",
   },
   {
     question: "Quais são os bônus?",
     answer:
       "Acesso ao grupo VIP do WhatsApp e benefício de desconto por 90 dias no serviço P2P para aquisição de ativos digitais, conforme os termos da oferta.",
+  },
+] as const;
+
+export const pneTestimonials = [
+  {
+    id: "dep-06",
+    name: "Participante Workshop",
+    label: "Participante",
+    category: "Workshop",
+    video: "/videos/pne/dep-06.mp4",
+    poster: "/videos/pne/dep-06.jpg",
+  },
+  {
+    id: "leonardo-neiva",
+    name: "Leonardo Neiva",
+    label: "Participante",
+    category: "Workshop",
+    video: "/videos/pne/dep-leonardo-neiva.mp4",
+    poster: "/videos/pne/dep-leonardo-neiva.jpg",
+  },
+  {
+    id: "cs-mercury",
+    name: "CS Mercury",
+    label: "Participante",
+    category: "Evento do CS",
+    video: "/videos/pne/dep-cs-mercury.mp4",
+    poster: "/videos/pne/dep-cs-mercury.jpg",
+  },
+  {
+    id: "dep-04",
+    name: "Participante",
+    label: "Participante",
+    category: "Workshop",
+    video: "/videos/pne/dep-04.mp4",
+    poster: "/videos/pne/dep-04.jpg",
+  },
+  {
+    id: "dep-05",
+    name: "Participante",
+    label: "Participante",
+    category: "Workshop",
+    video: "/videos/pne/dep-05.mp4",
+    poster: "/videos/pne/dep-05.jpg",
+  },
+  {
+    id: "luis-sampaio",
+    name: "Luis Sampaio",
+    label: "Participante",
+    category: "Workshop",
+    video: "/videos/pne/dep-luis-sampaio.mp4",
+    poster: "/videos/pne/dep-luis-sampaio.jpg",
+  },
+  {
+    id: "elidio",
+    name: "Elídio",
+    label: "Participante",
+    category: "Evento do CS",
+    video: "/videos/pne/dep-elidio.mp4",
+    poster: "/videos/pne/dep-elidio.jpg",
+  },
+  {
+    id: "dep-07",
+    name: "Participante",
+    label: "Participante",
+    category: "Evento do CS",
+    video: "/videos/pne/dep-07.mp4",
+    poster: "/videos/pne/dep-07.jpg",
+  },
+  {
+    id: "dep-08",
+    name: "Participante",
+    label: "Participante",
+    category: "Workshop",
+    video: "/videos/pne/dep-08.mp4",
+    poster: "/videos/pne/dep-08.jpg",
   },
 ] as const;
 

@@ -100,7 +100,7 @@ export const eventBenefits = [
   {
     title: "Conteúdo estratégico",
     description:
-      "Visão filosófica e operacional sobre soberania — sem enrolação e sem teoria solta.",
+      "Visão filosófica e operacional sobre soberania, sem enrolação e sem teoria solta.",
     icon: "compass" as const,
     image: "/images/gallery/gallery-02.png",
     tags: ["Filosofia", "Estratégia", "Aplicável"],
@@ -111,7 +111,7 @@ export const exclusiveBonuses = [
   {
     title: "Grupo VIP de WhatsApp",
     description:
-      "Acesso ao grupo VIP exclusivo dos participantes — networking contínuo, trocas de oportunidades e suporte direto depois do evento.",
+      "Acesso ao grupo VIP exclusivo dos participantes: networking contínuo, trocas de oportunidades e suporte direto depois do evento.",
     icon: "group" as const,
     badge: "Bônus 01",
     image: "/images/gallery/gallery-01.png",
@@ -120,7 +120,7 @@ export const exclusiveBonuses = [
   {
     title: "Descontos no portfólio Caminho Soberano",
     description:
-      "Condição especial de desconto em produtos e formações futuras do portfólio Caminho Soberano — benefício exclusivo para quem participar deste evento.",
+      "Condição especial de desconto em produtos e formações futuras do portfólio Caminho Soberano, benefício exclusivo para quem participar deste evento.",
     icon: "discount" as const,
     badge: "Bônus 02",
     image: "/images/gallery/gallery-05.png",
@@ -170,7 +170,7 @@ export const speakers = [
     image: "/images/events/dominando-bitcoin/speakers/elidio.jpg",
     instagram: "https://www.instagram.com/elidiosegundo/",
     twitter: "https://x.com/elidiosegundo",
-    bio: "Chegou ao Bitcoin por necessidade — proteger patrimônio de bloqueios arbitrários. Hoje é referência em autocustódia, anonimização, empréstimos colateralizados e alavancagem. Ensina estratégias práticas para blindar o dinheiro e construir riqueza fora do sistema.",
+    bio: "Chegou ao Bitcoin por necessidade: proteger patrimônio de bloqueios arbitrários. Hoje é referência em autocustódia, anonimização, empréstimos colateralizados e alavancagem. Ensina estratégias práticas para blindar o dinheiro e construir riqueza fora do sistema.",
   },
   {
     name: "Rafael Castaneda",
@@ -191,14 +191,14 @@ export const speakers = [
     image: "/images/events/dominando-bitcoin/speakers/guilherme.png",
     instagram: "https://www.instagram.com/guicampossc/",
     twitter: "https://x.com/GuiCamposOF",
-    bio: "Empreendedor e líder da DSec Labs. Atua em operações, produto e expansão no ecossistema DeFi. Transforma ideias complexas em soluções escaláveis — unindo blockchain, modelo de negócio e resultado concreto.",
+    bio: "Empreendedor e líder da DSec Labs. Atua em operações, produto e expansão no ecossistema DeFi. Transforma ideias complexas em soluções escaláveis, unindo blockchain, modelo de negócio e resultado concreto.",
   },
   {
     name: "Leonardo Maximiliano",
     image: "/images/events/dominando-bitcoin/speakers/leonardo.png",
     instagram: "https://www.instagram.com/leommaximiliano/",
     twitter: "https://x.com/leommaximiliano",
-    bio: "Founder da Decentralized Security Labs (DSEC). Especialista em Web3 e autocustódia, cria produtos que removem intermediários — Domini Pay, John Galt P2P, Alfred Space e ColdKit — para devolver controle total de ativos e dados a pessoas e empresas.",
+    bio: "Founder da Decentralized Security Labs (DSEC). Especialista em Web3 e autocustódia, cria produtos que removem intermediários (Domini Pay, John Galt P2P, Alfred Space e ColdKit) para devolver controle total de ativos e dados a pessoas e empresas.",
   },
   {
     name: "Vinicius Silva Brito",

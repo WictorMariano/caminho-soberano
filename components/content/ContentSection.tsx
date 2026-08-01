@@ -137,7 +137,7 @@ export function ContentSection() {
             autocustódia e decisões que protegem o que é seu.
           </p>
           <p className="mt-4 max-w-lg text-base leading-relaxed text-white drop-shadow-[0_2px_12px_rgba(0,20,40,0.5)] md:text-lg">
-            Acompanhe o Caminho Soberano e transforme informação em ação — no
+            Acompanhe o Caminho Soberano e transforme informação em ação, no
             seu ritmo, com clareza e propósito.
           </p>
 

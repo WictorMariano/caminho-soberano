@@ -222,8 +222,8 @@ export function BitcoinPraticaEventPage() {
                     1º lote
                   </strong>
                   . Em 18/08 o preço sobe{" "}
-                  <strong className="font-semibold text-accent">20%</strong> —
-                  escolha seu acesso e trave o valor de hoje.
+                  <strong className="font-semibold text-accent">20%</strong>.
+                  Escolha seu acesso e trave o valor de hoje.
                 </p>
               </div>
               <PricingCards />

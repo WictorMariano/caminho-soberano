@@ -66,7 +66,7 @@ export default function ConteudoPage() {
                 @ocaminhosoberano
               </a>{" "}
               você encontra bastidores dos eventos, aulas rápidas, alertas e
-              reflexões sobre soberania financeira — direto no feed e nos
+              reflexões sobre soberania financeira, direto no feed e nos
               stories.
             </p>
             <ul className="mt-6 space-y-3 text-base text-foreground/75">
@@ -192,7 +192,7 @@ export default function ConteudoPage() {
                 Produtos educacionais para aprofundar
               </h2>
               <p className="mt-4 text-base leading-relaxed text-foreground/70 md:text-lg">
-                Trilhas e imersões pensadas para quem quer ir além do feed —
+                Trilhas e imersões pensadas para quem quer ir além do feed,
                 com método, prática e foco em resultado.
               </p>
             </div>

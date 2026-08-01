@@ -13,7 +13,7 @@ const benefits = [
   {
     icon: BriefcaseBusiness,
     title: "Rede de contatos de negócios",
-    text: "Conecte-se com empresários, profissionais liberais e investidores alinhados à soberania — relações que geram oportunidades reais.",
+    text: "Conecte com empresários, profissionais liberais e investidores alinhados à soberania: relações que geram oportunidades reais.",
   },
   {
     icon: ShieldCheck,
@@ -28,13 +28,17 @@ const benefits = [
   {
     icon: Handshake,
     title: "Parcerias de longo prazo",
-    text: "Networking presencial que vira colaboração contínua — mentoria, joint ventures e apoio entre soberanos.",
+    text: "Networking presencial que vira colaboração contínua: mentoria, joint ventures e apoio entre soberanos.",
   },
 ];
 
-export function NetworkSection() {
+export function NetworkSection({
+  exitToBlack = false,
+}: {
+  exitToBlack?: boolean;
+}) {
   return (
-    <section id="network" className="bg-background">
+    <section id="network" className={exitToBlack ? "bg-black" : "bg-background"}>
       <ScrollExpandMedia
         mediaSrc="/videos/treinamento-presencial.mp4"
         posterSrc="/images/events/dominando-bitcoin/hero.png"
@@ -42,6 +46,7 @@ export function NetworkSection() {
         eyebrow="Networking"
         title="Rede Soberana"
         scrollHint="Role para expandir"
+        exitToBlack={exitToBlack}
       >
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
@@ -52,8 +57,8 @@ export function NetworkSection() {
           </h3>
           <p className="mt-4 text-base leading-relaxed text-white/75 md:text-lg">
             Aqui o networking não é cartão de visita jogado no chão. É uma rede
-            viva de contatos de negócios, confiança mútua e troca real de valor
-            — o tipo de conexão que o algoritmo nunca entrega.
+            viva de contatos de negócios, confiança mútua e troca real de valor,
+            o tipo de conexão que o algoritmo nunca entrega.
           </p>
         </div>
 

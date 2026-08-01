@@ -100,7 +100,7 @@ export function CommunityForm() {
         <div className="relative mx-auto flex h-[420px] w-full max-w-md items-center justify-center order-2 md:order-1 sm:h-[480px] md:max-w-none">
           <PhoneMock
             src="/images/events/story-2.jpg"
-            alt="Comunidade Caminho Soberano no WhatsApp — grupos por cidade"
+            alt="Comunidade Caminho Soberano no WhatsApp, grupos por cidade"
             delay={0.05}
             className="absolute left-[6%] top-[8%] z-0 -rotate-[18deg] scale-95 opacity-90 sm:left-[10%]"
           />

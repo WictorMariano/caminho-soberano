@@ -19,7 +19,7 @@ export function PneProblem() {
           className="mx-auto max-w-2xl text-center"
         >
           <h2 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl">
-            O mercado já mudou. A pergunta é: você está só observando — ou se preparando?
+            O mercado já mudou. A pergunta é: você está só observando ou se preparando?
           </h2>
           <p className="mt-4 text-base leading-relaxed text-white/65 md:text-lg">
             Entre acompanhar de longe e construir vantagem competitiva, existe um

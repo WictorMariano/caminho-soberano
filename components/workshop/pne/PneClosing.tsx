@@ -23,11 +23,13 @@ export function PneClosing() {
           className="mx-auto max-w-3xl text-center"
         >
           <h2 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl">
-            Prepare seu negócio e sua carreira para a Nova Economia
+            Prepare{" "}
+            <span className="text-accent">seu negócio</span> e sua carreira para
+            a <span className="text-accent">Nova Economia</span>
           </h2>
           <p className="mt-4 text-base leading-relaxed text-white/65 md:text-lg">
             Um dia presencial em Florianópolis para sair da observação e entrar
-            na preparação — com clareza, prática e próximos passos.
+            na preparação, com clareza, prática e próximos passos.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm text-white/75">

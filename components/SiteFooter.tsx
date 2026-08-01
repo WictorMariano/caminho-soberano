@@ -152,7 +152,7 @@ export function SiteFooter() {
 
         {/* Linha inferior: copyright | agência */}
         <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/45 sm:flex-row sm:items-end sm:justify-between">
-          <p>Copyright © {year} — Todos os direitos reservados</p>
+          <p>Copyright © {year}. Todos os direitos reservados</p>
           <div className="sm:text-right">
             <p className="uppercase tracking-[0.16em]">Agência Machado Digital</p>
             <p className="mt-1">26.098.577/0001-71</p>

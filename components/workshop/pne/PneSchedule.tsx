@@ -68,14 +68,14 @@ function ScheduleCard({
         reduce
           ? undefined
           : {
-              y: isActive ? -8 : 0,
-              scale: isActive ? 1.02 : 0.985,
-              opacity: isActive ? 1 : 0.55,
+              y: isActive ? -6 : 0,
+              scale: isActive ? 1.015 : 0.99,
+              opacity: isActive ? 1 : 0.48,
             }
       }
-      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
       className={cn(
-        "group relative overflow-hidden rounded-2xl border border-white/10 bg-black/35 backdrop-blur-md transition-[border-color] duration-500",
+        "group relative overflow-hidden rounded-2xl border border-white/10 bg-black/35 backdrop-blur-md transition-[border-color,box-shadow] duration-700",
         isActive && "border-white/20",
       )}
       style={{
@@ -86,7 +86,7 @@ function ScheduleCard({
     >
       {/* Bottom glow wash */}
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-32 transition-opacity duration-500"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-32 transition-opacity duration-700"
         style={{
           opacity: isActive ? 0.85 : 0.35,
           background: `linear-gradient(to top, rgba(${rgb},0.32), transparent)`,
@@ -111,7 +111,7 @@ function ScheduleCard({
           )}
         >
           <div
-            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border backdrop-blur-sm transition duration-500"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border backdrop-blur-sm transition duration-700"
             style={{
               borderColor: `rgba(${rgb},${isActive ? 0.55 : 0.28})`,
               background: `rgba(${rgb},${isActive ? 0.2 : 0.1})`,
@@ -163,13 +163,14 @@ function ScheduleCard({
                 reduce
                   ? undefined
                   : {
-                      opacity: isActive ? 1 : 0.65,
-                      x: isActive ? 0 : alignEnd ? 4 : -4,
+                      opacity: isActive ? 1 : 0.55,
+                      x: isActive ? 0 : alignEnd ? 6 : -6,
                     }
               }
               transition={{
-                duration: 0.35,
-                delay: isActive ? topicIndex * 0.04 : 0,
+                duration: 0.55,
+                delay: isActive ? topicIndex * 0.06 : 0,
+                ease: [0.22, 1, 0.36, 1],
               }}
               className={cn(
                 "flex items-start gap-2.5 text-sm text-white/80 md:text-[15px]",
@@ -177,7 +178,7 @@ function ScheduleCard({
               )}
             >
               <span
-                className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border"
+                className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border transition duration-700"
                 style={{
                   borderColor: `rgba(${rgb},0.45)`,
                   background: `rgba(${rgb},0.14)`,
@@ -200,7 +201,7 @@ function ScheduleCard({
 
       {/* Bottom light line */}
       <div
-        className="absolute inset-x-4 bottom-0 h-px rounded-full transition-opacity duration-500"
+        className="absolute inset-x-4 bottom-0 h-px rounded-full transition-opacity duration-700"
         style={{
           opacity: isActive ? 0.95 : 0.35,
           background: `linear-gradient(90deg, transparent, ${item.color}, transparent)`,
@@ -238,8 +239,9 @@ export function PneSchedule() {
       },
       {
         root: null,
-        threshold: [0.25, 0.45, 0.65, 0.85],
-        rootMargin: "-18% 0px -32% 0px",
+        // Zona central mais estreita → cada card exige mais scroll para ativar
+        threshold: [0.2, 0.4, 0.55, 0.7],
+        rootMargin: "-28% 0px -42% 0px",
       },
     );
 
@@ -251,19 +253,32 @@ export function PneSchedule() {
     const root = listRef.current;
     if (!root) return;
 
+    let raf = 0;
+    let current = 0;
+
     const onScroll = () => {
       const rect = root.getBoundingClientRect();
       const viewH = window.innerHeight;
-      const start = viewH * 0.7;
-      const end = viewH * 0.2;
-      const raw = (start - rect.top) / (start - end + rect.height * 0.55);
-      setLineProgress(Math.min(1, Math.max(0, raw)));
+      const start = viewH * 0.88;
+      const end = viewH * -0.2;
+      const span = start - end + rect.height * 1.15;
+      const target = Math.min(1, Math.max(0, (start - rect.top) / span));
+
+      cancelAnimationFrame(raf);
+      const tick = () => {
+        current += (target - current) * 0.06;
+        if (Math.abs(target - current) < 0.001) current = target;
+        setLineProgress(current);
+        if (current !== target) raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
     };
 
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
+      cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
@@ -285,7 +300,7 @@ export function PneSchedule() {
           initial={reduce ? false : { opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-2xl"
+          className="mx-auto max-w-2xl text-center"
         >
           <h2 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl">
             Cronograma do dia
@@ -300,11 +315,11 @@ export function PneSchedule() {
           {/* Timeline track */}
           <div className="absolute bottom-4 left-[15px] top-4 w-px bg-white/10 md:left-1/2 md:-translate-x-px" />
           <div
-            className="absolute left-[15px] top-4 w-px origin-top bg-gradient-to-b from-[#3b9eff] via-[#2dd4bf] to-[#e8c43a] transition-[height] duration-300 md:left-1/2 md:-translate-x-px"
+            className="absolute left-[15px] top-4 w-px origin-top bg-gradient-to-b from-[#3b9eff] via-[#2dd4bf] to-[#e8c43a] transition-[height] duration-700 ease-out md:left-1/2 md:-translate-x-px"
             style={{ height: `${lineProgress * 100}%` }}
           />
 
-          <ol className="space-y-10 md:space-y-14">
+          <ol className="space-y-16 md:space-y-24">
             {pneSchedule.map((item, i) => {
               const isActive = active === i;
               const left = i % 2 === 0;
@@ -324,10 +339,10 @@ export function PneSchedule() {
                       reduce
                         ? undefined
                         : {
-                            scale: isActive ? 1.25 : 1,
+                            scale: isActive ? 1.28 : 1,
                           }
                     }
-                    transition={{ duration: 0.35 }}
+                    transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
                     className="absolute left-[7px] top-7 z-10 flex h-[18px] w-[18px] items-center justify-center rounded-full border-2 md:left-1/2 md:-translate-x-1/2"
                     style={{
                       borderColor: isActive ? "#fff" : `rgba(${rgb},0.55)`,
@@ -335,6 +350,8 @@ export function PneSchedule() {
                       boxShadow: isActive
                         ? `0 0 0 4px rgba(${rgb},0.22), 0 0 22px rgba(${rgb},0.75)`
                         : `0 0 10px rgba(${rgb},0.25)`,
+                      transition:
+                        "background-color 0.65s ease, border-color 0.65s ease, box-shadow 0.65s ease",
                     }}
                   />
 

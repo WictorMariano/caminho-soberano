@@ -45,7 +45,7 @@ export function WorkshopSection() {
               WorkShop
             </p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
-              Conteúdo prático intensivo — implemente no mesmo dia
+              Conteúdo prático intensivo, implemente no mesmo dia
             </h2>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-white/70 md:text-lg">
               Um encontro com passo a passo para implementar soluções financeiras
@@ -80,7 +80,7 @@ export function WorkshopSection() {
               <div className="relative aspect-[16/10] overflow-hidden">
                 <Image
                   src="/images/gallery/gallery-07.jpg"
-                  alt={`${pneMeta.title} — Florianópolis`}
+                  alt={`${pneMeta.title}, Florianópolis`}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover transition duration-700 group-hover:scale-105"

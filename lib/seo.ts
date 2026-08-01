@@ -24,5 +24,5 @@ export const siteOgImage = {
   url: "/images/og/og-share.png",
   width: 1200,
   height: 630,
-  alt: "Caminho Soberano — Alcance liberdade financeira real",
+  alt: "Caminho Soberano, alcance liberdade financeira real",
 } as const;

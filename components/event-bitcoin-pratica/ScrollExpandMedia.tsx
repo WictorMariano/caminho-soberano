@@ -21,6 +21,8 @@ type ScrollExpandMediaProps = {
   scrollHint?: string;
   children?: ReactNode;
   className?: string;
+  /** No fim do scroll, escurece até preto absoluto antes da próxima seção */
+  exitToBlack?: boolean;
 };
 
 export function ScrollExpandMedia({
@@ -32,6 +34,7 @@ export function ScrollExpandMedia({
   scrollHint = "Role para expandir",
   children,
   className,
+  exitToBlack = false,
 }: ScrollExpandMediaProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
@@ -60,7 +63,17 @@ export function ScrollExpandMedia({
   );
   const mediaBlur = useTransform(scrollYProgress, [0.45, 0.65], [0, 14]);
   const mediaFilter = useTransform(mediaBlur, (v) => `blur(${v}px)`);
-  const bgDim = useTransform(scrollYProgress, [0.35, 0.65, 1], [0.1, 0.55, 0.55]);
+
+  const bgDim = useTransform(
+    scrollYProgress,
+    exitToBlack ? [0.35, 0.65, 0.84, 1] : [0.35, 0.65, 1],
+    exitToBlack ? [0.1, 0.45, 0.55, 1] : [0.1, 0.55, 0.55],
+  );
+  const bgImageOpacity = useTransform(
+    scrollYProgress,
+    exitToBlack ? [0.78, 0.92, 1] : [0, 1],
+    exitToBlack ? [1, 0.4, 0] : [1, 1],
+  );
 
   const titleShift = useTransform(scrollYProgress, [0, 0.4], [0, 160]);
   const titleShiftNeg = useTransform(scrollYProgress, [0, 0.4], [0, -160]);
@@ -76,7 +89,7 @@ export function ScrollExpandMedia({
     [1, 0.55, 0],
   );
 
-  // Fase 3: texto aparece e PERMANECE até o fim da seção
+  // Fase 3: texto aparece e permanece visível (só o fundo escurece no exitToBlack)
   const contentOpacity = useTransform(
     scrollYProgress,
     [0.55, 0.7, 1],
@@ -141,18 +154,29 @@ export function ScrollExpandMedia({
   return (
     <div
       ref={sectionRef}
-      className={cn("relative h-[360vh] bg-background", className)}
+      className={cn(
+        "relative",
+        exitToBlack ? "h-[380vh] bg-black" : "h-[360vh] bg-background",
+        className,
+      )}
     >
-      <div className="sticky top-0 flex h-[100svh] items-center justify-center overflow-hidden">
+      <div
+        className={cn(
+          "sticky top-0 flex h-[100svh] items-center justify-center overflow-hidden",
+          exitToBlack && "bg-black",
+        )}
+      >
         <div className="absolute inset-0 z-0">
-          <Image
-            src={bgImageSrc}
-            alt=""
-            fill
-            sizes="100vw"
-            className="object-cover"
-            priority
-          />
+          <motion.div className="absolute inset-0" style={{ opacity: bgImageOpacity }}>
+            <Image
+              src={bgImageSrc}
+              alt=""
+              fill
+              sizes="100vw"
+              className="object-cover"
+              priority
+            />
+          </motion.div>
           <motion.div
             className="absolute inset-0 bg-black"
             style={{ opacity: bgDim }}
@@ -229,7 +253,7 @@ export function ScrollExpandMedia({
 
         <motion.div
           className={cn(
-            "absolute inset-0 z-30 flex items-center justify-center overflow-y-auto px-5 py-10 md:px-8",
+            "absolute inset-0 z-30 flex items-center justify-center overflow-y-auto py-10",
             contentInteractive ? "pointer-events-auto" : "pointer-events-none",
           )}
           style={{
@@ -238,7 +262,9 @@ export function ScrollExpandMedia({
             scale: contentScale,
           }}
         >
-          <div className="my-auto w-full max-w-6xl">{children}</div>
+          <div className="my-auto mx-auto w-full max-w-6xl px-5 md:px-8">
+            {children}
+          </div>
         </motion.div>
       </div>
     </div>

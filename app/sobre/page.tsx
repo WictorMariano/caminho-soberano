@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const valores = [
   {
     title: "Liberdade",
-    text: "Acreditamos que o indivíduo deve ter autonomia sobre seu tempo, seu dinheiro e suas decisões — sem tutela desnecessária.",
+    text: "Acreditamos que o indivíduo deve ter autonomia sobre seu tempo, seu dinheiro e suas decisões, sem tutela desnecessária.",
   },
   {
     title: "Responsabilidade",
@@ -97,7 +97,7 @@ export default function SobrePage() {
             Qual o objetivo do projeto
           </h2>
           <p className="mt-6 max-w-3xl text-base leading-relaxed text-foreground/75 md:text-lg">
-            Formar uma geração de pessoas soberanas — financeiramente
+            Formar uma geração de pessoas soberanas, financeiramente
             independentes, tecnicamente preparadas e conectadas a uma rede que
             valoriza liberdade, responsabilidade e patrimônio de longo prazo.
           </p>
