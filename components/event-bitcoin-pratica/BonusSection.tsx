@@ -13,19 +13,7 @@ const icons: Record<(typeof exclusiveBonuses)[number]["icon"], LucideIcon> = {
 
 export function BonusSection() {
   return (
-    <section
-      id="bonus"
-      className="relative overflow-hidden bg-background py-20 md:py-28"
-    >
-      <div
-        className="pointer-events-none absolute -left-[4%] top-[30%] h-80 w-80 rounded-full bg-[rgba(70,160,255,0.1)] blur-[60px]"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -right-[5%] top-[20%] h-96 w-96 rounded-full bg-[rgba(255,241,0,0.08)] blur-[60px]"
-        aria-hidden
-      />
-
+    <section id="bonus" className="relative py-20 md:py-28">
       <div className="relative z-10 mx-auto max-w-6xl px-5 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
@@ -58,10 +46,12 @@ export function BonusSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="benefit-soon-card group relative flex flex-col overflow-visible rounded-3xl border border-[rgba(70,160,255,0.22)] shadow-[0_4px_24px_rgba(70,160,255,0.12),0_12px_48px_rgba(0,0,0,0.35)]"
+                className="benefit-soon-card group relative flex flex-col overflow-visible rounded-3xl border border-white/10"
               >
                 <div className="benefit-soon-card__shine pointer-events-none absolute inset-0 rounded-3xl" />
                 <div className="benefit-soon-card__noise pointer-events-none absolute inset-0 rounded-3xl opacity-[0.35]" />
+                <div className="benefit-soon-card__glow" aria-hidden />
+                <div className="benefit-soon-card__line" aria-hidden />
 
                 <div className="benefit-soon-card__main relative grid min-h-[210px] grid-cols-1 items-center gap-4 overflow-visible px-5 pb-4 pt-6 sm:grid-cols-[1fr_minmax(0,40%)] sm:px-6 sm:pt-7 md:min-h-[230px]">
                   <div className="relative z-10 flex min-w-0 flex-col items-start pr-2 sm:pr-4">

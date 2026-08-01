@@ -14,6 +14,7 @@ import {
 import { EventosHero } from "@/components/events/EventosHero";
 import { PageShell } from "@/components/PageShell";
 import { EVENT_PATH, eventMeta } from "@/lib/event-bitcoin-pratica";
+import { PNE_PATH, pneMeta } from "@/lib/workshop-pne";
 
 export const metadata: Metadata = {
   title: "Eventos",
@@ -29,6 +30,16 @@ const events = [
     date: eventMeta.dateShort,
     image: "/images/gallery/gallery-06.jpg",
     href: EVENT_PATH,
+    badge: null as string | null,
+  },
+  {
+    id: "pne",
+    title: "Programa Nova Economia",
+    location: pneMeta.location,
+    date: pneMeta.dateShort,
+    image: "/images/gallery/gallery-07.jpg",
+    href: PNE_PATH,
+    badge: "Workshop PNE",
   },
 ];
 
@@ -108,6 +119,11 @@ export default function EventosPage() {
                     className="object-cover transition duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  {event.badge ? (
+                    <span className="absolute left-3 top-3 rounded-full border border-accent/35 bg-accent/15 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-accent backdrop-blur-sm">
+                      {event.badge}
+                    </span>
+                  ) : null}
                 </div>
                 <div className="p-5">
                   <h2 className="text-lg font-semibold leading-snug">

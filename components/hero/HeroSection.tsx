@@ -53,7 +53,7 @@ export function HeroSection() {
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
               <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.65)] sm:text-5xl md:text-6xl lg:text-7xl">
-                Alcance liberdade financeira real
+                Alcance sua soberania financeira
               </h1>
               <a
                 href="#comunidade"

@@ -68,7 +68,7 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border bg-background">
+    <footer className="border-t border-transparent bg-black">
       <div className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-12">
         {/* Linha superior: marca | contato + links | redes */}
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between md:gap-8">

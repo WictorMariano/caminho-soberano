@@ -1,17 +1,19 @@
-export const EVENT_SLUG =
-  "caminho-soberano-dominando-o-bitcoin" as const;
+export const EVENT_SLUG = "dominando-o-bitcoin" as const;
 
 export const EVENT_PATH = `/eventos/${EVENT_SLUG}`;
 
-/** slug antigo (Framer) — redireciona para EVENT_PATH */
+/** Slugs antigos — redirecionam para EVENT_PATH */
 export const EVENT_SLUG_LEGACY =
   "caminho-soberano-dominando-o-bitcoin-na-pratica" as const;
+
+export const EVENT_SLUG_PREVIOUS =
+  "caminho-soberano-dominando-o-bitcoin" as const;
 
 export const eventMeta = {
   title: "Caminho Soberano: Dominando o Bitcoin na Prática",
   location: "São Paulo - SP",
-  dateShort: "30 de Setembro",
-  dateFull: "30 de Setembro",
+  dateShort: "18 a 21 de novembro",
+  dateFull: "18 a 21 de novembro",
   time: "08:00 às 19:00",
   edition: "2ª Edição",
   mapEmbedUrl:
@@ -90,7 +92,7 @@ export const eventBenefits = [
   {
     title: "Imersão presencial",
     description:
-      "Dois dias intensivos, com palestras, prática e ambiente para tirar dúvidas ao vivo.",
+      "Quatro dias intensivos, com palestras, prática e ambiente para tirar dúvidas ao vivo.",
     icon: "users" as const,
     image: "/images/gallery/gallery-11.webp",
     tags: ["Presencial", "Prática", "Dúvidas ao vivo"],

@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { MapPin, CalendarDays, ArrowUpRight } from "lucide-react";
 
 import { EVENT_PATH } from "@/lib/event-bitcoin-pratica";
+import { PNE_PATH, pneMeta } from "@/lib/workshop-pne";
 import { cn } from "@/lib/utils";
 
 type Region =
@@ -25,6 +26,7 @@ type EventItem = {
   region: Region;
   image: string;
   href?: string;
+  badge?: string;
 };
 
 const regions: Region[] = [
@@ -41,10 +43,20 @@ const events: EventItem[] = [
     id: "bitcoin-pratica",
     title: "Caminho Soberano: Dominando o Bitcoin na Prática",
     location: "São Paulo - SP",
-    date: "30 de Setembro",
+    date: "18 a 21 de novembro",
     region: "Sudeste",
     image: "/images/gallery/gallery-06.jpg",
     href: EVENT_PATH,
+  },
+  {
+    id: "pne",
+    title: "Programa Nova Economia",
+    location: pneMeta.city,
+    date: pneMeta.dateShort,
+    region: pneMeta.region,
+    image: "/images/gallery/gallery-07.jpg",
+    href: PNE_PATH,
+    badge: "Workshop PNE",
   },
   {
     id: "bitcoin",
@@ -122,6 +134,11 @@ export function EventsSection() {
                       className="object-cover object-center transition duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                    {event.badge ? (
+                      <span className="absolute left-3 top-3 rounded-full border border-accent/35 bg-accent/15 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-accent backdrop-blur-sm">
+                        {event.badge}
+                      </span>
+                    ) : null}
                   </div>
                   <div className="flex flex-1 flex-col space-y-4 p-6">
                     <h3 className="text-xl font-semibold leading-snug">

@@ -7,8 +7,13 @@ import { Plus } from "lucide-react";
 import { siteFaqs } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
+type FaqItem = {
+  question: string;
+  answer: string;
+};
+
 type FaqAccordionProps = {
-  items?: typeof siteFaqs;
+  items?: readonly FaqItem[];
   className?: string;
 };
 

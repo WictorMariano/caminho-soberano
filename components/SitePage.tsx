@@ -7,6 +7,7 @@ import { FaqSection } from "@/components/faq/FaqSection";
 import { FounderSection } from "@/components/founder/FounderSection";
 import { GallerySection } from "@/components/gallery/GallerySection";
 import { HeroSection } from "@/components/hero/HeroSection";
+import { WorkshopSection } from "@/components/workshop/WorkshopSection";
 
 export function SitePage() {
   return (
@@ -15,6 +16,7 @@ export function SitePage() {
       <main>
         <HeroSection />
         <EventsSection />
+        <WorkshopSection />
         <FounderSection />
         <GallerySection />
         <ContentSection />

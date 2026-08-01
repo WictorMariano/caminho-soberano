@@ -1,14 +1,7 @@
-import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 
-import { BitcoinPraticaEventPage } from "@/components/event-bitcoin-pratica/BitcoinPraticaEventPage";
-import { eventMeta } from "@/lib/event-bitcoin-pratica";
-
-export const metadata: Metadata = {
-  title: eventMeta.title,
-  description:
-    "Dois dias de imersão para você dominar o Bitcoin, blindar seu patrimônio e finalmente viver livre. São Paulo — 30 de Setembro.",
-};
+import { EVENT_PATH } from "@/lib/event-bitcoin-pratica";
 
 export default function Page() {
-  return <BitcoinPraticaEventPage />;
+  redirect(EVENT_PATH);
 }
