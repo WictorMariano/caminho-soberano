@@ -15,13 +15,17 @@ export function SitePage() {
       <SiteHeader />
       <main>
         <HeroSection />
-        <EventsSection />
-        <WorkshopSection />
-        <FounderSection />
+        <div className="bg-[#081c34]">
+          <EventsSection />
+          <WorkshopSection />
+          <FounderSection />
+        </div>
         <GallerySection />
         <ContentSection />
-        <CommunityForm />
-        <FaqSection />
+        <div className="bg-[#081c34]">
+          <CommunityForm />
+          <FaqSection />
+        </div>
       </main>
       <SiteFooter />
     </div>

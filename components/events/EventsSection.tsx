@@ -96,8 +96,8 @@ export function EventsSection() {
   }, [active]);
 
   return (
-    <section id="eventos" className="relative overflow-hidden bg-background py-20 md:py-28">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--cs-glow),_transparent_55%)] opacity-70" />
+    <section id="eventos" className="relative overflow-hidden py-20 md:py-28">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(70,160,255,0.1),_transparent_55%)]" />
       <div className="relative mx-auto max-w-6xl px-5 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

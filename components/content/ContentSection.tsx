@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
@@ -105,17 +104,12 @@ export function ContentSection() {
   return (
     <section
       id="conteudo-home"
-      className="relative overflow-hidden py-20 md:py-28"
+      className="relative overflow-hidden bg-black py-20 md:py-28"
     >
-      <div className="absolute inset-0">
-        <Image
-          src="/images/events/dominando-bitcoin/ocean.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-      </div>
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_left,_rgba(255,255,255,0.04),_transparent_55%)]"
+        aria-hidden
+      />
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 md:grid-cols-2 md:gap-14 md:px-8 lg:gap-20">
         <motion.div
@@ -127,16 +121,16 @@ export function ContentSection() {
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
             Conteúdo
           </p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white drop-shadow-[0_2px_18px_rgba(0,20,40,0.55)] md:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
             Materiais práticos para maximizar sua vida
           </h2>
-          <p className="mt-5 max-w-lg text-base leading-relaxed text-white drop-shadow-[0_2px_12px_rgba(0,20,40,0.5)] md:text-lg">
+          <p className="mt-5 max-w-lg text-base leading-relaxed text-white/75 md:text-lg">
             Nas nossas redes sociais você encontra tutoriais práticos,
             estratégias aplicáveis e conteúdos que aceleram sua jornada rumo à
             soberania financeira. Do básico ao avançado: wallets, segurança,
             autocustódia e decisões que protegem o que é seu.
           </p>
-          <p className="mt-4 max-w-lg text-base leading-relaxed text-white drop-shadow-[0_2px_12px_rgba(0,20,40,0.5)] md:text-lg">
+          <p className="mt-4 max-w-lg text-base leading-relaxed text-white/75 md:text-lg">
             Acompanhe o Caminho Soberano e transforme informação em ação, no
             seu ritmo, com clareza e propósito.
           </p>
@@ -149,7 +143,7 @@ export function ContentSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white backdrop-blur-sm transition hover:border-accent hover:text-accent"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition hover:border-accent hover:text-accent"
               >
                 <Icon className="h-[18px] w-[18px]" />
               </a>
@@ -168,7 +162,7 @@ export function ContentSection() {
             </a>
             <Link
               href="/conteudo"
-              className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-accent hover:text-accent"
+              className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-accent hover:text-accent"
             >
               Explorar conteúdos
             </Link>

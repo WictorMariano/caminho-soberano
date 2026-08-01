@@ -90,10 +90,10 @@ export function CommunityForm() {
   return (
     <section
       id="comunidade"
-      className="relative overflow-hidden bg-background py-20 md:py-28"
+      className="relative overflow-hidden py-20 md:py-28"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_left,_var(--cs-glow),_transparent_50%)] opacity-70" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_right,_rgba(70,160,255,0.12),_transparent_55%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_left,_rgba(70,160,255,0.1),_transparent_50%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_right,_rgba(70,160,255,0.08),_transparent_55%)]" />
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 md:grid-cols-2 md:gap-10 md:px-8 lg:gap-16">
         {/* Celulares com prints da comunidade */}

@@ -7,17 +7,12 @@ export function FounderSection() {
   return (
     <section
       id="fundador"
-      className="relative overflow-hidden bg-[#081c34] py-16 md:py-24"
+      className="relative overflow-hidden py-16 md:py-24"
     >
-      {/* Fundo azul em código — sem imagem */}
-      <div className="founder-bg" aria-hidden>
-        <div className="founder-bg__base" />
-        <div className="founder-bg__mesh" />
-        <div className="founder-bg__orb founder-bg__orb--a" />
-        <div className="founder-bg__orb founder-bg__orb--b" />
-        <div className="founder-bg__orb founder-bg__orb--c" />
-        <div className="founder-bg__vignette" />
-      </div>
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_70%_40%,_rgba(70,160,255,0.1),_transparent_55%)]"
+        aria-hidden
+      />
 
       <div className="relative mx-auto max-w-6xl px-5 md:px-8">
         <motion.div
