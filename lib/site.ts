@@ -18,8 +18,8 @@ export const footerNav = [
 ] as const;
 
 export const ctaNav = {
-  href: EVENT_PATH,
-  label: "Garanta sua vaga",
+  href: "/eventos",
+  label: "Oportunidade",
 } as const;
 
 export const socialLinks = {

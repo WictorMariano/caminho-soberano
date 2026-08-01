@@ -23,6 +23,8 @@ type EventItem = {
   title: string;
   location: string;
   date: string;
+  /** ISO date used to sort: closest upcoming first, past last */
+  startsAt: string;
   region: Region;
   image: string;
   href?: string;
@@ -40,44 +42,58 @@ const regions: Region[] = [
 
 const events: EventItem[] = [
   {
-    id: "bitcoin-pratica",
-    title: "Caminho Soberano: Dominando o Bitcoin na Prática",
-    location: "São Paulo - SP",
-    date: "18 a 21 de novembro",
-    region: "Sudeste",
-    image: "/images/gallery/gallery-06.jpg",
-    href: EVENT_PATH,
-  },
-  {
     id: "pne",
     title: "Programa Nova Economia",
     location: pneMeta.city,
     date: pneMeta.dateShort,
+    startsAt: "2026-08-29",
     region: pneMeta.region,
-    image: "/images/gallery/gallery-07.jpg",
+    image: "/images/events/dominando-bitcoin/benefits/immersion.jpg",
     href: PNE_PATH,
     badge: "Workshop PNE",
   },
   {
-    id: "bitcoin",
-    title: "Caminho Soberano: Bitcoin",
-    location: "São Paulo - SP",
-    date: "25 e 26 de Abril",
+    id: "bitcoin-pratica",
+    title: "Caminho Soberano: Dominando o Bitcoin na Prática",
+    location: "São Paulo, SP",
+    date: "18 a 21 de novembro",
+    startsAt: "2026-11-18",
     region: "Sudeste",
     image: "/images/events/dominando-bitcoin/hero.png",
+    href: EVENT_PATH,
+  },
+  {
+    id: "bitcoin",
+    title: "Caminho Soberano: Bitcoin",
+    location: "São Paulo, SP",
+    date: "25 e 26 de Abril",
+    startsAt: "2026-04-25",
+    region: "Sudeste",
+    image: "/images/gallery/gallery-01.png",
   },
 ];
+
+function sortByClosest(a: EventItem, b: EventItem, now = Date.now()) {
+  const aTime = new Date(a.startsAt).getTime();
+  const bTime = new Date(b.startsAt).getTime();
+  const aUpcoming = aTime >= now;
+  const bUpcoming = bTime >= now;
+
+  // Upcoming first (soonest), then past (most recent past first)
+  if (aUpcoming !== bUpcoming) return aUpcoming ? -1 : 1;
+  return aUpcoming ? aTime - bTime : bTime - aTime;
+}
 
 export function EventsSection() {
   const [active, setActive] = useState<Region>("Todos");
 
-  const filtered = useMemo(
-    () =>
+  const filtered = useMemo(() => {
+    const list =
       active === "Todos"
         ? events
-        : events.filter((event) => event.region === active),
-    [active],
-  );
+        : events.filter((event) => event.region === active);
+    return [...list].sort(sortByClosest);
+  }, [active]);
 
   return (
     <section id="eventos" className="relative overflow-hidden bg-background py-20 md:py-28">

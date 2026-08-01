@@ -128,47 +128,7 @@ export function PneTestimonials() {
   return (
     <section className="relative border-t border-white/8 bg-[#020b16] py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
-        <motion.div
-          initial={reduce ? false : { opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mx-auto max-w-2xl text-center"
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-            Vídeos reais
-          </p>
-          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white md:text-4xl lg:text-[2.65rem] lg:leading-[1.1]">
-            Depoimentos e{" "}
-            <span className="text-accent">comentários</span>
-          </h2>
-          <p className="mt-3 text-sm leading-relaxed text-white/60 md:text-base">
-            Assista aos depoimentos de quem já participou. Vídeos reais, na voz
-            de quem viveu a experiência.
-          </p>
-          <div className="mt-5 flex items-center justify-center gap-3">
-            <span className="text-sm tabular-nums text-white/55">
-              {active + 1} / {total}
-            </span>
-            <button
-              type="button"
-              onClick={prev}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-accent/55 text-accent transition hover:bg-accent hover:text-accent-ink"
-              aria-label="Anterior"
-            >
-              <ChevronLeft size={18} />
-            </button>
-            <button
-              type="button"
-              onClick={next}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-accent/55 text-accent transition hover:bg-accent hover:text-accent-ink"
-              aria-label="Próximo"
-            >
-              <ChevronRight size={18} />
-            </button>
-          </div>
-        </motion.div>
-
-        <div className="mt-10 grid items-start gap-10 lg:mt-12 lg:grid-cols-[minmax(0,360px)_1fr] lg:gap-12 xl:grid-cols-[minmax(0,400px)_1fr]">
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,360px)_1fr] lg:gap-12 xl:grid-cols-[minmax(0,400px)_1fr]">
           {/* Left: vertical player */}
           <motion.div
             initial={reduce ? false : { opacity: 0, y: 16 }}
@@ -311,8 +271,49 @@ export function PneTestimonials() {
             transition={{ delay: 0.06 }}
             className="flex min-w-0 flex-col"
           >
+            <div className="flex flex-wrap items-start justify-between gap-4">
+              <div className="max-w-xl">
+                <div className="flex items-center gap-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                    Vídeos reais
+                  </p>
+                  <span className="h-px w-10 bg-accent/70" aria-hidden />
+                </div>
+                <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white md:text-4xl lg:text-[2.65rem] lg:leading-[1.1]">
+                  Depoimentos e{" "}
+                  <span className="text-accent">comentários</span>
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-white/60 md:text-base">
+                  Assista aos depoimentos de quem já participou. Vídeos reais,
+                  na voz de quem viveu a experiência.
+                </p>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <span className="text-sm tabular-nums text-white/55">
+                  {active + 1} / {total}
+                </span>
+                <button
+                  type="button"
+                  onClick={prev}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-accent/55 text-accent transition hover:bg-accent hover:text-accent-ink"
+                  aria-label="Anterior"
+                >
+                  <ChevronLeft size={18} />
+                </button>
+                <button
+                  type="button"
+                  onClick={next}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-accent/55 text-accent transition hover:bg-accent hover:text-accent-ink"
+                  aria-label="Próximo"
+                >
+                  <ChevronRight size={18} />
+                </button>
+              </div>
+            </div>
+
             {/* Thumbnails */}
-            <div className="flex gap-3 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="mt-8 flex gap-3 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {pneTestimonials.map((item, i) => {
                 const isActive = i === active;
                 return (

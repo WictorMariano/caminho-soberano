@@ -42,7 +42,7 @@ const communityBenefits = [
 
 export default function ConteudoPage() {
   return (
-    <PageShell>
+    <PageShell flushHero>
       <ConteudoHero />
 
       {/* Redes — Instagram */}

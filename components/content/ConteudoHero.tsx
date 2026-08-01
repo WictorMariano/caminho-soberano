@@ -49,14 +49,26 @@ function PhoneVideo() {
 
 export function ConteudoHero() {
   return (
-    <section className="relative overflow-hidden pb-16 pt-4 md:pb-24 md:pt-8">
-      <div className="pointer-events-none absolute inset-0" aria-hidden>
-        <div className="ocean-hero-bg absolute inset-0" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(70,160,255,0.16),_transparent_58%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
-      </div>
+    <section className="relative flex min-h-[100svh] flex-col overflow-hidden">
+      <div className="ocean-hero-bg absolute inset-0" aria-hidden />
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.07] mix-blend-overlay"
+        style={{
+          backgroundImage: "url(/images/events/dominando-bitcoin/noise.png)",
+          backgroundSize: "180px",
+        }}
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(70,160,255,0.16),_transparent_58%)]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent"
+        aria-hidden
+      />
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 md:grid-cols-[1.05fr_0.95fr] md:gap-10 md:px-8 lg:gap-16">
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl flex-1 items-center gap-12 px-5 pb-16 pt-32 md:grid-cols-[1.05fr_0.95fr] md:gap-10 md:px-8 md:pb-20 md:pt-28 lg:gap-16">
         <div className="flex flex-col items-center text-center md:items-start md:text-left">
           <motion.p
             initial={{ opacity: 0, y: 12 }}

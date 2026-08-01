@@ -408,9 +408,9 @@ body {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 70% 55% at 80% 15%, rgba(70, 160, 255, 0.28), transparent 58%),
-    radial-gradient(ellipse 60% 50% at 15% 70%, rgba(40, 120, 200, 0.22), transparent 55%),
-    linear-gradient(165deg, #0d2a4a 0%, #0b1f38 40%, #071525 100%);
+    radial-gradient(ellipse 70% 55% at 80% 15%, rgba(70, 160, 255, 0.22), transparent 58%),
+    radial-gradient(ellipse 60% 50% at 15% 70%, rgba(40, 120, 200, 0.18), transparent 55%),
+    linear-gradient(165deg, #0a2340 0%, #081c34 42%, #061528 100%);
 }
 
 .founder-bg__mesh {
@@ -462,8 +462,8 @@ body {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 75% 65% at 50% 35%, transparent 40%, rgba(2, 11, 22, 0.35) 100%),
-    linear-gradient(to bottom, transparent 55%, rgba(0, 0, 0, 0.55) 82%, #000 100%);
+    radial-gradient(ellipse 75% 65% at 50% 35%, transparent 40%, rgba(4, 18, 36, 0.45) 100%),
+    linear-gradient(to bottom, transparent 50%, rgba(6, 21, 40, 0.55) 78%, #041224 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {

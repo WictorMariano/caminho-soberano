@@ -79,7 +79,7 @@ export function WorkshopSection() {
             <Link href={PNE_PATH} className="block">
               <div className="relative aspect-[16/10] overflow-hidden">
                 <Image
-                  src="/images/gallery/gallery-07.jpg"
+                  src="/images/events/dominando-bitcoin/benefits/networking.jpg"
                   alt={`${pneMeta.title}, Florianópolis`}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"

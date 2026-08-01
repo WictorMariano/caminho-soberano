@@ -8,14 +8,26 @@ import { EVENT_PATH } from "@/lib/event-bitcoin-pratica";
 
 export function SobreHero() {
   return (
-    <section className="relative overflow-hidden pb-16 pt-4 md:pb-24 md:pt-8">
-      <div className="pointer-events-none absolute inset-0" aria-hidden>
-        <div className="ocean-hero-bg absolute inset-0" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(70,160,255,0.18),_transparent_58%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
-      </div>
+    <section className="relative flex min-h-[100svh] flex-col overflow-hidden">
+      <div className="ocean-hero-bg absolute inset-0" aria-hidden />
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.07] mix-blend-overlay"
+        style={{
+          backgroundImage: "url(/images/events/dominando-bitcoin/noise.png)",
+          backgroundSize: "180px",
+        }}
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(70,160,255,0.18),_transparent_58%)]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent"
+        aria-hidden
+      />
 
-      <div className="relative mx-auto flex max-w-4xl flex-col items-center px-5 text-center md:px-8">
+      <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-1 flex-col items-center justify-center px-5 pb-16 pt-32 text-center md:px-8 md:pb-20 md:pt-28">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}

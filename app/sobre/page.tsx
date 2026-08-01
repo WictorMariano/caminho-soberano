@@ -48,7 +48,7 @@ const pilares = [
 
 export default function SobrePage() {
   return (
-    <PageShell>
+    <PageShell flushHero>
       <SobreHero />
 
       {/* Projeto */}

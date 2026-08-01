@@ -24,24 +24,34 @@ export const metadata: Metadata = {
 
 const events = [
   {
-    id: "bitcoin-pratica",
-    title: eventMeta.title,
-    location: eventMeta.location,
-    date: eventMeta.dateShort,
-    image: "/images/gallery/gallery-06.jpg",
-    href: EVENT_PATH,
-    badge: null as string | null,
-  },
-  {
     id: "pne",
     title: "Programa Nova Economia",
     location: pneMeta.location,
     date: pneMeta.dateShort,
-    image: "/images/gallery/gallery-07.jpg",
+    startsAt: "2026-08-29",
+    image: "/images/events/dominando-bitcoin/benefits/immersion.jpg",
     href: PNE_PATH,
-    badge: "Workshop PNE",
+    badge: "Workshop PNE" as string | null,
   },
-];
+  {
+    id: "bitcoin-pratica",
+    title: eventMeta.title,
+    location: eventMeta.location,
+    date: eventMeta.dateShort,
+    startsAt: "2026-11-18",
+    image: "/images/events/dominando-bitcoin/hero.png",
+    href: EVENT_PATH,
+    badge: null as string | null,
+  },
+].sort((a, b) => {
+  const now = Date.now();
+  const aTime = new Date(a.startsAt).getTime();
+  const bTime = new Date(b.startsAt).getTime();
+  const aUpcoming = aTime >= now;
+  const bUpcoming = bTime >= now;
+  if (aUpcoming !== bUpcoming) return aUpcoming ? -1 : 1;
+  return aUpcoming ? aTime - bTime : bTime - aTime;
+});
 
 const expectativas = [
   {
@@ -91,7 +101,7 @@ const etapas = [
 
 export default function EventosPage() {
   return (
-    <PageShell>
+    <PageShell flushHero>
       <EventosHero
         title="Encontros que transformam sua relação com o dinheiro"
         description="Imersões presenciais com prática, networking e foco em soberania financeira."

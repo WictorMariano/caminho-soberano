@@ -14,7 +14,7 @@ import { AudienceSection } from "@/components/event-bitcoin-pratica/AudienceSect
 import { BenefitsSection } from "@/components/event-bitcoin-pratica/BenefitsSection";
 import { BonusSection } from "@/components/event-bitcoin-pratica/BonusSection";
 import { HeroStoriesSlider } from "@/components/event-bitcoin-pratica/HeroStoriesSlider";
-import { NetworkSection } from "@/components/event-bitcoin-pratica/NetworkSection";
+import { RedeSoberanaSection } from "@/components/event-bitcoin-pratica/RedeSoberanaSection";
 import { PricingCards } from "@/components/event-bitcoin-pratica/PricingCards";
 import { LotCountdown } from "@/components/event-bitcoin-pratica/LotCountdown";
 import { SpeakerFlipCard } from "@/components/event-bitcoin-pratica/SpeakerFlipCard";
@@ -113,8 +113,8 @@ export function BitcoinPraticaEventPage() {
         {/* Benefícios */}
         <BenefitsSection />
 
-        {/* Network + vídeo expansivo */}
-        <NetworkSection />
+        {/* Rede Soberana */}
+        <RedeSoberanaSection />
 
         {/* Palestrantes → Local → Ingressos → Bônus → CTA — fundo contínuo */}
         <div className="relative">

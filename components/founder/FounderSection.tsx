@@ -7,7 +7,7 @@ export function FounderSection() {
   return (
     <section
       id="fundador"
-      className="relative overflow-hidden bg-[#0b1f38] py-16 md:py-24"
+      className="relative overflow-hidden bg-[#081c34] py-16 md:py-24"
     >
       {/* Fundo azul em código — sem imagem */}
       <div className="founder-bg" aria-hidden>
@@ -32,13 +32,13 @@ export function FounderSection() {
           <div className="relative grid md:grid-cols-2 md:items-stretch">
             <div className="relative aspect-[4/5] md:aspect-auto md:min-h-[480px] lg:min-h-[560px]">
               <Image
-                src="/images/founder/tarcisio-portrait.jpg"
+                src="/images/founder/tarcisio-2.png"
                 alt="Tarcísio, fundador do Caminho Soberano"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover object-top"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(7,21,37,0.95)] via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-[rgba(7,21,37,0.55)]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#081c34] via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-[rgba(8,28,52,0.65)]" />
             </div>
 
             <div className="flex flex-col justify-center px-6 py-10 sm:px-8 md:px-10 md:py-14 lg:px-14 lg:py-16">
