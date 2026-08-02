@@ -1,4 +1,4 @@
-import { pneMeta, pneWhatsAppUrl } from "@/lib/workshop-pne";
+import { pneCtaUrl, pneMeta } from "@/lib/workshop-pne";
 import { cn } from "@/lib/utils";
 
 type PneCtaLinkProps = {
@@ -9,7 +9,7 @@ type PneCtaLinkProps = {
 export function PneCtaLink({ className, size = "lg" }: PneCtaLinkProps) {
   return (
     <a
-      href={pneWhatsAppUrl()}
+      href={pneCtaUrl()}
       target="_blank"
       rel="noopener noreferrer"
       className={cn(

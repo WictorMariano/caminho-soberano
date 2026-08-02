@@ -3,7 +3,6 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { CommunityForm } from "@/components/community/CommunityForm";
 import { ContentSection } from "@/components/content/ContentSection";
 import { EventsSection } from "@/components/events/EventsSection";
-import { FaqSection } from "@/components/faq/FaqSection";
 import { FounderSection } from "@/components/founder/FounderSection";
 import { GallerySection } from "@/components/gallery/GallerySection";
 import { HeroSection } from "@/components/hero/HeroSection";
@@ -24,7 +23,6 @@ export function SitePage() {
         <ContentSection />
         <div className="bg-[#081c34]">
           <CommunityForm />
-          <FaqSection />
         </div>
       </main>
       <SiteFooter />

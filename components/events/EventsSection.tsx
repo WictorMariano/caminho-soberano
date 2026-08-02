@@ -29,6 +29,8 @@ type EventItem = {
   image: string;
   href?: string;
   badge?: string;
+  /** Card informativo sem link */
+  disabled?: boolean;
 };
 
 const regions: Region[] = [
@@ -51,6 +53,17 @@ const events: EventItem[] = [
     image: "/images/events/dominando-bitcoin/benefits/immersion.jpg",
     href: PNE_PATH,
     badge: "Workshop PNE",
+  },
+  {
+    id: "autocustodia",
+    title: "Workshop de Autocustódia",
+    location: "Local a confirmar",
+    date: "Outubro · data a confirmar",
+    startsAt: "2026-10-15",
+    region: "Sul",
+    image: "/images/events/dominando-bitcoin/benefits/bitcoin-practice.jpg",
+    badge: "Workshop",
+    disabled: true,
   },
   {
     id: "bitcoin-pratica",
@@ -147,7 +160,11 @@ export function EventsSection() {
                       alt={event.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover object-center transition duration-700 group-hover:scale-105"
+                      className={cn(
+                        "object-cover object-center transition duration-700",
+                        !event.disabled && "group-hover:scale-105",
+                        event.disabled && "opacity-90",
+                      )}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                     {event.badge ? (
@@ -170,10 +187,16 @@ export function EventsSection() {
                         {event.date}
                       </span>
                     </div>
-                    <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm font-semibold text-accent transition group-hover:gap-2.5">
-                      Mais Informações
-                      <ArrowUpRight size={16} />
-                    </span>
+                    {event.disabled ? (
+                      <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm font-semibold text-white/45">
+                        Em breve
+                      </span>
+                    ) : (
+                      <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm font-semibold text-accent transition group-hover:gap-2.5">
+                        Mais Informações
+                        <ArrowUpRight size={16} />
+                      </span>
+                    )}
                   </div>
                 </div>
               );
@@ -185,9 +208,16 @@ export function EventsSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{ duration: 0.45, delay: index * 0.08 }}
-                  className="ocean-panel group h-full overflow-hidden rounded-3xl border"
+                  className={cn(
+                    "ocean-panel h-full overflow-hidden rounded-3xl border",
+                    event.disabled ? "cursor-default" : "group",
+                  )}
                 >
-                  {event.href ? (
+                  {event.disabled ? (
+                    <div className="block h-full" aria-disabled="true">
+                      {CardInner}
+                    </div>
+                  ) : event.href ? (
                     <Link href={event.href} className="block h-full">
                       {CardInner}
                     </Link>

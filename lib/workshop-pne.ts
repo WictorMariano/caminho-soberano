@@ -1,7 +1,11 @@
 export const PNE_SLUG = "programa-nova-economia" as const;
 export const PNE_PATH = `/eventos/${PNE_SLUG}` as const;
 
-/** Número comercial (editar quando houver oficial). Digits only for wa.me */
+/** Checkout oficial do Workshop PNE (Greenn) */
+export const pneCheckoutUrl =
+  "https://payfast.greenn.com.br/pre-checkout/5w2rqbf?ch_id=21807&website=vip";
+
+/** @deprecated Prefer pneCheckoutUrl — mantido só se algum fluxo ainda citar WhatsApp */
 export const pneWhatsAppDigits = "5511911485536";
 
 export const pneWhatsAppMessage =
@@ -9,6 +13,11 @@ export const pneWhatsAppMessage =
 
 export function pneWhatsAppUrl(customMessage = pneWhatsAppMessage) {
   return `https://wa.me/${pneWhatsAppDigits}?text=${encodeURIComponent(customMessage)}`;
+}
+
+/** URL do CTA principal da LP PNE */
+export function pneCtaUrl() {
+  return pneCheckoutUrl;
 }
 
 export const pneMeta = {
