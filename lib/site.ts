@@ -32,8 +32,8 @@ export const socialLinks = {
 
 export const siteContact = {
   email: "contato@caminhosoberano.com.br",
-  supportPhone: "+55 11 99999-9999",
-  supportPhoneHref: "tel:+5511999999999",
+  supportPhone: "+55 11 91148-5536",
+  supportPhoneHref: "tel:+5511911485536",
 } as const;
 
 export const legalLinks = [

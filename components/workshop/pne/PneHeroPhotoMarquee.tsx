@@ -18,11 +18,6 @@ const columnA = [
     tall: false,
   },
   {
-    src: "/images/events/dominando-bitcoin/benefits/networking.jpg",
-    alt: "Networking",
-    tall: true,
-  },
-  {
     src: "/images/gallery/gallery-06.jpg",
     alt: "Evento presencial",
     tall: false,
@@ -31,6 +26,11 @@ const columnA = [
     src: "/images/events/dominando-bitcoin/benefits/immersion.jpg",
     alt: "Imersão",
     tall: true,
+  },
+  {
+    src: "/images/gallery/gallery-12.jpg",
+    alt: "Evento Caminho Soberano",
+    tall: false,
   },
   {
     src: "/images/gallery/gallery-08.jpg",
@@ -51,19 +51,14 @@ const columnB = [
     tall: true,
   },
   {
-    src: "/images/events/dominando-bitcoin/benefits/strategy.jpg",
-    alt: "Estratégia",
-    tall: false,
+    src: "/images/gallery/gallery-13.jpg",
+    alt: "Palestra Caminho Soberano",
+    tall: true,
   },
   {
     src: "/images/gallery/gallery-01.png",
     alt: "Experiência",
     tall: true,
-  },
-  {
-    src: "/images/events/dominando-bitcoin/benefits/bitcoin-practice.jpg",
-    alt: "Prática",
-    tall: false,
   },
   {
     src: "/images/gallery/gallery-03.png",
