@@ -52,7 +52,16 @@ export function SiteHeader({
               : "border-white/15 bg-white/[0.08] backdrop-blur-xl",
           )}
         >
-          <Link href={homeHref} className="relative z-10 flex items-center gap-2.5 pl-1">
+          <Link
+            href={homeHref}
+            aria-label="Ir para a página inicial"
+            className="relative z-10 flex items-center gap-2.5 pl-1"
+            onClick={() => {
+              if (homeHref === "/" && window.location.pathname === "/") {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
+          >
             <Image
               src="/images/brand/logo-mark.png"
               alt="Caminho Soberano"
@@ -145,7 +154,16 @@ export function SiteHeader({
       )}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:h-20 md:px-8">
-        <Link href={homeHref} className="relative z-10 flex items-center gap-3">
+        <Link
+          href={homeHref}
+          aria-label="Ir para a página inicial"
+          className="relative z-10 flex items-center gap-3"
+          onClick={() => {
+            if (homeHref === "/" && window.location.pathname === "/") {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
+        >
           <Image
             src="/images/brand/logo-mark.png"
             alt="Caminho Soberano"

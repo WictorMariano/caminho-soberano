@@ -34,14 +34,16 @@ export function SobreHero() {
           transition={{ duration: 0.45 }}
           className="flex items-center gap-3"
         >
-          <Image
-            src="/images/brand/logo-mark.png"
-            alt=""
-            width={44}
-            height={44}
-            className="h-10 w-auto md:h-11"
-            priority
-          />
+          <Link href="/" aria-label="Ir para a página inicial">
+            <Image
+              src="/images/brand/logo-mark.png"
+              alt="Caminho Soberano"
+              width={44}
+              height={44}
+              className="h-10 w-auto md:h-11"
+              priority
+            />
+          </Link>
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
             Sobre
           </p>

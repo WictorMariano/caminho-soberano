@@ -28,7 +28,16 @@ export function PneHeader() {
       )}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3.5 md:px-8">
-        <Link href="/" className="flex shrink-0 items-center gap-3">
+        <Link
+          href="/"
+          aria-label="Ir para a página inicial"
+          className="flex shrink-0 items-center gap-3"
+          onClick={() => {
+            if (window.location.pathname === "/") {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
+        >
           <Image
             src="/images/brand/logo-mark.png"
             alt="Caminho Soberano"
