@@ -5,6 +5,7 @@ export const mainNav = [
   { href: "/", label: "Home" },
   { href: "/eventos", label: "Eventos" },
   { href: "/conteudo", label: "Conteúdo" },
+  { href: "/comunidade", label: "Comunidade" },
   { href: "/sobre", label: "Sobre" },
 ] as const;
 
@@ -12,6 +13,7 @@ export const footerNav = [
   { href: "/sobre", label: "Sobre" },
   { href: "/eventos", label: "Eventos" },
   { href: "/conteudo", label: "Conteúdo" },
+  { href: "/comunidade", label: "Comunidade" },
   { href: "/faq", label: "FAQ" },
   { href: "/politica-de-privacidade", label: "Privacidade" },
   { href: "/termos-de-uso", label: "Termos de Uso" },
@@ -72,8 +74,7 @@ export const educationProducts = [
     description:
       "Atualizações, alertas e aulas ao vivo na comunidade, para manter o aprendizado em movimento.",
     tag: "Comunidade",
-    href: "https://chat.whatsapp.com/",
-    external: true,
+    href: "/comunidade",
   },
 ] as const;
 
