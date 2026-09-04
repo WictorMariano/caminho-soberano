@@ -14,6 +14,7 @@ export const footerNav = [
   { href: "/eventos", label: "Eventos" },
   { href: "/conteudo", label: "Conteúdo" },
   { href: "/comunidade", label: "Comunidade" },
+  { href: "/projeto-nova-economia", label: "Projeto Nova Economia" },
   { href: "/faq", label: "FAQ" },
   { href: "/politica-de-privacidade", label: "Privacidade" },
   { href: "/termos-de-uso", label: "Termos de Uso" },

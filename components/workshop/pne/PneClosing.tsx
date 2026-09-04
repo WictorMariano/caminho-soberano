@@ -1,10 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { CalendarDays, MapPin, Users } from "lucide-react";
 
 import { FaqAccordion } from "@/components/faq/FaqAccordion";
 import { PneCtaLink } from "@/components/workshop/pne/PneCtaLink";
+import { PROJETO_NE_PATH } from "@/lib/projeto-nova-economia";
 import { pneFaqs, pneMeta } from "@/lib/workshop-pne";
 
 export function PneClosing() {
@@ -47,8 +49,14 @@ export function PneClosing() {
             </span>
           </div>
 
-          <div className="mt-8 flex flex-col items-center gap-2">
+          <div className="mt-8 flex flex-col items-center gap-3">
             <PneCtaLink />
+            <Link
+              href={PROJETO_NE_PATH}
+              className="text-sm font-medium text-white/60 underline-offset-2 transition hover:text-accent hover:underline"
+            >
+              Conheça o Projeto Nova Economia
+            </Link>
           </div>
         </motion.div>
 
