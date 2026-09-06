@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Proposta comercial — Marketplace de hospedagens</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    :root {
+      --ink: #1c1915;
+      --muted: #5c564c;
+      --line: #d9d0c3;
+      --paper: #f7f2ea;
+      --card: #fffdf8;
+      --forest: #1f3d32;
+      --forest-deep: #163028;
+      --copper: #b56a3c;
+      --gold: #c4a574;
+      --wash: #efe6d8;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #ece6dc;
+      color: var(--ink);
+      font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.45;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 210mm;
+      height: 297mm;
+      overflow: hidden;
+      margin: 0 auto;
+      background: var(--paper);
+      padding: 16mm 16mm 14mm;
+      position: relative;
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .page:last-child { page-break-after: auto; break-after: auto; }
+
+    .running {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 8pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 8px;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--forest-deep);
+      margin: 0 0 10px;
+      font-weight: 650;
+      line-height: 1.15;
+    }
+
+    h1 { font-size: 28pt; }
+    h2 { font-size: 16pt; margin-top: 4px; }
+    h3 { font-size: 12pt; margin: 16px 0 8px; }
+
+    p { margin: 0 0 10px; }
+    .lead { font-size: 12pt; color: var(--muted); max-width: 42em; }
+
+    .cover {
+      background:
+        linear-gradient(180deg, #163028 0%, #1f3d32 58%, #24483c 100%);
+      color: #f7f2ea;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .cover .inner {
+      height: 297mm;
+      padding: 16mm 16mm 14mm;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cover .kicker {
+      display: flex;
+      justify-content: space-between;
+      font-size: 8.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #d7c4a4;
+      border-bottom: 1px solid rgba(196, 165, 116, 0.35);
+      padding-bottom: 10px;
+    }
+
+    .cover h1 {
+      color: #f7f2ea;
+      font-size: 34pt;
+      margin: 28px 0 12px;
+      max-width: 14ch;
+    }
+
+    .cover .lead { color: #d8cfc3; font-size: 13pt; }
+
+    .cover-meta {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 24px;
+      max-width: 150mm;
+    }
+
+    .cover-meta dt {
+      font-size: 7.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #c4a574;
+      margin-bottom: 2px;
+    }
+
+    .cover-meta dd {
+      margin: 0 0 8px;
+      font-size: 11pt;
+      color: #f7f2ea;
+    }
+
+    .cover-stats {
+      margin-top: 36px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+
+    .stat {
+      border: 1px solid rgba(196, 165, 116, 0.4);
+      padding: 14px 14px 12px;
+      background: rgba(0, 0, 0, 0.12);
+    }
+
+    .stat b {
+      display: block;
+      font-family: Georgia, serif;
+      font-size: 18pt;
+      color: #f3e2c5;
+      font-weight: 650;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 4px;
+      font-size: 8pt;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #cbbda8;
+    }
+
+    .eyebrow {
+      font-size: 8pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--copper);
+      font-weight: 650;
+      margin-bottom: 6px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 18px;
+    }
+
+    .box {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 12px 14px;
+      break-inside: avoid;
+    }
+
+    .box strong { color: var(--forest); }
+
+    ul { margin: 0; padding-left: 16px; }
+    li { margin: 0 0 5px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px 8px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      font-size: 7.5pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 650;
+    }
+
+    td.num, th.num { text-align: right; white-space: nowrap; }
+
+    tfoot td {
+      font-weight: 700;
+      border-bottom: none;
+      border-top: 2px solid var(--forest);
+      font-size: 11pt;
+      padding-top: 10px;
+    }
+
+    .screens {
+      columns: 2;
+      column-gap: 18px;
+    }
+
+    .screens .group {
+      break-inside: avoid;
+      margin: 0 0 10px;
+    }
+
+    .screens .group-label {
+      margin: 0 0 6px;
+      font-size: 8pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--copper);
+      font-weight: 700;
+    }
+
+    .screens ol {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .screens li {
+      break-inside: avoid;
+      margin: 0 0 3px;
+      font-size: 9pt;
+    }
+
+    .stage {
+      display: grid;
+      grid-template-columns: 28px 1fr 92px;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+      break-inside: avoid;
+    }
+
+    .stage .n {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--forest);
+      color: #f7f2ea;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9pt;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
+    .stage h3 { margin: 0 0 3px; font-size: 11.5pt; }
+    .stage p { margin: 0; color: var(--muted); font-size: 9.3pt; }
+    .stage .price {
+      text-align: right;
+      font-family: Georgia, serif;
+      font-size: 12pt;
+      color: var(--forest-deep);
+      font-weight: 650;
+      white-space: nowrap;
+    }
+
+    .note {
+      background: var(--wash);
+      padding: 12px 14px;
+      font-size: 9.5pt;
+      color: var(--ink);
+      border-left: 3px solid var(--copper);
+      margin: 14px 0 0;
+    }
+
+    .price-cards {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .price-card {
+      border: 1px solid var(--line);
+      padding: 12px 10px 10px;
+      background: var(--card);
+    }
+
+    .price-card.featured {
+      background: var(--forest);
+      color: #f7f2ea;
+      border-color: var(--forest);
+    }
+
+    .price-card small {
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 7.2pt;
+      opacity: 0.75;
+      margin-bottom: 6px;
+    }
+
+    .price-card b {
+      display: block;
+      font-family: Georgia, serif;
+      font-size: 14pt;
+      margin-bottom: 4px;
+    }
+
+    .price-card span { font-size: 8.4pt; line-height: 1.35; }
+
+    .tiny { font-size: 8.4pt; color: var(--muted); }
+
+    .footer-line {
+      position: absolute;
+      left: 16mm;
+      right: 16mm;
+      bottom: 10mm;
+      display: flex;
+      justify-content: space-between;
+      font-size: 7.5pt;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .cover .footer-line {
+      color: #cbbda8;
+      position: static;
+      margin-top: auto;
+      padding-top: 18px;
+    }
+
+    @media print {
+      html, body { background: white; }
+      .page {
+        margin: 0;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="page cover">
+    <div class="inner">
+      <div class="kicker">
+        <span>Proposta para agência parceira</span>
+        <span>PROP-MH-2026-001 · 06/09/2026</span>
+      </div>
+
+      <h1>Marketplace de hospedagens</h1>
+      <p class="lead">
+        Web app completo no modelo Airbnb: busca, reserva, anfitriões, mensagens e operação —
+        dimensionado para <strong style="color:#f3e2c5">no mínimo 500 imóveis</strong> no lançamento.
+      </p>
+
+      <dl class="cover-meta">
+        <div>
+          <dt>Destinatário</dt>
+          <dd>Agência de comunicação / digital</dd>
+        </div>
+        <div>
+          <dt>Tipo de oferta</dt>
+          <dd>Custo de produção (revenda com margem)</dd>
+        </div>
+        <div>
+          <dt>Produto</dt>
+          <dd>Plataforma web responsiva (desktop e mobile)</dd>
+        </div>
+        <div>
+          <dt>Validade</dt>
+          <dd>30 dias a partir da data desta proposta</dd>
+        </div>
+      </dl>
+
+      <div style="flex:1"></div>
+
+      <div class="cover-stats">
+        <div class="stat">
+          <b>64 telas</b>
+          <span>Páginas mapeadas no produto</span>
+        </div>
+        <div class="stat">
+          <b>8 etapas</b>
+          <span>Do briefing ao handoff</span>
+        </div>
+        <div class="stat">
+          <b>R$ 7.000</b>
+          <span>Investimento para a agência</span>
+        </div>
+      </div>
+
+      <div class="footer-line">
+        <span>Confidencial · Uso interno da agência</span>
+        <span>Página 1 / 6</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="running">
+      <span>Marketplace de hospedagens · PROP-MH-2026-001</span>
+      <span>Visão do produto</span>
+    </div>
+
+    <div class="eyebrow">01 — Contexto</div>
+    <h2>O que esta proposta entrega</h2>
+    <p class="lead">
+      Um web app de locação por temporada no mesmo recorte funcional de um clone do Airbnb:
+      o hóspede encontra e reserva; o anfitrião cadastra e gerencia; a operação modera,
+      acompanha pagamentos e escala o catálogo.
+    </p>
+
+    <div class="grid-2" style="margin: 16px 0 18px;">
+      <div class="box">
+        <strong>Capacidade mínima</strong>
+        <p style="margin:6px 0 0;color:var(--muted);">
+          Arquitetura, cadastro, busca, fotos e painel admin preparados para
+          <strong>500 imóveis ativos</strong> no go-live, com margem de crescimento.
+        </p>
+      </div>
+      <div class="box">
+        <strong>Para quem é esta oferta</strong>
+        <p style="margin:6px 0 0;color:var(--muted);">
+          Preço de custo para a agência revender. A agência define a margem
+          ao cliente final — tabela sugerida na página 5.
+        </p>
+      </div>
+    </div>
+
+    <h3>Escopo funcional em resumo</h3>
+    <div class="grid-2">
+      <ul>
+        <li>Home com busca por destino, datas e hóspedes</li>
+        <li>Listagem em grade e visualização em mapa</li>
+        <li>Filtros (preço, tipo, comodidades, avaliação)</li>
+        <li>Página do imóvel com galeria, regras e calendário</li>
+        <li>Checkout, confirmação e cancelamento</li>
+        <li>Conta do hóspede: viagens, favoritos, pagamentos</li>
+      </ul>
+      <ul>
+        <li>Onboarding e painel do anfitrião</li>
+        <li>CRUD de anúncios, fotos, preços e calendário</li>
+        <li>Mensagens entre hóspede e anfitrião</li>
+        <li>Avaliações após a estadia</li>
+        <li>Painel admin: usuários, imóveis, reservas, financeiro</li>
+        <li>Páginas institucionais, ajuda, termos e privacidade</li>
+      </ul>
+    </div>
+
+    <h3>O que o cliente final percebe</h3>
+    <p>
+      Uma plataforma pronta para operar um marketplace regional ou temático:
+      catálogo grande, fluxo de reserva claro, área de anfitrião e retaguarda
+      para a equipe da agência ou do contratante.
+    </p>
+
+    <div class="note">
+      Esta proposta cobre o <strong>web app responsivo</strong> (uma base de telas
+      para desktop e mobile). App nativo iOS/Android, marca, anúncios e operação
+      contínua ficam como upsell da agência — detalhados em “fora de escopo”.
+    </div>
+
+    <div class="footer-line">
+      <span>Oferta de produção para agência</span>
+      <span>Página 2 / 6</span>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="running">
+      <span>Marketplace de hospedagens · PROP-MH-2026-001</span>
+      <span>Inventário de telas</span>
+    </div>
+
+    <div class="eyebrow">02 — Mapa do produto</div>
+    <h2>64 páginas / telas</h2>
+    <p class="lead">
+      Contagem fechada do produto: <strong>32 telas do hóspede</strong>,
+      <strong>20 do anfitrião</strong> e <strong>12 da operação (admin)</strong>.
+      Telas responsivas — não há duplicata mobile/desktop na soma.
+    </p>
+
+    <div class="screens" style="margin-top: 12px;">
+      <div class="group">
+        <div class="group-label">Hóspede e público — 32 telas</div>
+        <ol>
+          <li>Home com busca (destino, check-in, check-out, hóspedes)</li>
+          <li>Resultados de busca em lista / grade</li>
+          <li>Resultados de busca em mapa</li>
+          <li>Painel de filtros avançados</li>
+          <li>Página de detalhe do imóvel</li>
+          <li>Galeria de fotos em tela cheia</li>
+          <li>Perfil público do anfitrião</li>
+          <li>Login</li>
+          <li>Cadastro</li>
+          <li>Recuperação de senha</li>
+          <li>Redefinição de senha</li>
+          <li>Checkout da reserva (datas, hóspedes, resumo)</li>
+          <li>Pagamento</li>
+          <li>Confirmação da reserva</li>
+          <li>Lista de favoritos / wishlists</li>
+          <li>Minhas viagens (futuras e anteriores)</li>
+          <li>Detalhe da reserva do hóspede</li>
+          <li>Fluxo de cancelamento</li>
+          <li>Avaliação da estadia</li>
+          <li>Caixa de entrada de mensagens</li>
+          <li>Conversa (thread)</li>
+          <li>Minha conta (visão geral)</li>
+          <li>Dados pessoais</li>
+          <li>Segurança da conta</li>
+          <li>Métodos de pagamento</li>
+          <li>Preferências de notificação</li>
+          <li>Central de ajuda / FAQ</li>
+          <li>Sobre a plataforma</li>
+          <li>Termos de uso</li>
+          <li>Política de privacidade</li>
+          <li>Contato</li>
+          <li>Página 404 / indisponível</li>
+        </ol>
+      </div>
+      <div class="group">
+        <div class="group-label">Anfitrião — 20 telas</div>
+        <ol start="33">
+          <li>Landing “anuncie seu espaço”</li>
+          <li>Onboarding — tipo de espaço</li>
+          <li>Onboarding — localização</li>
+          <li>Onboarding — características e capacidade</li>
+          <li>Onboarding — comodidades</li>
+          <li>Onboarding — fotos</li>
+          <li>Onboarding — título e descrição</li>
+          <li>Onboarding — preço, taxas e regras da casa</li>
+          <li>Onboarding — revisão e publicação</li>
+          <li>Dashboard do anfitrião</li>
+          <li>Meus anúncios</li>
+          <li>Editar anúncio</li>
+          <li>Calendário e bloqueios de datas</li>
+          <li>Preços sazonais e promoções</li>
+          <li>Reservas recebidas</li>
+          <li>Detalhe da reserva (anfitrião)</li>
+          <li>Ganhos e extrato</li>
+          <li>Dados bancários e saques</li>
+          <li>Avaliações recebidas</li>
+          <li>Configurações do anfitrião</li>
+        </ol>
+      </div>
+      <div class="group">
+        <div class="group-label">Admin / operação — 12 telas</div>
+        <ol start="53">
+          <li>Login administrativo</li>
+          <li>Dashboard operacional</li>
+          <li>Gestão de usuários</li>
+          <li>Detalhe do usuário</li>
+          <li>Moderação de imóveis (lista 500+)</li>
+          <li>Detalhe do imóvel (admin)</li>
+          <li>Gestão de reservas</li>
+          <li>Transações e status de pagamento</li>
+          <li>Categorias, comodidades e taxas da plataforma</li>
+          <li>Conteúdo das páginas institucionais</li>
+          <li>Relatórios e exportação</li>
+          <li>Configurações da plataforma e suporte interno</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="footer-line">
+      <span>64 telas web · 8 e-mails transacionais à parte</span>
+      <span>Página 3 / 6</span>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="running">
+      <span>Marketplace de hospedagens · PROP-MH-2026-001</span>
+      <span>Etapas e custos</span>
+    </div>
+
+    <div class="eyebrow">03 — Como o projeto é construído</div>
+    <h2>Oito etapas, custo fechado</h2>
+    <p class="lead">
+      Valores abaixo são o <strong>custo para a agência</strong>. Somam
+      <strong>R$ 7.000,00</strong>. Cada etapa tem entrega verificável.
+    </p>
+
+    <div class="stage">
+      <div class="n">1</div>
+      <div>
+        <h3>Imersão, produto e arquitetura</h3>
+        <p>Briefing, personas, fluxos hóspede/anfitrião/admin, stack, modelagem para 500+ imóveis e backlog priorizado.</p>
+      </div>
+      <div class="price">R$ 650</div>
+    </div>
+    <div class="stage">
+      <div class="n">2</div>
+      <div>
+        <h3>UX/UI e design system das 64 telas</h3>
+        <p>Identidade da interface, componentes, wireframes e UI das 64 páginas em desktop e mobile.</p>
+      </div>
+      <div class="price">R$ 1.450</div>
+    </div>
+    <div class="stage">
+      <div class="n">3</div>
+      <div>
+        <h3>Fundação técnica e capacidade 500+</h3>
+        <p>Auth, banco, upload de fotos, papéis (hóspede, anfitrião, admin), seeds e importação inicial do catálogo.</p>
+      </div>
+      <div class="price">R$ 850</div>
+    </div>
+    <div class="stage">
+      <div class="n">4</div>
+      <div>
+        <h3>Marketplace público</h3>
+        <p>Home, busca, lista, mapa, filtros, detalhe do imóvel, galeria, perfil do anfitrião e páginas institucionais.</p>
+      </div>
+      <div class="price">R$ 1.250</div>
+    </div>
+    <div class="stage">
+      <div class="n">5</div>
+      <div>
+        <h3>Reservas, checkout e pagamentos</h3>
+        <p>Calendário de disponibilidade, checkout, gateway, confirmação, cancelamento, recibo e regras de taxa.</p>
+      </div>
+      <div class="price">R$ 950</div>
+    </div>
+    <div class="stage">
+      <div class="n">6</div>
+      <div>
+        <h3>Área do anfitrião</h3>
+        <p>Landing, onboarding em 8 passos, dashboard, anúncios, calendário, preços, ganhos e dados bancários.</p>
+      </div>
+      <div class="price">R$ 800</div>
+    </div>
+    <div class="stage">
+      <div class="n">7</div>
+      <div>
+        <h3>Mensagens, avaliações e painel admin</h3>
+        <p>Inbox, avaliações, retaguarda completa (usuários, imóveis, reservas, transações, relatórios e configs).</p>
+      </div>
+      <div class="price">R$ 700</div>
+    </div>
+    <div class="stage">
+      <div class="n">8</div>
+      <div>
+        <h3>QA, deploy, handoff e garantia</h3>
+        <p>Testes das 64 telas, correção de bugs, publicação, documentação de operação e 15 dias de garantia.</p>
+      </div>
+      <div class="price">R$ 350</div>
+    </div>
+
+    <table style="margin-top: 14px;">
+      <thead>
+        <tr>
+          <th>Resumo financeiro (agência)</th>
+          <th class="num">Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Etapas 1 a 8 — produção do web app</td><td class="num">R$ 7.000,00</td></tr>
+        <tr><td>Impostos, gateway e hospedagem recorrente</td><td class="num">A cargo do cliente / agência</td></tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Total desta oferta</td>
+          <td class="num">R$ 7.000,00</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="footer-line">
+      <span>Valores em reais · custo de produção</span>
+      <span>Página 4 / 6</span>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="running">
+      <span>Marketplace de hospedagens · PROP-MH-2026-001</span>
+      <span>Margem da agência</span>
+    </div>
+
+    <div class="eyebrow">04 — Precificação para revenda</div>
+    <h2>A agência cobra o cliente; esta é a base</h2>
+    <p class="lead">
+      R$ 7.000 é o valor de produção. A agência acrescenta marca, atendimento,
+      gestão de projeto e a margem que quiser. Abaixo, faixas prontas para usar na proposta ao cliente final.
+    </p>
+
+    <div class="price-cards">
+      <div class="price-card featured">
+        <small>Custo para a agência</small>
+        <b>R$ 7.000</b>
+        <span>Não sugerido como preço de prateleira. É o piso desta oferta.</span>
+      </div>
+      <div class="price-card">
+        <small>Margem 40%</small>
+        <b>R$ 9.800</b>
+        <span>Lucro R$ 2.800. Faixa enxuta, útil para fechar rápido.</span>
+      </div>
+      <div class="price-card">
+        <small>Margem 85% · sugerida</small>
+        <b>R$ 12.950</b>
+        <span>Lucro R$ 5.950. Cobre PM, QA extra e buffer de reunião.</span>
+      </div>
+      <div class="price-card">
+        <small>Margem 120%</small>
+        <b>R$ 15.400</b>
+        <span>Lucro R$ 8.400. Posicionamento premium / marca própria.</span>
+      </div>
+    </div>
+
+    <h3>Como apresentar ao cliente final</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Item na proposta da agência</th>
+          <th>O que a agência pode embutir</th>
+          <th class="num">Efeito na margem</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Gestão de projeto e reuniões</td>
+          <td>Ponto focal, atas, status semanal</td>
+          <td class="num">+ R$ 800 a 1.500</td>
+        </tr>
+        <tr>
+          <td>Identidade visual e copy</td>
+          <td>Logo, tom de voz, fotos, naming</td>
+          <td class="num">+ R$ 1.000 a 3.000</td>
+        </tr>
+        <tr>
+          <td>SEO local e landing de aquisição</td>
+          <td>Páginas de cidade, blog, pixels</td>
+          <td class="num">+ R$ 1.200 a 2.500</td>
+        </tr>
+        <tr>
+          <td>Operação assistida (30–90 dias)</td>
+          <td>Cadastro dos 500 imóveis, treinamento</td>
+          <td class="num">+ R$ 1.500 a 4.000</td>
+        </tr>
+        <tr>
+          <td>Retainer mensal</td>
+          <td>Hospedagem gerida, melhorias, suporte</td>
+          <td class="num">R$ 490 a 1.200 / mês</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      Recomendação: vender o pacote a <strong>R$ 12.950</strong> (ou arredondar para
+      <strong>R$ 12.900</strong>) e oferecer operação dos 500 imóveis e retainer como
+      adicionais. O custo de R$ 7.000 não precisa aparecer para o cliente final.
+    </div>
+
+    <h3>Condições de pagamento (agência → produção)</h3>
+    <p>
+      40% na aprovação (R$ 2.800) · 40% na entrega da etapa 5 — reservas no ar (R$ 2.800) ·
+      20% no handoff (R$ 1.400). Prazo estimado: <strong>8 semanas</strong> após o briefing e
+      o envio de conteúdos essenciais (marca, textos, amostra de imóveis).
+    </p>
+
+    <div class="footer-line">
+      <span>Uso interno · não encaminhar esta página ao cliente final</span>
+      <span>Página 5 / 6</span>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="running">
+      <span>Marketplace de hospedagens · PROP-MH-2026-001</span>
+      <span>Premissas e aceite</span>
+    </div>
+
+    <div class="eyebrow">05 — Fechamento</div>
+    <h2>Premissas, fora de escopo e aceite</h2>
+
+    <div class="grid-2">
+      <div class="box">
+        <strong>Incluído</strong>
+        <ul style="margin-top:8px;">
+          <li>64 telas web responsivas</li>
+          <li>Capacidade de 500 imóveis no lançamento</li>
+          <li>Importação assistida do catálogo inicial (planilha)</li>
+          <li>8 e-mails transacionais (conta, reserva, cancelamento, avaliação)</li>
+          <li>Deploy em ambiente de homologação e produção</li>
+          <li>Manual rápido de operação (admin e anfitrião)</li>
+          <li>15 dias de correção de bugs após o go-live</li>
+        </ul>
+      </div>
+      <div class="box">
+        <strong>Fora de escopo (upsell da agência)</strong>
+        <ul style="margin-top:8px;">
+          <li>Apps nativos iOS e Android</li>
+          <li>Integração oficial com a API do Airbnb</li>
+          <li>Produção fotográfica dos imóveis</li>
+          <li>Conta PJ, gateway, taxas e split de pagamento jurídico</li>
+          <li>Mídia paga, community manager e atendimento 24/7</li>
+          <li>Hospedagem, domínio e e-mail após 90 dias</li>
+          <li>Módulos extras: experiências, multi-idioma, white-label avançado</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Requisitos técnicos assumidos</h3>
+    <p class="tiny">
+      Web app moderno (ex.: Next.js + banco relacional), busca com filtros e paginação,
+      armazenamento de imagens, papéis de acesso e painel capaz de listar e moderar
+      500 anúncios sem degradação perceptível. Gateway de pagamento a definir na etapa 1
+      (Pix / cartão). SLA de performance: listagem e detalhe em uso típico de catálogo de 500 itens.
+    </p>
+
+    <h3>Cronograma-alvo (8 semanas)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Semanas</th>
+          <th>Etapas</th>
+          <th>Marco visível para a agência</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>1 e 2 (início)</td><td>Mapa de telas aprovado + direção visual</td></tr>
+        <tr><td>2–3</td><td>2 e 3</td><td>UI das 64 telas e base técnica no ar</td></tr>
+        <tr><td>4–5</td><td>4 e 5</td><td>Busca, imóvel e reserva navegáveis</td></tr>
+        <tr><td>6–7</td><td>6 e 7</td><td>Anfitrião + admin operando o catálogo</td></tr>
+        <tr><td>8</td><td>8</td><td>QA, produção, treinamento e handoff</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note" style="margin-top:16px;">
+      <strong>Resumo comercial.</strong> Produto: web app clone Airbnb, 64 telas, 500 imóveis.
+      Preço para a agência: <strong>R$ 7.000,00</strong>. Preço sugerido ao cliente:
+      <strong>R$ 12.900 a R$ 15.400</strong>, conforme margem e extras.
+    </div>
+
+    <div class="grid-2" style="margin-top:18px;">
+      <div class="box" style="min-height: 38mm;">
+        <strong>De acordo — produção</strong>
+        <p class="tiny" style="margin-top:22px;">Nome / data / assinatura</p>
+      </div>
+      <div class="box" style="min-height: 38mm;">
+        <strong>De acordo — agência</strong>
+        <p class="tiny" style="margin-top:22px;">Nome / data / assinatura</p>
+      </div>
+    </div>
+
+    <div class="footer-line">
+      <span>PROP-MH-2026-001 · válida por 30 dias</span>
+      <span>Página 6 / 6</span>
+    </div>
+  </section>
+</body>
+</html>
