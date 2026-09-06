@@ -1,9 +1,10 @@
 # Proposta — Marketplace de hospedagens
 
-Oferta comercial para agência parceira (custo de produção com margem de revenda).
-
 - PDF: `proposta-marketplace-hospedagens.pdf`
 - Fonte: `proposta-marketplace-hospedagens.html`
+
+Criação: R$ 7.000,00 · 64 telas · 500 imóveis.
+Mensal: manutenção R$ 300 (até 200 GB) + VPS R$ 70 + banco R$ 90.
 
 Para regenerar o PDF:
 
