@@ -2,7 +2,7 @@
 
 - PDF: `proposta-marketplace-hospedagens.pdf`
 - Fonte: `proposta-marketplace-hospedagens.html`
-- Protótipo (wireframes do hóspede): `prototipo-telas-hospede.pdf`
+- Protótipo (28 slides, fluxo hóspede + anfitrião): `prototipo-telas-hospede.pdf`
 
 Criação: R$ 7.000,00 · 64 telas · 500 imóveis.
 Mensal: manutenção R$ 300 (até 200 GB) + VPS R$ 70 + banco R$ 90.

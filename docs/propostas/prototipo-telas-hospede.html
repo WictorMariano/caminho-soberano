@@ -7,543 +7,879 @@
     @page { size: 13.333in 7.5in; margin: 0; }
     * { box-sizing: border-box; }
     html, body {
-      margin: 0; padding: 0; background: #ddd;
+      margin: 0; padding: 0; background: #d8d8d8;
       font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-      color: #222;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
+      color: #222; font-size: 12px;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
     }
     .slide {
-      width: 13.333in;
-      height: 7.5in;
-      background: #fff;
-      padding: 0.42in 0.5in 0.38in;
-      page-break-after: always;
-      break-after: page;
-      position: relative;
-      overflow: hidden;
+      width: 13.333in; height: 7.5in; background: #fff;
+      padding: 0.28in 0.38in 0.32in;
+      page-break-after: always; break-after: page;
+      position: relative; overflow: hidden;
     }
     .slide:last-child { page-break-after: auto; }
-    .kicker {
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #888;
-      margin-bottom: 6px;
-    }
-    h1 { font-size: 42px; font-weight: 650; margin: 0 0 8px; letter-spacing: -0.02em; }
-    h2 { font-size: 22px; font-weight: 650; margin: 0 0 14px; }
-    p { margin: 0 0 10px; color: #444; }
+    .kicker { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: #888; margin-bottom: 4px; }
+    h1 { font-size: 40px; font-weight: 700; margin: 0 0 8px; letter-spacing: -.03em; }
+    h2 { font-size: 20px; font-weight: 700; margin: 0 0 10px; }
+    p { margin: 0 0 8px; color: #444; }
     .foot {
-      position: absolute; left: 0.5in; right: 0.5in; bottom: 0.22in;
+      position: absolute; left: .38in; right: .38in; bottom: .16in;
       display: flex; justify-content: space-between;
-      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #999;
+      font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: #999;
     }
 
-    /* wireframe primitives */
-    .line { border: 1.5px solid #222; }
-    .dash { border: 1.5px dashed #999; }
-    .x {
-      background:
-        linear-gradient(to top left, transparent calc(50% - 0.7px), #bbb calc(50% - 0.7px), #bbb calc(50% + 0.7px), transparent calc(50% + 0.7px)),
-        linear-gradient(to top right, transparent calc(50% - 0.7px), #bbb calc(50% - 0.7px), #bbb calc(50% + 0.7px), transparent calc(50% + 0.7px));
-      background-color: #fafafa;
+    .photo {
+      background: #ececec;
+      background-image:
+        linear-gradient(#ddd, #ddd),
+        linear-gradient(135deg, transparent 49%, #c8c8c8 49.5%, #c8c8c8 50.5%, transparent 51%),
+        linear-gradient(45deg, transparent 49%, #c8c8c8 49.5%, #c8c8c8 50.5%, transparent 51%);
+      background-size: 100% 100%;
+      position: relative; overflow: hidden;
+    }
+    .photo span {
+      position: absolute; left: 8px; bottom: 6px;
+      font-size: 9px; color: #666; background: rgba(255,255,255,.75); padding: 1px 5px;
     }
     .btn {
       display: inline-flex; align-items: center; justify-content: center;
-      border: 1.5px solid #222; padding: 6px 12px; font-size: 11px; font-weight: 600;
-      background: #fff;
+      border: 1px solid #222; border-radius: 8px; padding: 6px 12px;
+      font-size: 11px; font-weight: 650; background: #fff; white-space: nowrap;
     }
-    .btn.fill { background: #222; color: #fff; }
+    .btn.dark { background: #222; color: #fff; border-color: #222; }
+    .btn.rose { background: #e31c5f; color: #fff; border-color: #e31c5f; }
+    .btn.ghost { border-color: #ddd; }
     .field {
-      border: 1.5px solid #222; height: 28px; padding: 0 8px;
-      display: flex; align-items: center; font-size: 11px; color: #666; background: #fff;
+      border: 1px solid #b0b0b0; border-radius: 8px; height: 34px; padding: 0 10px;
+      display: flex; align-items: center; font-size: 11px; color: #717171; background: #fff;
     }
-    .ph { font-size: 10px; color: #888; text-align: center; }
-    .tiny { font-size: 10px; color: #666; }
+    .field b { color: #222; font-size: 10px; margin-right: 6px; text-transform: uppercase; letter-spacing: .04em; }
+    .tiny { font-size: 10px; color: #717171; }
+    .muted { color: #717171; }
 
-    .browser { border: 1.5px solid #222; height: 6.15in; display: flex; flex-direction: column; background: #fff; }
+    .browser {
+      border: 1px solid #ccc; border-radius: 10px; height: 6.42in;
+      display: flex; flex-direction: column; background: #fff; overflow: hidden;
+      box-shadow: 0 1px 0 #eee;
+    }
     .chrome {
-      height: 28px; border-bottom: 1.5px solid #222; display: flex; align-items: center; gap: 8px; padding: 0 10px;
+      height: 26px; background: #f4f4f4; border-bottom: 1px solid #e5e5e5;
+      display: flex; align-items: center; gap: 8px; padding: 0 10px;
     }
     .dots { display: flex; gap: 5px; }
-    .dots i { width: 8px; height: 8px; border: 1.5px solid #222; border-radius: 50%; display: block; }
-    .url { flex: 1; height: 16px; border: 1.5px solid #222; font-size: 10px; color: #888; display: flex; align-items: center; padding: 0 8px; }
-    .app { flex: 1; overflow: hidden; display: flex; flex-direction: column; }
+    .dots i { width: 8px; height: 8px; border-radius: 50%; background: #ddd; display: block; }
+    .url {
+      flex: 1; height: 16px; background: #fff; border: 1px solid #e0e0e0; border-radius: 10px;
+      font-size: 10px; color: #888; display: flex; align-items: center; padding: 0 10px;
+    }
+    .app { flex: 1; overflow: hidden; display: flex; flex-direction: column; background: #fff; }
 
     .top {
-      height: 42px; border-bottom: 1.5px solid #222;
-      display: flex; align-items: center; gap: 12px; padding: 0 12px;
+      height: 52px; border-bottom: 1px solid #ebebeb;
+      display: flex; align-items: center; gap: 12px; padding: 0 16px;
     }
-    .logo { font-weight: 750; font-size: 13px; letter-spacing: 0.04em; }
-    .top .grow { flex: 1; }
-    .nav { display: flex; gap: 14px; font-size: 11px; }
-
-    .grid { display: grid; gap: 10px; }
-    .card { border: 1.5px solid #222; overflow: hidden; }
-    .card .pic { height: 86px; }
-    .card .meta { padding: 7px 8px; font-size: 11px; }
-    .card .meta b { display: block; font-size: 12px; margin-bottom: 2px; }
-
-    .cover { display: flex; flex-direction: column; justify-content: center; height: 100%; padding-left: 0.3in; }
-    .cover h1 { font-size: 52px; max-width: 12ch; }
-    .cover .box {
-      margin-top: 28px; border: 1.5px solid #222; padding: 14px 16px; max-width: 7.2in;
-      font-size: 14px; line-height: 1.45;
+    .logo { font-weight: 800; font-size: 15px; color: #e31c5f; letter-spacing: -.02em; }
+    .grow { flex: 1; }
+    .nav { display: flex; gap: 16px; font-size: 12px; color: #222; }
+    .nav .on { font-weight: 700; text-decoration: underline; text-underline-offset: 6px; }
+    .avatar {
+      width: 32px; height: 32px; border-radius: 50%; border: 1px solid #ddd;
+      display: flex; align-items: center; justify-content: center; font-size: 11px; background: #f7f7f7;
     }
+    .pill {
+      display: flex; align-items: center; border: 1px solid #ddd; border-radius: 40px;
+      padding: 4px 4px 4px 14px; gap: 10px; box-shadow: 0 1px 2px rgba(0,0,0,.08); font-size: 12px;
+    }
+    .pill i { width: 32px; height: 32px; border-radius: 50%; background: #e31c5f; color: #fff;
+      display: flex; align-items: center; justify-content: center; font-size: 12px; font-style: normal; }
 
-    .flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
-    .flow .step { border: 1.5px solid #222; padding: 10px 12px; min-width: 1.7in; }
-    .flow .step b { display: block; font-size: 12px; }
-    .flow .step span { font-size: 11px; color: #666; }
-    .arrow { font-size: 18px; }
+    .card { border: 1px solid #eee; border-radius: 12px; overflow: hidden; background: #fff; }
+    .card .pic { height: 108px; }
+    .card .meta { padding: 8px 9px 10px; }
+    .card .meta b { display: block; font-size: 12px; margin: 2px 0; }
+    .stars { color: #222; font-size: 11px; }
 
-    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; height: 6.15in; }
-    .col { border: 1.5px solid #222; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+    .cover { height: 100%; display: flex; flex-direction: column; justify-content: center; padding-left: .2in; }
+    .cover h1 { font-size: 48px; max-width: 14ch; }
+    .tag {
+      display: inline-block; border: 1px solid #ddd; border-radius: 20px;
+      padding: 4px 10px; font-size: 11px; margin: 0 6px 6px 0;
+    }
+    .idx { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 8px; }
+    .idx div { border: 1px solid #eee; border-radius: 10px; padding: 8px 10px; }
+    .idx b { display: block; font-size: 12px; }
+    .idx span { font-size: 10px; color: #717171; }
+
+    .amen { display: flex; gap: 6px; flex-wrap: wrap; }
+    .amen span { border: 1px solid #ddd; border-radius: 20px; padding: 4px 8px; font-size: 10px; }
+    .row { display: flex; gap: 10px; align-items: center; }
+    .rev { border-bottom: 1px solid #eee; padding: 8px 0; }
+    .mapdot {
+      position: absolute; background: #fff; border: 1px solid #222; border-radius: 16px;
+      padding: 3px 8px; font-size: 10px; font-weight: 700;
+    }
+    .side { border: 1px solid #ddd; border-radius: 12px; padding: 12px; box-shadow: 0 6px 16px rgba(0,0,0,.08); }
+    .split { display: grid; gap: 14px; }
+    .chat-me { align-self: flex-end; background: #222; color: #fff; border-radius: 12px 12px 2px 12px; padding: 7px 10px; font-size: 11px; max-width: 72%; }
+    .chat-you { align-self: flex-start; background: #f1f1f1; border-radius: 12px 12px 12px 2px; padding: 7px 10px; font-size: 11px; max-width: 72%; }
+    .menu { border: 1px solid #eee; border-radius: 10px; padding: 11px 12px; margin-bottom: 7px; display: flex; justify-content: space-between; }
+    .cal { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; font-size: 10px; text-align: center; }
+    .cal b { padding: 6px 0; color: #888; font-weight: 600; }
+    .cal i { display: block; border: 1px solid #eee; border-radius: 6px; padding: 7px 0; font-style: normal; }
+    .cal i.on { background: #222; color: #fff; border-color: #222; }
+    .cal i.off { color: #ccc; background: #fafafa; }
+    .kpi { border: 1px solid #eee; border-radius: 10px; padding: 10px; }
+    .kpi b { display: block; font-size: 18px; }
+    .kpi span { font-size: 10px; color: #717171; }
   </style>
 </head>
 <body>
 
-  <!-- 1 capa -->
-  <section class="slide">
-    <div class="cover">
-      <div class="kicker">Protótipo · wireframe</div>
-      <h1>Telas do hóspede</h1>
-      <p style="font-size:18px;max-width:22em;">Marketplace de hospedagens — rascunho das telas do usuário. Branco e linha. Sem visual final.</p>
-      <div class="box">
-        Fluxo: Home → busca → imóvel → reserva → viagens e mensagens.<br>
-        14 telas principais do hóspede. Protótipo de baixa fidelidade.
+<section class="slide">
+  <div class="cover">
+    <div class="kicker">Protótipo · baixa fidelidade</div>
+    <h1>Telas do marketplace</h1>
+    <p style="font-size:16px;max-width:28em;">Rascunho mais próximo do uso real: busca, reserva, conta do hóspede e um pouco da área do anfitrião. Ainda é wireframe — sem identidade final.</p>
+    <div>
+      <span class="tag">28 slides</span>
+      <span class="tag">Fluxo do hóspede</span>
+      <span class="tag">Anfitrião (início)</span>
+      <span class="tag">Dados de exemplo · Brasil</span>
+    </div>
+  </div>
+  <div class="foot"><span>Hospeda · protótipo de telas</span><span>1 / 28</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Índice</div>
+  <h2>O que este arquivo mostra</h2>
+  <div class="idx">
+    <div><b>01–02</b><span>Capa e índice</span></div>
+    <div><b>03 Home</b><span>Busca, destinos, destaques</span></div>
+    <div><b>04 Resultados</b><span>Lista + mapa + preço no pin</span></div>
+    <div><b>05 Filtros</b><span>Preço, tipo, comodidades</span></div>
+    <div><b>06 Imóvel</b><span>Fotos, regras, card de reserva</span></div>
+    <div><b>07 Galeria</b><span>Fotos em tela cheia</span></div>
+    <div><b>08 Anfitrião público</b><span>Perfil de quem aluga</span></div>
+    <div><b>09–11 Acesso</b><span>Login, cadastro, senha</span></div>
+    <div><b>12–14 Reserva</b><span>Checkout, Pix, confirmação</span></div>
+    <div><b>15–18 Viagens</b><span>Lista, detalhe, cancelar, avaliar</span></div>
+    <div><b>19–23 Conta</b><span>Favoritos, chat, dados, cartão, ajuda</span></div>
+    <div><b>24–28 Anfitrião</b><span>Landing, criar anúncio, painel, calendário, reservas</span></div>
+  </div>
+  <div class="foot"><span>Mapa do protótipo</span><span>2 / 28</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Tela · Home</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br</div></div>
+    <div class="app">
+      <div class="top">
+        <div class="logo">hospeda</div>
+        <div class="grow"></div>
+        <div class="nav"><span>Anuncie seu espaço</span><span>Ajuda</span></div>
+        <div class="btn ghost">Entrar</div>
+        <div class="avatar">MS</div>
       </div>
-    </div>
-    <div class="foot"><span>Protótipo de telas</span><span>1 / 16</span></div>
-  </section>
-
-  <!-- 2 jornada -->
-  <section class="slide">
-    <div class="kicker">Mapa</div>
-    <h2>Como o usuário anda no app</h2>
-    <div class="flow">
-      <div class="step"><b>1. Home</b><span>Busca destino e datas</span></div><span class="arrow">→</span>
-      <div class="step"><b>2. Resultados</b><span>Lista + filtros</span></div><span class="arrow">→</span>
-      <div class="step"><b>3. Imóvel</b><span>Fotos, preço, regras</span></div><span class="arrow">→</span>
-      <div class="step"><b>4. Reserva</b><span>Checkout e pagamento</span></div>
-    </div>
-    <div class="flow" style="margin-top:22px;">
-      <div class="step"><b>5. Confirmação</b><span>Reserva feita</span></div><span class="arrow">→</span>
-      <div class="step"><b>6. Viagens</b><span>Próximas e antigas</span></div><span class="arrow">→</span>
-      <div class="step"><b>7. Mensagens</b><span>Fala com o anfitrião</span></div><span class="arrow">→</span>
-      <div class="step"><b>8. Conta</b><span>Dados e favoritos</span></div>
-    </div>
-    <p class="tiny" style="margin-top:28px;">Login e cadastro aparecem quando o usuário tenta reservar ou salvar um favorito.</p>
-    <div class="foot"><span>Jornada do hóspede</span><span>2 / 16</span></div>
-  </section>
-
-  <!-- 3 home -->
-  <section class="slide">
-    <div class="kicker">Tela 01 · Home</div>
-    <div class="browser">
-      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /</div></div>
-      <div class="app">
-        <div class="top">
-          <div class="logo">LOGO</div>
-          <div class="grow"></div>
-          <div class="nav"><span>Anuncie</span><span>Ajuda</span></div>
-          <div class="btn">Entrar</div>
+      <div style="padding:14px 18px 8px;display:flex;flex-direction:column;gap:10px;flex:1;">
+        <div class="pill" style="align-self:center;min-width:560px;">
+          <span><b>Qualquer lugar</b><div class="tiny">Buscar destinos</div></span>
+          <span style="width:1px;height:24px;background:#eee;"></span>
+          <span><b>Check-in</b><div class="tiny">Quando?</div></span>
+          <span style="width:1px;height:24px;background:#eee;"></span>
+          <span><b>Check-out</b><div class="tiny">Quando?</div></span>
+          <span style="width:1px;height:24px;background:#eee;"></span>
+          <span><b>Hóspedes</b><div class="tiny">1 hóspede</div></span>
+          <i>⌕</i>
         </div>
-        <div style="padding:16px 18px;display:flex;flex-direction:column;gap:12px;flex:1;">
-          <div class="line" style="height:72px;display:flex;align-items:center;justify-content:center;gap:8px;padding:0 12px;">
-            <div class="field" style="flex:1.4;">Destino</div>
-            <div class="field" style="flex:1;">Check-in</div>
-            <div class="field" style="flex:1;">Check-out</div>
-            <div class="field" style="flex:1;">Hóspedes</div>
-            <div class="btn fill">Buscar</div>
-          </div>
-          <div style="display:flex;gap:8px;">
-            <div class="btn">Praia</div><div class="btn">Cidade</div><div class="btn">Campo</div><div class="btn">Cabana</div>
-          </div>
-          <div class="grid" style="grid-template-columns:repeat(4,1fr);flex:1;">
-            <div class="card"><div class="pic x"></div><div class="meta"><b>Casa · Florianópolis</b>R$ 320 / noite</div></div>
-            <div class="card"><div class="pic x"></div><div class="meta"><b>Apto · São Paulo</b>R$ 210 / noite</div></div>
-            <div class="card"><div class="pic x"></div><div class="meta"><b>Chalé · Gramado</b>R$ 480 / noite</div></div>
-            <div class="card"><div class="pic x"></div><div class="meta"><b>Studio · Rio</b>R$ 190 / noite</div></div>
-          </div>
+        <div class="row" style="justify-content:center;">
+          <span class="tag">🏖️ Praia</span><span class="tag">🏙️ Cidade</span><span class="tag">🌲 Campo</span>
+          <span class="tag">🏡 Cabana</span><span class="tag">🔥 Lareira</span><span class="tag">🐕 Pet friendly</span>
         </div>
-      </div>
-    </div>
-    <div class="foot"><span>Home — busca, categorias e destaques</span><span>3 / 16</span></div>
-  </section>
-
-  <!-- 4 resultados -->
-  <section class="slide">
-    <div class="kicker">Tela 02 · Resultados da busca</div>
-    <div class="browser">
-      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /busca?destino=floripa</div></div>
-      <div class="app">
-        <div class="top">
-          <div class="logo">LOGO</div>
-          <div class="field" style="flex:1;max-width:420px;">Floripa · 12–15 out · 2 hóspedes</div>
-          <div class="grow"></div>
-          <div class="btn">Filtros</div>
-        </div>
-        <div style="display:grid;grid-template-columns:1.15fr 0.85fr;flex:1;min-height:0;">
-          <div style="padding:12px;overflow:hidden;">
-            <div class="tiny" style="margin-bottom:8px;">128 imóveis · ordenar: recomendados</div>
-            <div class="grid" style="grid-template-columns:1fr 1fr;">
-              <div class="card"><div class="pic x"></div><div class="meta"><b>Casa na praia</b>R$ 340 · ★ 4,9</div></div>
-              <div class="card"><div class="pic x"></div><div class="meta"><b>Apto centro</b>R$ 220 · ★ 4,7</div></div>
-              <div class="card"><div class="pic x"></div><div class="meta"><b>Loft beira-mar</b>R$ 410 · ★ 5,0</div></div>
-              <div class="card"><div class="pic x"></div><div class="meta"><b>Kitnet</b>R$ 160 · ★ 4,5</div></div>
-            </div>
-          </div>
-          <div class="x" style="border-left:1.5px solid #222;display:flex;align-items:center;justify-content:center;">
-            <span class="tiny">MAPA</span>
-          </div>
+        <div class="tiny">Estadias em destaque · 500 imóveis na plataforma</div>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;">
+          <div class="card"><div class="photo pic" style="height:92px;"><span>Jurerê</span></div><div class="meta"><span class="stars">★ 4,97 · Superhost</span><b>Casa pé na areia</b><span class="tiny">Florianópolis · R$ 340 noite</span></div></div>
+          <div class="card"><div class="photo pic" style="height:92px;"><span>Pinheiros</span></div><div class="meta"><span class="stars">★ 4,82</span><b>Apto com varanda</b><span class="tiny">São Paulo · R$ 210 noite</span></div></div>
+          <div class="card"><div class="photo pic" style="height:92px;"><span>Gramado</span></div><div class="meta"><span class="stars">★ 4,91 · Superhost</span><b>Chalé com lareira</b><span class="tiny">Gramado · R$ 480 noite</span></div></div>
+          <div class="card"><div class="photo pic" style="height:92px;"><span>Ipanema</span></div><div class="meta"><span class="stars">★ 4,88</span><b>Studio 2 quadra da praia</b><span class="tiny">Rio de Janeiro · R$ 390 noite</span></div></div>
+          <div class="card"><div class="photo pic" style="height:92px;"><span>Centro</span></div><div class="meta"><span class="stars">★ 4,70</span><b>Loft industrial</b><span class="tiny">Belo Horizonte · R$ 180 noite</span></div></div>
         </div>
       </div>
     </div>
-    <div class="foot"><span>Lista + mapa</span><span>4 / 16</span></div>
-  </section>
+  </div>
+  <div class="foot"><span>Home — busca global e destaques</span><span>3 / 28</span></div>
+</section>
 
-  <!-- 5 filtros -->
-  <section class="slide">
-    <div class="kicker">Tela 03 · Filtros</div>
-    <div class="browser">
-      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /busca · filtros</div></div>
-      <div class="app" style="align-items:center;justify-content:center;background:#f6f6f6;">
-        <div class="line" style="width:7.2in;background:#fff;padding:16px 18px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-            <b>Filtros</b><span class="tiny">fechar</span>
+<section class="slide">
+  <div class="kicker">Tela · Resultados da busca</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/s/Florianópolis?checkin=2026-10-12&amp;checkout=2026-10-15&amp;adults=2</div></div>
+    <div class="app">
+      <div class="top">
+        <div class="logo">hospeda</div>
+        <div class="pill" style="flex:1;max-width:420px;"><span>Floripa · 12–15 out · 2 hóspedes</span><i>⌕</i></div>
+        <div class="grow"></div>
+        <div class="btn ghost">Filtros</div>
+        <div class="avatar">MS</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1.15fr .95fr;flex:1;min-height:0;">
+        <div style="padding:10px 12px;overflow:hidden;">
+          <div class="tiny" style="margin-bottom:8px;">128 acomodações em Florianópolis · 12–15 de outubro</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div class="card"><div class="photo pic" style="height:78px;"><span>Jurerê Internacional</span></div><div class="meta"><span class="stars">★ 4,97 (214)</span><b>Casa pé na areia · 3 quartos</b><span class="tiny">R$ 340 noite · total R$ 1.100</span></div></div>
+            <div class="card"><div class="photo pic" style="height:78px;"><span>Lagoa da Conceição</span></div><div class="meta"><span class="stars">★ 4,86 (91)</span><b>Casa com deck</b><span class="tiny">R$ 280 noite · total R$ 920</span></div></div>
+            <div class="card"><div class="photo pic" style="height:78px;"><span>Centro</span></div><div class="meta"><span class="stars">★ 4,72 (40)</span><b>Apto 2 quartos</b><span class="tiny">R$ 190 noite · total R$ 650</span></div></div>
+            <div class="card"><div class="photo pic" style="height:78px;"><span>Campeche</span></div><div class="meta"><span class="stars">★ 4,94 (67)</span><b>Casa perto da praia</b><span class="tiny">R$ 310 noite · total R$ 1.010</span></div></div>
           </div>
-          <div class="tiny" style="margin-bottom:6px;">Faixa de preço</div>
-          <div class="line" style="height:8px;margin:10px 0 16px;"></div>
-          <div class="tiny" style="margin-bottom:6px;">Tipo de espaço</div>
-          <div style="display:flex;gap:8px;margin-bottom:14px;">
-            <div class="btn">Casa inteira</div><div class="btn">Quarto</div><div class="btn">Studio</div>
-          </div>
-          <div class="tiny" style="margin-bottom:6px;">Comodidades</div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
-            <div class="btn">Wi-Fi</div><div class="btn">Piscina</div><div class="btn">Cozinha</div><div class="btn">Estacionamento</div><div class="btn">Ar-condicionado</div>
-          </div>
-          <div style="display:flex;justify-content:space-between;">
-            <span class="tiny">Limpar</span>
-            <div class="btn fill">Mostrar 64 imóveis</div>
-          </div>
+        </div>
+        <div class="photo" style="position:relative;border-left:1px solid #eee;">
+          <span style="left:12px;top:10px;bottom:auto;">Mapa · Florianópolis</span>
+          <div class="mapdot" style="left:28%;top:32%;">R$ 340</div>
+          <div class="mapdot" style="left:48%;top:44%;">R$ 280</div>
+          <div class="mapdot" style="left:62%;top:28%;background:#222;color:#fff;">R$ 310</div>
+          <div class="mapdot" style="left:40%;top:58%;">R$ 190</div>
         </div>
       </div>
     </div>
-    <div class="foot"><span>Painel de filtros sobre a busca</span><span>5 / 16</span></div>
-  </section>
+  </div>
+  <div class="foot"><span>Lista + mapa com preço no pin</span><span>4 / 28</span></div>
+</section>
 
-  <!-- 6 detalhe -->
-  <section class="slide">
-    <div class="kicker">Tela 04 · Detalhe do imóvel</div>
-    <div class="browser">
-      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /imovel/casa-na-praia</div></div>
-      <div class="app">
-        <div class="top"><div class="logo">LOGO</div><div class="grow"></div><div class="btn">♡ Salvar</div><div class="btn">Entrar</div></div>
-        <div style="padding:12px 16px;display:grid;grid-template-columns:1.4fr 0.7fr;gap:12px;flex:1;">
-          <div>
-            <div class="grid" style="grid-template-columns:1.4fr 0.6fr;height:160px;margin-bottom:10px;">
-              <div class="x line"></div>
-              <div style="display:grid;gap:8px;">
-                <div class="x line"></div>
-                <div class="x line"></div>
-              </div>
-            </div>
-            <b>Casa com vista para o mar · Florianópolis</b>
-            <div class="tiny" style="margin:4px 0 8px;">4 hóspedes · 2 quartos · 1 banheiro · ★ 4,9 (38)</div>
-            <div class="dash" style="height:48px;padding:8px;font-size:11px;color:#666;">Descrição do espaço — texto curto sobre a casa, regras e o que tem no entorno.</div>
+<section class="slide">
+  <div class="kicker">Tela · Filtros</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/s/Florianópolis · filtros</div></div>
+    <div class="app" style="background:rgba(0,0,0,.18);align-items:center;justify-content:center;">
+      <div style="width:7.6in;background:#fff;border-radius:16px;padding:16px 18px;max-height:5.6in;">
+        <div class="row" style="justify-content:space-between;margin-bottom:12px;"><b>Filtros</b><span class="tiny">fechar</span></div>
+        <div class="tiny" style="margin-bottom:4px;">Faixa de preço por noite</div>
+        <div class="row" style="margin:8px 0 12px;">
+          <div class="field" style="flex:1;"><b>Min</b> R$ 80</div>
+          <div class="field" style="flex:1;"><b>Máx</b> R$ 900</div>
+        </div>
+        <div style="height:6px;background:#eee;border-radius:6px;margin-bottom:14px;position:relative;">
+          <div style="position:absolute;left:12%;right:28%;top:0;bottom:0;background:#222;border-radius:6px;"></div>
+        </div>
+        <div class="tiny" style="margin-bottom:6px;">Tipo de acomodação</div>
+        <div class="row" style="margin-bottom:12px;"><div class="btn">Casa inteira</div><div class="btn">Quarto</div><div class="btn">Studio</div></div>
+        <div class="tiny" style="margin-bottom:6px;">Comodidades</div>
+        <div class="amen" style="margin-bottom:14px;">
+          <span>Wi-Fi</span><span>Cozinha</span><span>Piscina</span><span>Estacionamento</span>
+          <span>Ar-condicionado</span><span>Máquina de lavar</span><span>Pet friendly</span>
+        </div>
+        <div class="row" style="justify-content:space-between;"><span class="tiny">Limpar tudo</span><div class="btn rose">Mostrar 64 imóveis</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Modal de filtros sobre a busca</span><span>5 / 28</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Tela · Detalhe do imóvel</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/rooms/casa-pe-na-areia-jurere</div></div>
+    <div class="app">
+      <div class="top">
+        <div class="logo">hospeda</div>
+        <div class="grow"></div>
+        <div class="btn ghost">Compartilhar</div>
+        <div class="btn ghost">♡ Salvar</div>
+        <div class="avatar">MS</div>
+      </div>
+      <div style="padding:10px 16px;display:grid;grid-template-columns:1.45fr .7fr;gap:14px;flex:1;min-height:0;">
+        <div style="overflow:hidden;">
+          <div style="display:grid;grid-template-columns:1.5fr .75fr .75fr;grid-template-rows:78px 78px;gap:6px;border-radius:12px;overflow:hidden;margin-bottom:8px;">
+            <div class="photo" style="grid-row:1/3;"><span>Fachada / praia</span></div>
+            <div class="photo"><span>Sala</span></div>
+            <div class="photo"><span>Quarto</span></div>
+            <div class="photo"><span>Cozinha</span></div>
+            <div class="photo"><span>Deck</span></div>
           </div>
-          <div class="line" style="padding:12px;display:flex;flex-direction:column;gap:8px;">
-            <b>R$ 340 / noite</b>
-            <div class="field">Check-in</div>
-            <div class="field">Check-out</div>
-            <div class="field">Hóspedes</div>
-            <div class="tiny">3 noites × 340 = R$ 1.020<br>Taxa = R$ 80<br><b style="color:#222;">Total R$ 1.100</b></div>
-            <div class="btn fill" style="height:32px;">Reservar</div>
+          <b style="font-size:16px;">Casa pé na areia em Jurerê Internacional</b>
+          <div class="tiny">8 hóspedes · 3 quartos · 2 banheiros · ★ 4,97 (214 avaliações) · Superhost</div>
+          <div class="row" style="margin:8px 0;gap:8px;">
+            <div class="avatar">AR</div>
+            <div><b>Anfitriã: Ana Ribeiro</b><div class="tiny">Superhost · 6 anos no Hospeda</div></div>
           </div>
+          <div class="amen"><span>Wi-Fi</span><span>Cozinha</span><span>Piscina</span><span>Estacionamento</span><span>Vista para o mar</span></div>
+        </div>
+        <div class="side">
+          <div><b style="font-size:16px;">R$ 340</b> <span class="tiny">noite</span></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0;">
+            <div class="field" style="height:40px;flex-direction:column;align-items:flex-start;justify-content:center;"><b>Check-in</b>12/10/2026</div>
+            <div class="field" style="height:40px;flex-direction:column;align-items:flex-start;justify-content:center;"><b>Checkout</b>15/10/2026</div>
+            <div class="field" style="grid-column:1/-1;height:36px;"><b>Hóspedes</b>2 adultos</div>
+          </div>
+          <div class="tiny">3 noites × R$ 340 &nbsp; R$ 1.020<br>Taxa de limpeza &nbsp; R$ 80<br>Taxa de serviço &nbsp; R$ 92<br><b style="color:#222;">Total (BRL) R$ 1.192</b></div>
+          <div class="btn rose" style="width:100%;height:36px;margin-top:10px;">Reservar</div>
+          <div class="tiny" style="text-align:center;margin-top:6px;">Você ainda não será cobrado</div>
         </div>
       </div>
     </div>
-    <div class="foot"><span>Fotos + card de reserva</span><span>6 / 16</span></div>
-  </section>
+  </div>
+  <div class="foot"><span>Fotos + anfitrião + card de reserva</span><span>6 / 28</span></div>
+</section>
 
-  <!-- 7 galeria -->
-  <section class="slide">
-    <div class="kicker">Tela 05 · Galeria</div>
-    <div class="browser">
-      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /imovel/…/fotos</div></div>
-      <div class="app">
-        <div class="top"><span class="tiny">← Voltar ao anúncio</span><div class="grow"></div><span class="tiny">3 / 12</span></div>
-        <div class="x" style="flex:1;display:flex;align-items:center;justify-content:center;border-bottom:1.5px solid #222;">
-          <span class="tiny">FOTO GRANDE</span>
-        </div>
-        <div style="display:flex;gap:8px;padding:10px 12px;">
-          <div class="x line" style="height:54px;flex:1;"></div>
-          <div class="x line" style="height:54px;flex:1;"></div>
-          <div class="x line" style="height:54px;flex:1;"></div>
-          <div class="x line" style="height:54px;flex:1;"></div>
-          <div class="x line" style="height:54px;flex:1;"></div>
-          <div class="x line" style="height:54px;flex:1;"></div>
-        </div>
+<section class="slide">
+  <div class="kicker">Tela · Galeria</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/rooms/casa-pe-na-areia-jurere/photos</div></div>
+    <div class="app">
+      <div class="top"><span class="tiny">← Casa pé na areia</span><div class="grow"></div><span class="tiny">Foto 3 de 18 · Quarto principal</span><div class="btn ghost">♡</div></div>
+      <div class="photo" style="flex:1;"><span>Quarto principal · ar-condicionado · cama queen</span></div>
+      <div style="display:flex;gap:6px;padding:8px 12px;border-top:1px solid #eee;">
+        <div class="photo" style="height:52px;flex:1;"><span>1</span></div>
+        <div class="photo" style="height:52px;flex:1;"><span>2</span></div>
+        <div class="photo" style="height:52px;flex:1;border:2px solid #222;"><span>3</span></div>
+        <div class="photo" style="height:52px;flex:1;"><span>4</span></div>
+        <div class="photo" style="height:52px;flex:1;"><span>5</span></div>
+        <div class="photo" style="height:52px;flex:1;"><span>6</span></div>
+        <div class="photo" style="height:52px;flex:1;"><span>7</span></div>
+        <div class="photo" style="height:52px;flex:1;"><span>+11</span></div>
       </div>
     </div>
-    <div class="foot"><span>Fotos em tela cheia</span><span>7 / 16</span></div>
-  </section>
+  </div>
+  <div class="foot"><span>Tour das 18 fotos do anúncio</span><span>7 / 28</span></div>
+</section>
 
-  <!-- 8 login / cadastro -->
-  <section class="slide">
-    <div class="kicker">Telas 06 e 07 · Login e cadastro</div>
-    <div class="two">
-      <div>
-        <div class="tiny" style="margin-bottom:6px;">LOGIN</div>
-        <div class="browser" style="height:5.7in;">
-          <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /entrar</div></div>
-          <div class="app" style="align-items:center;justify-content:center;padding:20px;">
-            <div style="width:260px;display:flex;flex-direction:column;gap:8px;">
-              <div class="logo" style="text-align:center;margin-bottom:8px;">LOGO</div>
-              <b style="text-align:center;">Entrar</b>
-              <div class="field">E-mail</div>
-              <div class="field">Senha</div>
-              <div class="btn fill">Entrar</div>
-              <div class="tiny" style="text-align:center;">Esqueci a senha · Criar conta</div>
-            </div>
-          </div>
+<section class="slide">
+  <div class="kicker">Tela · Perfil público do anfitrião</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/users/ana-ribeiro</div></div>
+    <div class="app">
+      <div class="top"><div class="logo">hospeda</div><div class="grow"></div><div class="btn ghost">♡ Salvar</div><div class="avatar">MS</div></div>
+      <div style="padding:16px;display:grid;grid-template-columns:.7fr 1.3fr;gap:16px;flex:1;">
+        <div class="side" style="text-align:center;">
+          <div class="avatar" style="width:72px;height:72px;margin:0 auto 8px;font-size:20px;">AR</div>
+          <b>Ana Ribeiro</b>
+          <div class="tiny">Superhost · Florianópolis</div>
+          <div class="tiny" style="margin-top:10px;">★ 4,97<br>214 avaliações<br>6 anos anfitriã<br>Taxa de resposta 100%</div>
         </div>
-      </div>
-      <div>
-        <div class="tiny" style="margin-bottom:6px;">CADASTRO</div>
-        <div class="browser" style="height:5.7in;">
-          <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /cadastro</div></div>
-          <div class="app" style="align-items:center;justify-content:center;padding:20px;">
-            <div style="width:260px;display:flex;flex-direction:column;gap:8px;">
-              <div class="logo" style="text-align:center;margin-bottom:8px;">LOGO</div>
-              <b style="text-align:center;">Criar conta</b>
-              <div class="field">Nome</div>
-              <div class="field">E-mail</div>
-              <div class="field">Senha</div>
-              <div class="btn fill">Cadastrar</div>
-              <div class="tiny" style="text-align:center;">Já tenho conta</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="foot"><span>Acesso do hóspede</span><span>8 / 16</span></div>
-  </section>
-
-  <!-- 9 checkout -->
-  <section class="slide">
-    <div class="kicker">Tela 08 · Checkout</div>
-    <div class="browser">
-      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /reservar</div></div>
-      <div class="app">
-        <div class="top"><div class="logo">LOGO</div><div class="grow"></div><span class="tiny">Passo 1 de 2</span></div>
-        <div style="padding:16px;display:grid;grid-template-columns:1.2fr 0.8fr;gap:16px;flex:1;">
-          <div>
-            <b>Confirme os dados</b>
-            <div class="tiny" style="margin:8px 0;">Quem vai se hospedar</div>
-            <div class="field" style="margin-bottom:8px;">Nome completo</div>
-            <div class="field" style="margin-bottom:8px;">Telefone</div>
-            <div class="field" style="margin-bottom:12px;">Pedido especial (opcional)</div>
-            <div class="tiny">Política de cancelamento — reembolso até 48h antes.</div>
-          </div>
-          <div class="line" style="padding:12px;">
-            <div class="x line" style="height:70px;margin-bottom:8px;"></div>
-            <b>Casa na praia</b>
-            <div class="tiny">12–15 out · 2 hóspedes</div>
-            <div class="tiny" style="margin-top:10px;">Diárias R$ 1.020<br>Taxa de serviço R$ 80<br><b style="color:#222;">Total R$ 1.100</b></div>
-            <div class="btn fill" style="margin-top:12px;width:100%;height:32px;">Ir para pagamento</div>
+        <div>
+          <b>Sobre a Ana</b>
+          <p class="tiny" style="margin:8px 0 12px;">Moro em Jurerê e alugo a casa da família. Sempre deixo café, toalhas de praia e um guia com os restaurantes da região.</p>
+          <b>Imóveis de Ana</b>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px;">
+            <div class="card"><div class="photo pic" style="height:70px;"><span>Jurerê</span></div><div class="meta"><b>Casa pé na areia</b><span class="tiny">★ 4,97 · R$ 340</span></div></div>
+            <div class="card"><div class="photo pic" style="height:70px;"><span>Campeche</span></div><div class="meta"><b>Studio Campeche</b><span class="tiny">★ 4,90 · R$ 220</span></div></div>
+            <div class="card"><div class="photo pic" style="height:70px;"><span>Lagoa</span></div><div class="meta"><b>Casa na Lagoa</b><span class="tiny">★ 4,85 · R$ 260</span></div></div>
           </div>
         </div>
       </div>
     </div>
-    <div class="foot"><span>Resumo da reserva antes de pagar</span><span>9 / 16</span></div>
-  </section>
+  </div>
+  <div class="foot"><span>Quem está alugando · outros anúncios</span><span>8 / 28</span></div>
+</section>
 
-  <!-- 10 pagamento -->
-  <section class="slide">
-    <div class="kicker">Tela 09 · Pagamento</div>
-    <div class="browser">
-      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /pagar</div></div>
-      <div class="app">
-        <div class="top"><div class="logo">LOGO</div><div class="grow"></div><span class="tiny">Passo 2 de 2</span></div>
-        <div style="padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1;">
-          <div>
-            <b>Como pagar</b>
-            <div style="display:flex;gap:8px;margin:12px 0;">
-              <div class="btn fill">Pix</div>
-              <div class="btn">Cartão</div>
-            </div>
-            <div class="line" style="height:120px;display:flex;align-items:center;justify-content:center;">
-              <span class="tiny">QR CODE · PIX</span>
-            </div>
-            <div class="tiny" style="margin-top:8px;">Copia e cola · expira em 15 min</div>
-          </div>
-          <div class="line" style="padding:12px;">
-            <b>Pedido</b>
-            <div class="tiny" style="margin-top:8px;">Casa na praia · 3 noites<br>12 a 15 de outubro<br>2 hóspedes</div>
-            <div class="tiny" style="margin-top:14px;"><b style="color:#222;font-size:14px;">R$ 1.100</b></div>
-          </div>
+<section class="slide">
+  <div class="kicker">Telas · Login e cadastro</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;height:6.42in;">
+    <div class="browser" style="height:auto;">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/login</div></div>
+      <div class="app" style="align-items:center;justify-content:center;padding:16px;">
+        <div style="width:280px;display:flex;flex-direction:column;gap:8px;">
+          <div class="logo" style="text-align:center;">hospeda</div>
+          <b style="text-align:center;font-size:16px;">Bem-vinda de volta</b>
+          <div class="field">E-mail</div>
+          <div class="field">Senha</div>
+          <div class="btn rose" style="height:36px;">Continuar</div>
+          <div class="tiny" style="text-align:center;">Esqueci a senha</div>
+          <div class="btn ghost">Continuar com Google</div>
+          <div class="tiny" style="text-align:center;">Não tem conta? Cadastre-se</div>
         </div>
       </div>
     </div>
-    <div class="foot"><span>Pix ou cartão</span><span>10 / 16</span></div>
-  </section>
-
-  <!-- 11 confirmacao -->
-  <section class="slide">
-    <div class="kicker">Tela 10 · Confirmação</div>
-    <div class="browser">
-      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /reserva/ok</div></div>
-      <div class="app" style="align-items:center;justify-content:center;">
-        <div class="line" style="width:6.4in;padding:22px;text-align:center;">
-          <div class="line" style="width:36px;height:36px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:18px;">✓</div>
-          <b style="font-size:18px;">Reserva confirmada</b>
-          <p class="tiny" style="margin:10px 0 14px;">Código #4821 · Casa na praia · 12–15 out</p>
-          <div class="x line" style="height:90px;margin-bottom:14px;"></div>
-          <div style="display:flex;gap:8px;justify-content:center;">
-            <div class="btn fill">Ver viagem</div>
-            <div class="btn">Falar com anfitrião</div>
-          </div>
+    <div class="browser" style="height:auto;">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/signup</div></div>
+      <div class="app" style="align-items:center;justify-content:center;padding:16px;">
+        <div style="width:280px;display:flex;flex-direction:column;gap:8px;">
+          <div class="logo" style="text-align:center;">hospeda</div>
+          <b style="text-align:center;font-size:16px;">Criar conta</b>
+          <div class="field">Nome completo</div>
+          <div class="field">E-mail</div>
+          <div class="field">Telefone</div>
+          <div class="field">Senha (mín. 8 caracteres)</div>
+          <div class="tiny">Ao continuar, você aceita os Termos e a Política de privacidade.</div>
+          <div class="btn rose" style="height:36px;">Concordar e continuar</div>
         </div>
       </div>
     </div>
-    <div class="foot"><span>Reserva feita</span><span>11 / 16</span></div>
-  </section>
+  </div>
+  <div class="foot"><span>Acesso do hóspede</span><span>9 / 28</span></div>
+</section>
 
-  <!-- 12 viagens -->
-  <section class="slide">
-    <div class="kicker">Tela 11 · Minhas viagens</div>
-    <div class="browser">
-      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /viagens</div></div>
-      <div class="app">
-        <div class="top">
-          <div class="logo">LOGO</div>
-          <div class="grow"></div>
-          <div class="nav"><span><b>Viagens</b></span><span>Favoritos</span><span>Mensagens</span><span>Conta</span></div>
+<section class="slide">
+  <div class="kicker">Tela · Recuperar senha</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/forgot</div></div>
+    <div class="app" style="align-items:center;justify-content:center;">
+      <div style="width:360px;border:1px solid #eee;border-radius:16px;padding:22px;">
+        <b style="font-size:16px;">Redefinir senha</b>
+        <p class="tiny" style="margin:10px 0;">Enviamos um link para o e-mail cadastrado. O link vale por 30 minutos.</p>
+        <div class="field" style="margin-bottom:10px;">maria.silva@email.com</div>
+        <div class="btn rose" style="width:100%;height:36px;">Enviar link</div>
+        <div class="tiny" style="text-align:center;margin-top:10px;">Voltar ao login</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Fluxo de senha</span><span>10 / 28</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Tela · Checkout da reserva</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/book/casa-pe-na-areia-jurere</div></div>
+    <div class="app">
+      <div class="top"><span class="tiny">← Alterar datas</span><div class="grow"></div><span class="tiny">Passo 1 de 2 · Dados da viagem</span></div>
+      <div style="padding:14px 18px;display:grid;grid-template-columns:1.2fr .85fr;gap:18px;flex:1;">
+        <div>
+          <b style="font-size:16px;">Confirme e pague</b>
+          <div class="tiny" style="margin:10px 0 6px;">Sua viagem</div>
+          <div class="menu"><div><b>Datas</b><div class="tiny">12–15 out 2026 · 3 noites</div></div><span class="tiny">Editar</span></div>
+          <div class="menu"><div><b>Hóspedes</b><div class="tiny">2 adultos · sem crianças · sem pets</div></div><span class="tiny">Editar</span></div>
+          <div class="tiny" style="margin:10px 0 6px;">Quem é o hóspede principal</div>
+          <div class="field" style="margin-bottom:6px;">Maria Silva</div>
+          <div class="field" style="margin-bottom:6px;">(48) 99999-1122</div>
+          <div class="field" style="height:54px;align-items:flex-start;padding-top:8px;">Pedido especial: chegar por volta das 16h</div>
         </div>
-        <div style="padding:14px 16px;">
-          <b>Próximas</b>
-          <div class="line" style="display:grid;grid-template-columns:110px 1fr auto;gap:12px;padding:10px;margin:10px 0 16px;align-items:center;">
-            <div class="x" style="height:70px;"></div>
-            <div><b>Casa na praia</b><div class="tiny">12–15 out · Florianópolis · confirmada</div></div>
-            <div class="btn">Abrir</div>
+        <div class="side">
+          <div class="row" style="margin-bottom:10px;">
+            <div class="photo" style="width:88px;height:72px;border-radius:8px;flex-shrink:0;"><span>casa</span></div>
+            <div><b>Casa pé na areia</b><div class="tiny">Jurerê · ★ 4,97 · Superhost</div></div>
           </div>
-          <b>Anteriores</b>
-          <div class="line" style="display:grid;grid-template-columns:110px 1fr auto;gap:12px;padding:10px;margin-top:10px;align-items:center;">
-            <div class="x" style="height:70px;"></div>
-            <div><b>Apto em SP</b><div class="tiny">mar/2026 · concluída</div></div>
-            <div class="btn">Avaliar</div>
-          </div>
+          <div class="tiny">3 noites × R$ 340 &nbsp;&nbsp; R$ 1.020<br>Limpeza &nbsp;&nbsp; R$ 80<br>Serviço Hospeda &nbsp;&nbsp; R$ 92<br><b style="color:#222;font-size:13px;">Total R$ 1.192</b></div>
+          <div class="tiny" style="margin-top:8px;">Cancelamento gratuito até 10 out, 15h.</div>
+          <div class="btn rose" style="width:100%;height:36px;margin-top:10px;">Ir para o pagamento</div>
         </div>
       </div>
     </div>
-    <div class="foot"><span>Lista de reservas do hóspede</span><span>12 / 16</span></div>
-  </section>
+  </div>
+  <div class="foot"><span>Confirmação dos dados antes de pagar</span><span>11 / 28</span></div>
+</section>
 
-  <!-- 13 detalhe viagem / cancelar -->
-  <section class="slide">
-    <div class="kicker">Tela 12 · Detalhe da reserva</div>
-    <div class="browser">
-      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /viagens/4821</div></div>
-      <div class="app">
-        <div class="top"><span class="tiny">← Viagens</span><div class="grow"></div><div class="btn">Cancelar</div></div>
-        <div style="padding:14px 16px;display:grid;grid-template-columns:1.2fr 0.8fr;gap:14px;flex:1;">
-          <div>
-            <div class="x line" style="height:140px;margin-bottom:10px;"></div>
-            <b>Casa na praia</b>
-            <div class="tiny">Check-in 12 out · 15h · Check-out 15 out · 11h</div>
-            <div class="dash" style="margin-top:10px;padding:8px;font-size:11px;">Endereço liberado após confirmação · regras da casa</div>
-          </div>
-          <div class="line" style="padding:12px;display:flex;flex-direction:column;gap:8px;">
-            <b>Status: confirmada</b>
-            <div class="tiny">Anfitrião: Ana<br>Código #4821<br>Total pago R$ 1.100</div>
-            <div class="btn">Mensagem</div>
-            <div class="btn">Como chegar</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="foot"><span>Detalhe + cancelar</span><span>13 / 16</span></div>
-  </section>
-
-  <!-- 14 favoritos -->
-  <section class="slide">
-    <div class="kicker">Tela 13 · Favoritos</div>
-    <div class="browser">
-      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /favoritos</div></div>
-      <div class="app">
-        <div class="top"><div class="logo">LOGO</div><div class="grow"></div><div class="nav"><span>Viagens</span><span><b>Favoritos</b></span><span>Mensagens</span><span>Conta</span></div></div>
-        <div style="padding:14px 16px;">
-          <b>Salvos</b>
-          <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-top:10px;">
-            <div class="card"><div class="pic x"></div><div class="meta"><b>Casa na praia</b>R$ 340</div></div>
-            <div class="card"><div class="pic x"></div><div class="meta"><b>Chalé Gramado</b>R$ 480</div></div>
-            <div class="card"><div class="pic x"></div><div class="meta"><b>Loft Rio</b>R$ 390</div></div>
-            <div class="card"><div class="pic x"></div><div class="meta"><b>Apto centro</b>R$ 220</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="foot"><span>Imóveis salvos</span><span>14 / 16</span></div>
-  </section>
-
-  <!-- 15 mensagens -->
-  <section class="slide">
-    <div class="kicker">Tela 14 · Mensagens</div>
-    <div class="browser">
-      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /mensagens</div></div>
-      <div class="app">
-        <div class="top"><div class="logo">LOGO</div><div class="grow"></div><div class="nav"><span>Viagens</span><span>Favoritos</span><span><b>Mensagens</b></span><span>Conta</span></div></div>
-        <div style="display:grid;grid-template-columns:0.7fr 1.3fr;flex:1;min-height:0;">
-          <div style="border-right:1.5px solid #222;padding:8px;">
-            <div class="field" style="margin-bottom:8px;">Buscar conversa</div>
-            <div class="line" style="padding:8px;margin-bottom:6px;background:#f4f4f4;"><b style="font-size:12px;">Ana · Casa na praia</b><div class="tiny">Horário do check-in?</div></div>
-            <div class="dash" style="padding:8px;"><b style="font-size:12px;">Pedro · Apto SP</b><div class="tiny">Obrigado pela estadia</div></div>
-          </div>
-          <div style="display:flex;flex-direction:column;">
-            <div style="padding:10px 12px;border-bottom:1.5px solid #222;"><b>Ana</b><span class="tiny"> · Casa na praia</span></div>
-            <div style="flex:1;padding:12px;display:flex;flex-direction:column;gap:8px;justify-content:flex-end;">
-              <div class="dash" style="align-self:flex-start;padding:6px 10px;font-size:11px;max-width:70%;">Oi! Qual o horário do check-in?</div>
-              <div class="line" style="align-self:flex-end;padding:6px 10px;font-size:11px;max-width:70%;">A partir das 15h. Qualquer dúvida me chama.</div>
-            </div>
-            <div style="display:flex;gap:8px;padding:8px 12px;border-top:1.5px solid #222;">
-              <div class="field" style="flex:1;">Escrever mensagem</div>
-              <div class="btn fill">Enviar</div>
+<section class="slide">
+  <div class="kicker">Tela · Pagamento</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/book/pay</div></div>
+    <div class="app">
+      <div class="top"><span class="tiny">← Voltar</span><div class="grow"></div><span class="tiny">Passo 2 de 2 · Pagamento seguro</span></div>
+      <div style="padding:14px 18px;display:grid;grid-template-columns:1.1fr .9fr;gap:16px;flex:1;">
+        <div>
+          <b>Forma de pagamento</b>
+          <div class="row" style="margin:10px 0;"><div class="btn rose">Pix</div><div class="btn ghost">Cartão de crédito</div></div>
+          <div style="border:1px solid #eee;border-radius:12px;padding:14px;display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:center;">
+            <div class="photo" style="height:120px;border-radius:8px;"><span>QR Pix</span></div>
+            <div>
+              <b>Pague com Pix</b>
+              <p class="tiny">Valor R$ 1.192,00 · expira em 14:59</p>
+              <div class="field" style="font-size:10px;height:auto;padding:8px;margin:8px 0;">00020126580014br.gov.bcb.pix...</div>
+              <div class="btn ghost">Copiar código</div>
             </div>
           </div>
         </div>
+        <div class="side">
+          <b>Resumo</b>
+          <div class="tiny" style="margin-top:8px;">Casa pé na areia · Jurerê<br>12 a 15 de outubro de 2026<br>2 adultos · 3 noites</div>
+          <div class="tiny" style="margin-top:12px;"><b style="color:#222;font-size:18px;">R$ 1.192</b><br>pagamento único via Pix</div>
+        </div>
       </div>
     </div>
-    <div class="foot"><span>Inbox + conversa</span><span>15 / 16</span></div>
-  </section>
+  </div>
+  <div class="foot"><span>Pix em destaque · cartão como alternativa</span><span>12 / 28</span></div>
+</section>
 
-  <!-- 16 conta -->
-  <section class="slide">
-    <div class="kicker">Tela 15 · Minha conta</div>
-    <div class="browser">
-      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /conta</div></div>
-      <div class="app">
-        <div class="top"><div class="logo">LOGO</div><div class="grow"></div><div class="nav"><span>Viagens</span><span>Favoritos</span><span>Mensagens</span><span><b>Conta</b></span></div></div>
-        <div style="padding:16px;display:grid;grid-template-columns:0.7fr 1.3fr;gap:14px;flex:1;">
-          <div>
-            <div class="line" style="width:64px;height:64px;border-radius:50%;margin-bottom:8px;"></div>
-            <b>Maria Silva</b>
-            <div class="tiny">maria@email.com</div>
+<section class="slide">
+  <div class="kicker">Tela · Reserva confirmada</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/trips/HSPD-4821/confirmed</div></div>
+    <div class="app" style="align-items:center;justify-content:center;background:#fafafa;">
+      <div style="width:7in;background:#fff;border:1px solid #eee;border-radius:16px;padding:18px;display:grid;grid-template-columns:1.1fr .9fr;gap:14px;">
+        <div>
+          <div class="tiny" style="color:#008a05;">● Pago · Pix aprovado</div>
+          <b style="font-size:20px;">Sua reserva está confirmada</b>
+          <p class="tiny" style="margin:8px 0 12px;">Código HSPD-4821 · enviamos o comprovante para maria.silva@email.com</p>
+          <div class="tiny"><b>Check-in</b> domingo, 12 out · a partir das 15h<br><b>Checkout</b> quarta, 15 out · até 11h<br><b>Endereço</b> liberado no app e no e-mail<br><b>Anfitriã</b> Ana Ribeiro · Superhost</div>
+          <div class="row" style="margin-top:14px;"><div class="btn rose">Ver viagem</div><div class="btn ghost">Mensagem para Ana</div></div>
+        </div>
+        <div class="photo" style="border-radius:12px;min-height:180px;"><span>Casa pé na areia · Jurerê</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Confirmação com código e próximo passo</span><span>13 / 28</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Tela · Minhas viagens</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/trips</div></div>
+    <div class="app">
+      <div class="top">
+        <div class="logo">hospeda</div>
+        <div class="grow"></div>
+        <div class="nav"><span class="on">Viagens</span><span>Favoritos</span><span>Mensagens</span><span>Conta</span></div>
+        <div class="avatar">MS</div>
+      </div>
+      <div style="padding:14px 18px;">
+        <b style="font-size:16px;">Viagens</b>
+        <div class="tiny" style="margin:6px 0 10px;">Próximas</div>
+        <div class="row" style="border:1px solid #eee;border-radius:12px;padding:10px;margin-bottom:12px;">
+          <div class="photo" style="width:120px;height:84px;border-radius:8px;flex-shrink:0;"><span>Jurerê</span></div>
+          <div class="grow"><b>Casa pé na areia</b><div class="tiny">12–15 out 2026 · Florianópolis · confirmada · HSPD-4821</div></div>
+          <div class="btn ghost">Abrir</div>
+        </div>
+        <div class="tiny" style="margin-bottom:8px;">Onde você esteve</div>
+        <div class="row" style="border:1px solid #eee;border-radius:12px;padding:10px;">
+          <div class="photo" style="width:120px;height:84px;border-radius:8px;flex-shrink:0;"><span>Pinheiros</span></div>
+          <div class="grow"><b>Apto com varanda</b><div class="tiny">18–20 mar 2026 · São Paulo · concluída</div></div>
+          <div class="btn rose">Avaliar estadia</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Próximas e anteriores</span><span>14 / 28</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Tela · Detalhe da reserva</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/trips/HSPD-4821</div></div>
+    <div class="app">
+      <div class="top"><span class="tiny">← Viagens</span><div class="grow"></div><div class="btn ghost">Cancelar reserva</div></div>
+      <div style="padding:12px 16px;display:grid;grid-template-columns:1.25fr .75fr;gap:14px;flex:1;">
+        <div>
+          <div class="photo" style="height:150px;border-radius:12px;margin-bottom:10px;"><span>Casa pé na areia</span></div>
+          <b>Casa pé na areia · Jurerê Internacional</b>
+          <div class="tiny">Check-in 12 out, 15h · Checkout 15 out, 11h · 2 adultos</div>
+          <div style="border:1px dashed #ddd;border-radius:10px;padding:8px;margin-top:8px;" class="tiny">
+            Rua das Dunas, 120 · portão azul · wifi: CasaJurere / senha no manual impresso na mesa
           </div>
-          <div>
-            <div class="line" style="padding:10px;margin-bottom:8px;">Dados pessoais →</div>
-            <div class="line" style="padding:10px;margin-bottom:8px;">Segurança e senha →</div>
-            <div class="line" style="padding:10px;margin-bottom:8px;">Métodos de pagamento →</div>
-            <div class="line" style="padding:10px;margin-bottom:8px;">Notificações →</div>
-            <div class="dash" style="padding:10px;">Sair da conta</div>
+        </div>
+        <div class="side">
+          <div class="tiny" style="color:#008a05;">● Confirmada · Pix pago</div>
+          <b>HSPD-4821</b>
+          <div class="tiny" style="margin:8px 0;">Anfitriã Ana Ribeiro<br>Total R$ 1.192<br>Cancelamento grátis até 10 out</div>
+          <div class="btn rose" style="width:100%;margin-bottom:6px;">Mensagem</div>
+          <div class="btn ghost" style="width:100%;margin-bottom:6px;">Como chegar</div>
+          <div class="btn ghost" style="width:100%;">Baixar comprovante</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Endereço, regras e ações da viagem</span><span>15 / 28</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Tela · Cancelar reserva</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/trips/HSPD-4821/cancel</div></div>
+    <div class="app" style="align-items:center;justify-content:center;background:#fafafa;">
+      <div style="width:7.2in;background:#fff;border:1px solid #eee;border-radius:16px;padding:18px;">
+        <b style="font-size:16px;">Cancelar esta reserva?</b>
+        <p class="tiny" style="margin:8px 0 12px;">Política: reembolso de 100% se cancelar até 10/10, 15h. Depois disso, a primeira noite não é devolvida.</p>
+        <div class="tiny" style="margin-bottom:6px;">Motivo (ajuda a Ana e a plataforma)</div>
+        <div class="field" style="margin-bottom:8px;">Mudança de planos</div>
+        <div class="field" style="height:60px;align-items:flex-start;padding-top:8px;margin-bottom:12px;">Comentário opcional</div>
+        <div class="row" style="justify-content:space-between;align-items:flex-end;">
+          <div class="tiny">Você recebe <b style="color:#222;">R$ 1.192</b> de volta no Pix em até 2 dias úteis.</div>
+          <div class="btn rose">Confirmar cancelamento</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Política de cancelamento visível</span><span>16 / 28</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Tela · Avaliar estadia</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/reviews/new?trip=SP-3201</div></div>
+    <div class="app">
+      <div class="top"><span class="tiny">← Viagens</span><div class="grow"></div></div>
+      <div style="padding:14px 18px;display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1;">
+        <div>
+          <b>Como foi a estadia no Apto com varanda?</b>
+          <div class="tiny" style="margin:8px 0 12px;">São Paulo · 18–20 mar · anfitrião Pedro</div>
+          <div class="tiny">Nota geral</div>
+          <div style="font-size:20px;margin:4px 0 12px;">★ ★ ★ ★ ☆</div>
+          <div class="tiny">Limpeza · Comunicação · Check-in · Localização</div>
+          <div class="row" style="margin:8px 0 12px;"><span class="tag">5</span><span class="tag">5</span><span class="tag">4</span><span class="tag">5</span></div>
+          <div class="field" style="height:80px;align-items:flex-start;padding-top:8px;">A varanda é ótima e o prédio é silencioso. Check-in foi fácil.</div>
+        </div>
+        <div>
+          <div class="photo" style="height:140px;border-radius:12px;margin-bottom:10px;"><span>Apto Pinheiros</span></div>
+          <div class="btn rose">Publicar avaliação</div>
+          <div class="tiny" style="margin-top:8px;">A avaliação fica visível no anúncio depois que os dois lados avaliam, ou em 14 dias.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Notas + comentário público</span><span>17 / 28</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Tela · Favoritos</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/wishlists</div></div>
+    <div class="app">
+      <div class="top"><div class="logo">hospeda</div><div class="grow"></div><div class="nav"><span>Viagens</span><span class="on">Favoritos</span><span>Mensagens</span><span>Conta</span></div><div class="avatar">MS</div></div>
+      <div style="padding:14px 18px;">
+        <b>Favoritos</b>
+        <div class="tiny" style="margin:4px 0 10px;">2 listas · 7 imóveis salvos</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+          <div class="card"><div class="photo pic" style="height:90px;"><span>Jurerê</span></div><div class="meta"><b>Casa pé na areia</b><span class="tiny">★ 4,97 · R$ 340 · Floripa</span></div></div>
+          <div class="card"><div class="photo pic" style="height:90px;"><span>Gramado</span></div><div class="meta"><b>Chalé com lareira</b><span class="tiny">★ 4,91 · R$ 480</span></div></div>
+          <div class="card"><div class="photo pic" style="height:90px;"><span>Ipanema</span></div><div class="meta"><b>Studio 2 quadra da praia</b><span class="tiny">★ 4,88 · R$ 390</span></div></div>
+          <div class="card"><div class="photo pic" style="height:90px;"><span>Campeche</span></div><div class="meta"><b>Casa perto da praia</b><span class="tiny">★ 4,94 · R$ 310</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Wishlists do hóspede</span><span>18 / 28</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Tela · Mensagens</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/inbox/ana-ribeiro</div></div>
+    <div class="app">
+      <div class="top"><div class="logo">hospeda</div><div class="grow"></div><div class="nav"><span>Viagens</span><span>Favoritos</span><span class="on">Mensagens</span><span>Conta</span></div><div class="avatar">MS</div></div>
+      <div style="display:grid;grid-template-columns:.72fr 1.28fr;flex:1;min-height:0;">
+        <div style="border-right:1px solid #eee;padding:8px 10px;">
+          <div class="field" style="margin-bottom:8px;height:30px;">Buscar conversa</div>
+          <div style="background:#f7f7f7;border-radius:10px;padding:8px;margin-bottom:6px;">
+            <b>Ana Ribeiro</b><div class="tiny">Casa pé na areia · agora</div>
+            <div class="tiny">Pode chegar a partir das 15h sim.</div>
+          </div>
+          <div style="padding:8px;"><b>Pedro Lima</b><div class="tiny">Apto Pinheiros · mar</div><div class="tiny">Obrigado pela estadia!</div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;">
+          <div style="padding:10px 12px;border-bottom:1px solid #eee;" class="row">
+            <div class="avatar">AR</div>
+            <div><b>Ana Ribeiro</b><div class="tiny">Superhost · reserva HSPD-4821</div></div>
+          </div>
+          <div style="flex:1;padding:12px;display:flex;flex-direction:column;gap:8px;justify-content:flex-end;">
+            <div class="chat-you">Oi Maria! Qual horário vocês pretendem chegar no domingo?</div>
+            <div class="chat-me">Oi Ana, por volta das 16h. Tem garagem para 1 carro?</div>
+            <div class="chat-you">Tem sim, portão azul. Senha do wifi está na mesa da sala.</div>
+          </div>
+          <div class="row" style="padding:8px 12px;border-top:1px solid #eee;">
+            <div class="field" style="flex:1;">Escrever mensagem</div>
+            <div class="btn rose">Enviar</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="foot"><span>Conta do hóspede · fim do fluxo</span><span>16 / 16</span></div>
-  </section>
+  </div>
+  <div class="foot"><span>Inbox ligada à reserva</span><span>19 / 28</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Tela · Minha conta</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/account</div></div>
+    <div class="app">
+      <div class="top"><div class="logo">hospeda</div><div class="grow"></div><div class="nav"><span>Viagens</span><span>Favoritos</span><span>Mensagens</span><span class="on">Conta</span></div><div class="avatar">MS</div></div>
+      <div style="padding:16px 18px;display:grid;grid-template-columns:.7fr 1.3fr;gap:16px;flex:1;">
+        <div class="side" style="text-align:center;">
+          <div class="avatar" style="width:64px;height:64px;margin:0 auto 8px;">MS</div>
+          <b>Maria Silva</b>
+          <div class="tiny">Hóspede · Florianópolis<br>maria.silva@email.com</div>
+        </div>
+        <div>
+          <div class="menu"><span>Dados pessoais</span><span class="tiny">nome, documento, telefone →</span></div>
+          <div class="menu"><span>Login e segurança</span><span class="tiny">senha, sessões →</span></div>
+          <div class="menu"><span>Pagamentos</span><span class="tiny">Pix e cartões →</span></div>
+          <div class="menu"><span>Notificações</span><span class="tiny">e-mail e WhatsApp →</span></div>
+          <div class="menu"><span>Impostos e comprovantes</span><span class="tiny">→</span></div>
+          <div class="menu" style="color:#c00;"><span>Sair</span><span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Hub da conta</span><span>20 / 28</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Tela · Dados pessoais</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/account/personal-info</div></div>
+    <div class="app">
+      <div class="top"><span class="tiny">← Conta</span><div class="grow"></div></div>
+      <div style="padding:14px 18px;max-width:7.2in;">
+        <b>Informações pessoais</b>
+        <div class="menu" style="margin-top:12px;"><div><div class="tiny">Nome legal</div><b>Maria Souza Silva</b></div><span class="tiny">Editar</span></div>
+        <div class="menu"><div><div class="tiny">E-mail</div><b>maria.silva@email.com</b></div><span class="tiny">Editar</span></div>
+        <div class="menu"><div><div class="tiny">Telefone</div><b>+55 48 99999-1122</b></div><span class="tiny">Editar</span></div>
+        <div class="menu"><div><div class="tiny">Documento</div><b>CPF •••.•••.•••-22</b></div><span class="tiny">Editar</span></div>
+        <div class="menu"><div><div class="tiny">Endereço</div><b>Rua das Palmeiras, 40 · Floripa</b></div><span class="tiny">Editar</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Cadastro do hóspede</span><span>21 / 28</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Tela · Métodos de pagamento</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/account/payments</div></div>
+    <div class="app">
+      <div class="top"><span class="tiny">← Conta</span><div class="grow"></div><div class="btn rose">Adicionar cartão</div></div>
+      <div style="padding:14px 18px;">
+        <b>Pagamentos</b>
+        <div class="row" style="margin-top:12px;gap:12px;">
+          <div class="side" style="flex:1;"><div class="tiny">Pix padrão</div><b>CPF •••.•••.•••-22</b><div class="tiny">usado na reserva HSPD-4821</div></div>
+          <div class="side" style="flex:1;"><div class="tiny">Cartão</div><b>Mastercard •••• 4412</b><div class="tiny">validade 08/28 · remover</div></div>
+        </div>
+        <p class="tiny" style="margin-top:14px;">Cobrimos Pix e cartão. O split com o anfitrião é feito depois do check-in, conforme a regra da plataforma.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Pix e cartão salvos</span><span>22 / 28</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Tela · Central de ajuda</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/help</div></div>
+    <div class="app">
+      <div class="top"><div class="logo">hospeda</div><div class="grow"></div><div class="field" style="width:280px;height:32px;">Buscar na ajuda</div></div>
+      <div style="padding:14px 18px;">
+        <b>Como podemos ajudar?</b>
+        <div class="idx" style="margin-top:12px;">
+          <div><b>Reservas e pagamentos</b><span>Pix, estorno, comprovante</span></div>
+          <div><b>Cancelamento</b><span>Prazos e reembolso</span></div>
+          <div><b>Check-in</b><span>Horário, chave, wifi</span></div>
+          <div><b>Anfitriões</b><span>Como anunciar</span></div>
+          <div><b>Segurança</b><span>Conta e denúncias</span></div>
+          <div><b>Fale conosco</b><span>Chat em horário comercial</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>FAQ da plataforma</span><span>23 / 28</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Tela · Anuncie seu espaço</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/host</div></div>
+    <div class="app">
+      <div class="top"><div class="logo">hospeda</div><div class="grow"></div><div class="btn rose">Começar</div></div>
+      <div style="padding:18px;display:grid;grid-template-columns:1.1fr .9fr;gap:16px;flex:1;">
+        <div>
+          <b style="font-size:22px;">Ganhe anfitriando no Hospeda</b>
+          <p class="tiny" style="margin:10px 0 14px;">Publique a casa, o apto ou o quarto. Você define preço, calendário e regras. A plataforma leva a taxa de serviço.</p>
+          <div class="row" style="margin-bottom:10px;">
+            <div class="kpi" style="flex:1;"><b>R$ 340</b><span>diária média em Floripa</span></div>
+            <div class="kpi" style="flex:1;"><b>3%</b><span>taxa da plataforma (exemplo)</span></div>
+          </div>
+          <div class="btn rose">Criar meu anúncio</div>
+        </div>
+        <div class="photo" style="border-radius:16px;"><span>Foto de anfitrião / casa</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Landing do anfitrião</span><span>24 / 28</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Tela · Criar anúncio (onboarding)</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/become-a-host · passo 3 de 8</div></div>
+    <div class="app">
+      <div class="top"><span class="tiny">Salvar e sair</span><div class="grow"></div><span class="tiny">Passo 3 de 8 · Localização</span></div>
+      <div style="padding:14px 18px;display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1;">
+        <div>
+          <b>Onde fica o espaço?</b>
+          <p class="tiny">O endereço exato só aparece para o hóspede depois da reserva.</p>
+          <div class="field" style="margin:8px 0;">Rua das Dunas, 120</div>
+          <div class="field" style="margin-bottom:8px;">Jurerê Internacional · Florianópolis · SC</div>
+          <div class="field" style="margin-bottom:8px;">CEP 88053-000</div>
+          <div class="row"><div class="btn ghost">Voltar</div><div class="btn rose">Próximo: fotos</div></div>
+        </div>
+        <div class="photo" style="border-radius:12px;position:relative;">
+          <span>Mapa · pin no endereço</span>
+          <div class="mapdot" style="left:46%;top:48%;background:#e31c5f;color:#fff;border:0;">●</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Um dos 8 passos para publicar</span><span>25 / 28</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Tela · Dashboard do anfitrião</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/hosting</div></div>
+    <div class="app">
+      <div class="top"><div class="logo">hospeda</div><div class="grow"></div><div class="nav"><span class="on">Hoje</span><span>Anúncios</span><span>Calendário</span><span>Ganhos</span><span>Mensagens</span></div><div class="avatar">AR</div></div>
+      <div style="padding:14px 16px;">
+        <b>Olá, Ana</b>
+        <div class="row" style="margin:10px 0 12px;">
+          <div class="kpi" style="flex:1;"><b>2</b><span>check-ins esta semana</span></div>
+          <div class="kpi" style="flex:1;"><b>1</b><span>mensagem sem resposta</span></div>
+          <div class="kpi" style="flex:1;"><b>R$ 4.820</b><span>a receber em outubro</span></div>
+          <div class="kpi" style="flex:1;"><b>78%</b><span>ocupação 30 dias</span></div>
+        </div>
+        <div class="tiny" style="margin-bottom:6px;">Reservas próximas</div>
+        <div class="menu"><div><b>Maria Silva · Casa pé na areia</b><div class="tiny">check-in 12 out · 2 hóspedes · R$ 1.192</div></div><span class="btn ghost">Abrir</span></div>
+        <div class="menu"><div><b>João Costa · Studio Campeche</b><div class="tiny">check-in 18 out · 1 hóspede · R$ 660</div></div><span class="btn ghost">Abrir</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Painel do dia a dia do anfitrião</span><span>26 / 28</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Tela · Calendário e preços</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/hosting/calendar</div></div>
+    <div class="app">
+      <div class="top"><div class="logo">hospeda</div><div class="grow"></div><div class="nav"><span>Hoje</span><span>Anúncios</span><span class="on">Calendário</span><span>Ganhos</span></div><div class="avatar">AR</div></div>
+      <div style="padding:12px 16px;display:grid;grid-template-columns:1.3fr .7fr;gap:14px;flex:1;">
+        <div>
+          <div class="row" style="justify-content:space-between;margin-bottom:8px;"><b>Outubro 2026 · Casa pé na areia</b><span class="tiny">R$ 340 / noite</span></div>
+          <div class="cal">
+            <b>D</b><b>S</b><b>T</b><b>Q</b><b>Q</b><b>S</b><b>S</b>
+            <i class="off">28</i><i class="off">29</i><i class="off">30</i><i>1</i><i>2</i><i>3</i><i>4</i>
+            <i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i class="on">10</i><i class="on">11</i>
+            <i class="on">12</i><i class="on">13</i><i class="on">14</i><i class="on">15</i><i>16</i><i>17</i><i>18</i>
+            <i>19</i><i>20</i><i class="off">21</i><i class="off">22</i><i>23</i><i>24</i><i>25</i>
+            <i>26</i><i>27</i><i>28</i><i>29</i><i>30</i><i>31</i><i class="off">1</i>
+          </div>
+        </div>
+        <div class="side">
+          <b>12–15 out</b>
+          <div class="tiny" style="margin:8px 0;">Reservado · Maria Silva<br>HSPD-4821 · R$ 1.192</div>
+          <div class="tiny">21–22 out bloqueados por você (uso próprio).</div>
+          <div class="field" style="margin:10px 0;"><b>Preço</b> R$ 340</div>
+          <div class="btn ghost" style="width:100%;">Bloquear datas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Disponibilidade, bloqueio e diária</span><span>27 / 28</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Tela · Reservas do anfitrião</div>
+  <div class="browser">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">https://hospeda.com.br/hosting/reservations</div></div>
+    <div class="app">
+      <div class="top"><div class="logo">hospeda</div><div class="grow"></div><div class="nav"><span>Hoje</span><span class="on">Reservas</span><span>Calendário</span><span>Ganhos</span></div><div class="avatar">AR</div></div>
+      <div style="padding:14px 16px;">
+        <b>Reservas</b>
+        <div class="row" style="margin:8px 0 10px;"><span class="tag">Próximas</span><span class="tag">Em andamento</span><span class="tag">Anteriores</span></div>
+        <div class="menu"><div><b>Maria Silva</b><div class="tiny">Casa pé na areia · 12–15 out · 2 hóspedes · Pix pago · R$ 1.192</div></div><span class="btn ghost">Detalhe</span></div>
+        <div class="menu"><div><b>João Costa</b><div class="tiny">Studio Campeche · 18–21 out · 1 hóspede · aguardando Pix</div></div><span class="btn ghost">Detalhe</span></div>
+        <div class="menu"><div><b>Carla Mendes</b><div class="tiny">Casa na Lagoa · 02–05 out · concluída · avaliada ★ 5</div></div><span class="btn ghost">Detalhe</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Lista operacional do anfitrião · fim do protótipo</span><span>28 / 28</span></div>
+</section>
 
 </body>
 </html>
