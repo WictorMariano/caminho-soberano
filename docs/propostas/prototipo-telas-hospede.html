@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Protótipo — telas do hóspede</title>
+  <style>
+    @page { size: 13.333in 7.5in; margin: 0; }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0; background: #ddd;
+      font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+      color: #222;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .slide {
+      width: 13.333in;
+      height: 7.5in;
+      background: #fff;
+      padding: 0.42in 0.5in 0.38in;
+      page-break-after: always;
+      break-after: page;
+      position: relative;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .kicker {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 6px;
+    }
+    h1 { font-size: 42px; font-weight: 650; margin: 0 0 8px; letter-spacing: -0.02em; }
+    h2 { font-size: 22px; font-weight: 650; margin: 0 0 14px; }
+    p { margin: 0 0 10px; color: #444; }
+    .foot {
+      position: absolute; left: 0.5in; right: 0.5in; bottom: 0.22in;
+      display: flex; justify-content: space-between;
+      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #999;
+    }
+
+    /* wireframe primitives */
+    .line { border: 1.5px solid #222; }
+    .dash { border: 1.5px dashed #999; }
+    .x {
+      background:
+        linear-gradient(to top left, transparent calc(50% - 0.7px), #bbb calc(50% - 0.7px), #bbb calc(50% + 0.7px), transparent calc(50% + 0.7px)),
+        linear-gradient(to top right, transparent calc(50% - 0.7px), #bbb calc(50% - 0.7px), #bbb calc(50% + 0.7px), transparent calc(50% + 0.7px));
+      background-color: #fafafa;
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 1.5px solid #222; padding: 6px 12px; font-size: 11px; font-weight: 600;
+      background: #fff;
+    }
+    .btn.fill { background: #222; color: #fff; }
+    .field {
+      border: 1.5px solid #222; height: 28px; padding: 0 8px;
+      display: flex; align-items: center; font-size: 11px; color: #666; background: #fff;
+    }
+    .ph { font-size: 10px; color: #888; text-align: center; }
+    .tiny { font-size: 10px; color: #666; }
+
+    .browser { border: 1.5px solid #222; height: 6.15in; display: flex; flex-direction: column; background: #fff; }
+    .chrome {
+      height: 28px; border-bottom: 1.5px solid #222; display: flex; align-items: center; gap: 8px; padding: 0 10px;
+    }
+    .dots { display: flex; gap: 5px; }
+    .dots i { width: 8px; height: 8px; border: 1.5px solid #222; border-radius: 50%; display: block; }
+    .url { flex: 1; height: 16px; border: 1.5px solid #222; font-size: 10px; color: #888; display: flex; align-items: center; padding: 0 8px; }
+    .app { flex: 1; overflow: hidden; display: flex; flex-direction: column; }
+
+    .top {
+      height: 42px; border-bottom: 1.5px solid #222;
+      display: flex; align-items: center; gap: 12px; padding: 0 12px;
+    }
+    .logo { font-weight: 750; font-size: 13px; letter-spacing: 0.04em; }
+    .top .grow { flex: 1; }
+    .nav { display: flex; gap: 14px; font-size: 11px; }
+
+    .grid { display: grid; gap: 10px; }
+    .card { border: 1.5px solid #222; overflow: hidden; }
+    .card .pic { height: 86px; }
+    .card .meta { padding: 7px 8px; font-size: 11px; }
+    .card .meta b { display: block; font-size: 12px; margin-bottom: 2px; }
+
+    .cover { display: flex; flex-direction: column; justify-content: center; height: 100%; padding-left: 0.3in; }
+    .cover h1 { font-size: 52px; max-width: 12ch; }
+    .cover .box {
+      margin-top: 28px; border: 1.5px solid #222; padding: 14px 16px; max-width: 7.2in;
+      font-size: 14px; line-height: 1.45;
+    }
+
+    .flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+    .flow .step { border: 1.5px solid #222; padding: 10px 12px; min-width: 1.7in; }
+    .flow .step b { display: block; font-size: 12px; }
+    .flow .step span { font-size: 11px; color: #666; }
+    .arrow { font-size: 18px; }
+
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; height: 6.15in; }
+    .col { border: 1.5px solid #222; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+  </style>
+</head>
+<body>
+
+  <!-- 1 capa -->
+  <section class="slide">
+    <div class="cover">
+      <div class="kicker">Protótipo · wireframe</div>
+      <h1>Telas do hóspede</h1>
+      <p style="font-size:18px;max-width:22em;">Marketplace de hospedagens — rascunho das telas do usuário. Branco e linha. Sem visual final.</p>
+      <div class="box">
+        Fluxo: Home → busca → imóvel → reserva → viagens e mensagens.<br>
+        14 telas principais do hóspede. Protótipo de baixa fidelidade.
+      </div>
+    </div>
+    <div class="foot"><span>Protótipo de telas</span><span>1 / 16</span></div>
+  </section>
+
+  <!-- 2 jornada -->
+  <section class="slide">
+    <div class="kicker">Mapa</div>
+    <h2>Como o usuário anda no app</h2>
+    <div class="flow">
+      <div class="step"><b>1. Home</b><span>Busca destino e datas</span></div><span class="arrow">→</span>
+      <div class="step"><b>2. Resultados</b><span>Lista + filtros</span></div><span class="arrow">→</span>
+      <div class="step"><b>3. Imóvel</b><span>Fotos, preço, regras</span></div><span class="arrow">→</span>
+      <div class="step"><b>4. Reserva</b><span>Checkout e pagamento</span></div>
+    </div>
+    <div class="flow" style="margin-top:22px;">
+      <div class="step"><b>5. Confirmação</b><span>Reserva feita</span></div><span class="arrow">→</span>
+      <div class="step"><b>6. Viagens</b><span>Próximas e antigas</span></div><span class="arrow">→</span>
+      <div class="step"><b>7. Mensagens</b><span>Fala com o anfitrião</span></div><span class="arrow">→</span>
+      <div class="step"><b>8. Conta</b><span>Dados e favoritos</span></div>
+    </div>
+    <p class="tiny" style="margin-top:28px;">Login e cadastro aparecem quando o usuário tenta reservar ou salvar um favorito.</p>
+    <div class="foot"><span>Jornada do hóspede</span><span>2 / 16</span></div>
+  </section>
+
+  <!-- 3 home -->
+  <section class="slide">
+    <div class="kicker">Tela 01 · Home</div>
+    <div class="browser">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /</div></div>
+      <div class="app">
+        <div class="top">
+          <div class="logo">LOGO</div>
+          <div class="grow"></div>
+          <div class="nav"><span>Anuncie</span><span>Ajuda</span></div>
+          <div class="btn">Entrar</div>
+        </div>
+        <div style="padding:16px 18px;display:flex;flex-direction:column;gap:12px;flex:1;">
+          <div class="line" style="height:72px;display:flex;align-items:center;justify-content:center;gap:8px;padding:0 12px;">
+            <div class="field" style="flex:1.4;">Destino</div>
+            <div class="field" style="flex:1;">Check-in</div>
+            <div class="field" style="flex:1;">Check-out</div>
+            <div class="field" style="flex:1;">Hóspedes</div>
+            <div class="btn fill">Buscar</div>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <div class="btn">Praia</div><div class="btn">Cidade</div><div class="btn">Campo</div><div class="btn">Cabana</div>
+          </div>
+          <div class="grid" style="grid-template-columns:repeat(4,1fr);flex:1;">
+            <div class="card"><div class="pic x"></div><div class="meta"><b>Casa · Florianópolis</b>R$ 320 / noite</div></div>
+            <div class="card"><div class="pic x"></div><div class="meta"><b>Apto · São Paulo</b>R$ 210 / noite</div></div>
+            <div class="card"><div class="pic x"></div><div class="meta"><b>Chalé · Gramado</b>R$ 480 / noite</div></div>
+            <div class="card"><div class="pic x"></div><div class="meta"><b>Studio · Rio</b>R$ 190 / noite</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Home — busca, categorias e destaques</span><span>3 / 16</span></div>
+  </section>
+
+  <!-- 4 resultados -->
+  <section class="slide">
+    <div class="kicker">Tela 02 · Resultados da busca</div>
+    <div class="browser">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /busca?destino=floripa</div></div>
+      <div class="app">
+        <div class="top">
+          <div class="logo">LOGO</div>
+          <div class="field" style="flex:1;max-width:420px;">Floripa · 12–15 out · 2 hóspedes</div>
+          <div class="grow"></div>
+          <div class="btn">Filtros</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1.15fr 0.85fr;flex:1;min-height:0;">
+          <div style="padding:12px;overflow:hidden;">
+            <div class="tiny" style="margin-bottom:8px;">128 imóveis · ordenar: recomendados</div>
+            <div class="grid" style="grid-template-columns:1fr 1fr;">
+              <div class="card"><div class="pic x"></div><div class="meta"><b>Casa na praia</b>R$ 340 · ★ 4,9</div></div>
+              <div class="card"><div class="pic x"></div><div class="meta"><b>Apto centro</b>R$ 220 · ★ 4,7</div></div>
+              <div class="card"><div class="pic x"></div><div class="meta"><b>Loft beira-mar</b>R$ 410 · ★ 5,0</div></div>
+              <div class="card"><div class="pic x"></div><div class="meta"><b>Kitnet</b>R$ 160 · ★ 4,5</div></div>
+            </div>
+          </div>
+          <div class="x" style="border-left:1.5px solid #222;display:flex;align-items:center;justify-content:center;">
+            <span class="tiny">MAPA</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Lista + mapa</span><span>4 / 16</span></div>
+  </section>
+
+  <!-- 5 filtros -->
+  <section class="slide">
+    <div class="kicker">Tela 03 · Filtros</div>
+    <div class="browser">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /busca · filtros</div></div>
+      <div class="app" style="align-items:center;justify-content:center;background:#f6f6f6;">
+        <div class="line" style="width:7.2in;background:#fff;padding:16px 18px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <b>Filtros</b><span class="tiny">fechar</span>
+          </div>
+          <div class="tiny" style="margin-bottom:6px;">Faixa de preço</div>
+          <div class="line" style="height:8px;margin:10px 0 16px;"></div>
+          <div class="tiny" style="margin-bottom:6px;">Tipo de espaço</div>
+          <div style="display:flex;gap:8px;margin-bottom:14px;">
+            <div class="btn">Casa inteira</div><div class="btn">Quarto</div><div class="btn">Studio</div>
+          </div>
+          <div class="tiny" style="margin-bottom:6px;">Comodidades</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+            <div class="btn">Wi-Fi</div><div class="btn">Piscina</div><div class="btn">Cozinha</div><div class="btn">Estacionamento</div><div class="btn">Ar-condicionado</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;">
+            <span class="tiny">Limpar</span>
+            <div class="btn fill">Mostrar 64 imóveis</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Painel de filtros sobre a busca</span><span>5 / 16</span></div>
+  </section>
+
+  <!-- 6 detalhe -->
+  <section class="slide">
+    <div class="kicker">Tela 04 · Detalhe do imóvel</div>
+    <div class="browser">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /imovel/casa-na-praia</div></div>
+      <div class="app">
+        <div class="top"><div class="logo">LOGO</div><div class="grow"></div><div class="btn">♡ Salvar</div><div class="btn">Entrar</div></div>
+        <div style="padding:12px 16px;display:grid;grid-template-columns:1.4fr 0.7fr;gap:12px;flex:1;">
+          <div>
+            <div class="grid" style="grid-template-columns:1.4fr 0.6fr;height:160px;margin-bottom:10px;">
+              <div class="x line"></div>
+              <div style="display:grid;gap:8px;">
+                <div class="x line"></div>
+                <div class="x line"></div>
+              </div>
+            </div>
+            <b>Casa com vista para o mar · Florianópolis</b>
+            <div class="tiny" style="margin:4px 0 8px;">4 hóspedes · 2 quartos · 1 banheiro · ★ 4,9 (38)</div>
+            <div class="dash" style="height:48px;padding:8px;font-size:11px;color:#666;">Descrição do espaço — texto curto sobre a casa, regras e o que tem no entorno.</div>
+          </div>
+          <div class="line" style="padding:12px;display:flex;flex-direction:column;gap:8px;">
+            <b>R$ 340 / noite</b>
+            <div class="field">Check-in</div>
+            <div class="field">Check-out</div>
+            <div class="field">Hóspedes</div>
+            <div class="tiny">3 noites × 340 = R$ 1.020<br>Taxa = R$ 80<br><b style="color:#222;">Total R$ 1.100</b></div>
+            <div class="btn fill" style="height:32px;">Reservar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Fotos + card de reserva</span><span>6 / 16</span></div>
+  </section>
+
+  <!-- 7 galeria -->
+  <section class="slide">
+    <div class="kicker">Tela 05 · Galeria</div>
+    <div class="browser">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /imovel/…/fotos</div></div>
+      <div class="app">
+        <div class="top"><span class="tiny">← Voltar ao anúncio</span><div class="grow"></div><span class="tiny">3 / 12</span></div>
+        <div class="x" style="flex:1;display:flex;align-items:center;justify-content:center;border-bottom:1.5px solid #222;">
+          <span class="tiny">FOTO GRANDE</span>
+        </div>
+        <div style="display:flex;gap:8px;padding:10px 12px;">
+          <div class="x line" style="height:54px;flex:1;"></div>
+          <div class="x line" style="height:54px;flex:1;"></div>
+          <div class="x line" style="height:54px;flex:1;"></div>
+          <div class="x line" style="height:54px;flex:1;"></div>
+          <div class="x line" style="height:54px;flex:1;"></div>
+          <div class="x line" style="height:54px;flex:1;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Fotos em tela cheia</span><span>7 / 16</span></div>
+  </section>
+
+  <!-- 8 login / cadastro -->
+  <section class="slide">
+    <div class="kicker">Telas 06 e 07 · Login e cadastro</div>
+    <div class="two">
+      <div>
+        <div class="tiny" style="margin-bottom:6px;">LOGIN</div>
+        <div class="browser" style="height:5.7in;">
+          <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /entrar</div></div>
+          <div class="app" style="align-items:center;justify-content:center;padding:20px;">
+            <div style="width:260px;display:flex;flex-direction:column;gap:8px;">
+              <div class="logo" style="text-align:center;margin-bottom:8px;">LOGO</div>
+              <b style="text-align:center;">Entrar</b>
+              <div class="field">E-mail</div>
+              <div class="field">Senha</div>
+              <div class="btn fill">Entrar</div>
+              <div class="tiny" style="text-align:center;">Esqueci a senha · Criar conta</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="tiny" style="margin-bottom:6px;">CADASTRO</div>
+        <div class="browser" style="height:5.7in;">
+          <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /cadastro</div></div>
+          <div class="app" style="align-items:center;justify-content:center;padding:20px;">
+            <div style="width:260px;display:flex;flex-direction:column;gap:8px;">
+              <div class="logo" style="text-align:center;margin-bottom:8px;">LOGO</div>
+              <b style="text-align:center;">Criar conta</b>
+              <div class="field">Nome</div>
+              <div class="field">E-mail</div>
+              <div class="field">Senha</div>
+              <div class="btn fill">Cadastrar</div>
+              <div class="tiny" style="text-align:center;">Já tenho conta</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Acesso do hóspede</span><span>8 / 16</span></div>
+  </section>
+
+  <!-- 9 checkout -->
+  <section class="slide">
+    <div class="kicker">Tela 08 · Checkout</div>
+    <div class="browser">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /reservar</div></div>
+      <div class="app">
+        <div class="top"><div class="logo">LOGO</div><div class="grow"></div><span class="tiny">Passo 1 de 2</span></div>
+        <div style="padding:16px;display:grid;grid-template-columns:1.2fr 0.8fr;gap:16px;flex:1;">
+          <div>
+            <b>Confirme os dados</b>
+            <div class="tiny" style="margin:8px 0;">Quem vai se hospedar</div>
+            <div class="field" style="margin-bottom:8px;">Nome completo</div>
+            <div class="field" style="margin-bottom:8px;">Telefone</div>
+            <div class="field" style="margin-bottom:12px;">Pedido especial (opcional)</div>
+            <div class="tiny">Política de cancelamento — reembolso até 48h antes.</div>
+          </div>
+          <div class="line" style="padding:12px;">
+            <div class="x line" style="height:70px;margin-bottom:8px;"></div>
+            <b>Casa na praia</b>
+            <div class="tiny">12–15 out · 2 hóspedes</div>
+            <div class="tiny" style="margin-top:10px;">Diárias R$ 1.020<br>Taxa de serviço R$ 80<br><b style="color:#222;">Total R$ 1.100</b></div>
+            <div class="btn fill" style="margin-top:12px;width:100%;height:32px;">Ir para pagamento</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Resumo da reserva antes de pagar</span><span>9 / 16</span></div>
+  </section>
+
+  <!-- 10 pagamento -->
+  <section class="slide">
+    <div class="kicker">Tela 09 · Pagamento</div>
+    <div class="browser">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /pagar</div></div>
+      <div class="app">
+        <div class="top"><div class="logo">LOGO</div><div class="grow"></div><span class="tiny">Passo 2 de 2</span></div>
+        <div style="padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1;">
+          <div>
+            <b>Como pagar</b>
+            <div style="display:flex;gap:8px;margin:12px 0;">
+              <div class="btn fill">Pix</div>
+              <div class="btn">Cartão</div>
+            </div>
+            <div class="line" style="height:120px;display:flex;align-items:center;justify-content:center;">
+              <span class="tiny">QR CODE · PIX</span>
+            </div>
+            <div class="tiny" style="margin-top:8px;">Copia e cola · expira em 15 min</div>
+          </div>
+          <div class="line" style="padding:12px;">
+            <b>Pedido</b>
+            <div class="tiny" style="margin-top:8px;">Casa na praia · 3 noites<br>12 a 15 de outubro<br>2 hóspedes</div>
+            <div class="tiny" style="margin-top:14px;"><b style="color:#222;font-size:14px;">R$ 1.100</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Pix ou cartão</span><span>10 / 16</span></div>
+  </section>
+
+  <!-- 11 confirmacao -->
+  <section class="slide">
+    <div class="kicker">Tela 10 · Confirmação</div>
+    <div class="browser">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /reserva/ok</div></div>
+      <div class="app" style="align-items:center;justify-content:center;">
+        <div class="line" style="width:6.4in;padding:22px;text-align:center;">
+          <div class="line" style="width:36px;height:36px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:18px;">✓</div>
+          <b style="font-size:18px;">Reserva confirmada</b>
+          <p class="tiny" style="margin:10px 0 14px;">Código #4821 · Casa na praia · 12–15 out</p>
+          <div class="x line" style="height:90px;margin-bottom:14px;"></div>
+          <div style="display:flex;gap:8px;justify-content:center;">
+            <div class="btn fill">Ver viagem</div>
+            <div class="btn">Falar com anfitrião</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Reserva feita</span><span>11 / 16</span></div>
+  </section>
+
+  <!-- 12 viagens -->
+  <section class="slide">
+    <div class="kicker">Tela 11 · Minhas viagens</div>
+    <div class="browser">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /viagens</div></div>
+      <div class="app">
+        <div class="top">
+          <div class="logo">LOGO</div>
+          <div class="grow"></div>
+          <div class="nav"><span><b>Viagens</b></span><span>Favoritos</span><span>Mensagens</span><span>Conta</span></div>
+        </div>
+        <div style="padding:14px 16px;">
+          <b>Próximas</b>
+          <div class="line" style="display:grid;grid-template-columns:110px 1fr auto;gap:12px;padding:10px;margin:10px 0 16px;align-items:center;">
+            <div class="x" style="height:70px;"></div>
+            <div><b>Casa na praia</b><div class="tiny">12–15 out · Florianópolis · confirmada</div></div>
+            <div class="btn">Abrir</div>
+          </div>
+          <b>Anteriores</b>
+          <div class="line" style="display:grid;grid-template-columns:110px 1fr auto;gap:12px;padding:10px;margin-top:10px;align-items:center;">
+            <div class="x" style="height:70px;"></div>
+            <div><b>Apto em SP</b><div class="tiny">mar/2026 · concluída</div></div>
+            <div class="btn">Avaliar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Lista de reservas do hóspede</span><span>12 / 16</span></div>
+  </section>
+
+  <!-- 13 detalhe viagem / cancelar -->
+  <section class="slide">
+    <div class="kicker">Tela 12 · Detalhe da reserva</div>
+    <div class="browser">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /viagens/4821</div></div>
+      <div class="app">
+        <div class="top"><span class="tiny">← Viagens</span><div class="grow"></div><div class="btn">Cancelar</div></div>
+        <div style="padding:14px 16px;display:grid;grid-template-columns:1.2fr 0.8fr;gap:14px;flex:1;">
+          <div>
+            <div class="x line" style="height:140px;margin-bottom:10px;"></div>
+            <b>Casa na praia</b>
+            <div class="tiny">Check-in 12 out · 15h · Check-out 15 out · 11h</div>
+            <div class="dash" style="margin-top:10px;padding:8px;font-size:11px;">Endereço liberado após confirmação · regras da casa</div>
+          </div>
+          <div class="line" style="padding:12px;display:flex;flex-direction:column;gap:8px;">
+            <b>Status: confirmada</b>
+            <div class="tiny">Anfitrião: Ana<br>Código #4821<br>Total pago R$ 1.100</div>
+            <div class="btn">Mensagem</div>
+            <div class="btn">Como chegar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Detalhe + cancelar</span><span>13 / 16</span></div>
+  </section>
+
+  <!-- 14 favoritos -->
+  <section class="slide">
+    <div class="kicker">Tela 13 · Favoritos</div>
+    <div class="browser">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /favoritos</div></div>
+      <div class="app">
+        <div class="top"><div class="logo">LOGO</div><div class="grow"></div><div class="nav"><span>Viagens</span><span><b>Favoritos</b></span><span>Mensagens</span><span>Conta</span></div></div>
+        <div style="padding:14px 16px;">
+          <b>Salvos</b>
+          <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-top:10px;">
+            <div class="card"><div class="pic x"></div><div class="meta"><b>Casa na praia</b>R$ 340</div></div>
+            <div class="card"><div class="pic x"></div><div class="meta"><b>Chalé Gramado</b>R$ 480</div></div>
+            <div class="card"><div class="pic x"></div><div class="meta"><b>Loft Rio</b>R$ 390</div></div>
+            <div class="card"><div class="pic x"></div><div class="meta"><b>Apto centro</b>R$ 220</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Imóveis salvos</span><span>14 / 16</span></div>
+  </section>
+
+  <!-- 15 mensagens -->
+  <section class="slide">
+    <div class="kicker">Tela 14 · Mensagens</div>
+    <div class="browser">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /mensagens</div></div>
+      <div class="app">
+        <div class="top"><div class="logo">LOGO</div><div class="grow"></div><div class="nav"><span>Viagens</span><span>Favoritos</span><span><b>Mensagens</b></span><span>Conta</span></div></div>
+        <div style="display:grid;grid-template-columns:0.7fr 1.3fr;flex:1;min-height:0;">
+          <div style="border-right:1.5px solid #222;padding:8px;">
+            <div class="field" style="margin-bottom:8px;">Buscar conversa</div>
+            <div class="line" style="padding:8px;margin-bottom:6px;background:#f4f4f4;"><b style="font-size:12px;">Ana · Casa na praia</b><div class="tiny">Horário do check-in?</div></div>
+            <div class="dash" style="padding:8px;"><b style="font-size:12px;">Pedro · Apto SP</b><div class="tiny">Obrigado pela estadia</div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;">
+            <div style="padding:10px 12px;border-bottom:1.5px solid #222;"><b>Ana</b><span class="tiny"> · Casa na praia</span></div>
+            <div style="flex:1;padding:12px;display:flex;flex-direction:column;gap:8px;justify-content:flex-end;">
+              <div class="dash" style="align-self:flex-start;padding:6px 10px;font-size:11px;max-width:70%;">Oi! Qual o horário do check-in?</div>
+              <div class="line" style="align-self:flex-end;padding:6px 10px;font-size:11px;max-width:70%;">A partir das 15h. Qualquer dúvida me chama.</div>
+            </div>
+            <div style="display:flex;gap:8px;padding:8px 12px;border-top:1.5px solid #222;">
+              <div class="field" style="flex:1;">Escrever mensagem</div>
+              <div class="btn fill">Enviar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Inbox + conversa</span><span>15 / 16</span></div>
+  </section>
+
+  <!-- 16 conta -->
+  <section class="slide">
+    <div class="kicker">Tela 15 · Minha conta</div>
+    <div class="browser">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url">app.com /conta</div></div>
+      <div class="app">
+        <div class="top"><div class="logo">LOGO</div><div class="grow"></div><div class="nav"><span>Viagens</span><span>Favoritos</span><span>Mensagens</span><span><b>Conta</b></span></div></div>
+        <div style="padding:16px;display:grid;grid-template-columns:0.7fr 1.3fr;gap:14px;flex:1;">
+          <div>
+            <div class="line" style="width:64px;height:64px;border-radius:50%;margin-bottom:8px;"></div>
+            <b>Maria Silva</b>
+            <div class="tiny">maria@email.com</div>
+          </div>
+          <div>
+            <div class="line" style="padding:10px;margin-bottom:8px;">Dados pessoais →</div>
+            <div class="line" style="padding:10px;margin-bottom:8px;">Segurança e senha →</div>
+            <div class="line" style="padding:10px;margin-bottom:8px;">Métodos de pagamento →</div>
+            <div class="line" style="padding:10px;margin-bottom:8px;">Notificações →</div>
+            <div class="dash" style="padding:10px;">Sair da conta</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Conta do hóspede · fim do fluxo</span><span>16 / 16</span></div>
+  </section>
+
+</body>
+</html>
