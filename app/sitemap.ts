@@ -10,6 +10,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     "",
     "/eventos",
+    "/lista-de-espera",
+    "/projeto-nova-economia",
+    "/comunidade",
     EVENT_PATH,
     PNE_PATH,
     "/conteudo",

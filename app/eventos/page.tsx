@@ -15,6 +15,7 @@ import { EventosHero } from "@/components/events/EventosHero";
 import { PageShell } from "@/components/PageShell";
 import { EVENT_PATH, eventMeta } from "@/lib/event-bitcoin-pratica";
 import { PNE_PATH, pneMeta } from "@/lib/workshop-pne";
+import { nextGathering } from "@/lib/waitlist";
 
 export const metadata: Metadata = {
   title: "Eventos",
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
 };
 
 const events = [
+  nextGathering,
   {
     id: "pne",
     title: "Programa Nova Economia",

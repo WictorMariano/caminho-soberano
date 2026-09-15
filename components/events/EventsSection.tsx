@@ -8,6 +8,8 @@ import { MapPin, CalendarDays, ArrowUpRight } from "lucide-react";
 
 import { EVENT_PATH } from "@/lib/event-bitcoin-pratica";
 import { PNE_PATH, pneMeta } from "@/lib/workshop-pne";
+import { PROJETO_NE_PATH } from "@/lib/projeto-nova-economia";
+import { nextGathering } from "@/lib/waitlist";
 import { cn } from "@/lib/utils";
 
 type Region =
@@ -22,13 +24,15 @@ type EventItem = {
   id: string;
   title: string;
   location: string;
-  date: string;
+  date?: string;
   /** ISO date used to sort: closest upcoming first, past last */
-  startsAt: string;
+  startsAt?: string;
   region: Region;
   image: string;
   href?: string;
   badge?: string;
+  description?: string;
+  ctaLabel?: string;
   /** Card informativo sem link */
   disabled?: boolean;
 };
@@ -43,6 +47,19 @@ const regions: Region[] = [
 ];
 
 const events: EventItem[] = [
+  {
+    id: "projeto-nova-economia",
+    title: "Projeto Nova Economia",
+    location: "Iniciativa nacional",
+    region: "Todos",
+    image: "/images/gallery/gallery-07.jpg",
+    href: PROJETO_NE_PATH,
+    badge: "Pesquisa e educação executiva",
+    description:
+      "Conheça a iniciativa que conecta pesquisa, educação e desenvolvimento profissional para preparar a contabilidade para a Nova Economia.",
+    ctaLabel: "Conhecer o projeto",
+  },
+  nextGathering,
   {
     id: "pne",
     title: "Programa Nova Economia",
@@ -78,6 +95,11 @@ const events: EventItem[] = [
 ];
 
 function sortByClosest(a: EventItem, b: EventItem, now = Date.now()) {
+  // Iniciativas permanentes ficam em destaque, sem uma data de evento fictícia.
+  if (!a.startsAt || !b.startsAt) {
+    if (!a.startsAt && !b.startsAt) return 0;
+    return !a.startsAt ? -1 : 1;
+  }
   const aTime = new Date(a.startsAt).getTime();
   const bTime = new Date(b.startsAt).getTime();
   const aUpcoming = aTime >= now;
@@ -95,7 +117,7 @@ export function EventsSection() {
     const list =
       active === "Todos"
         ? events
-        : events.filter((event) => event.region === active);
+        : events.filter((event) => event.region === active || event.region === "Todos");
     return [...list].sort(sortByClosest);
   }, [active]);
 
@@ -168,15 +190,18 @@ export function EventsSection() {
                     <h3 className="text-xl font-semibold leading-snug">
                       {event.title}
                     </h3>
+                    {event.description ? (
+                      <p className="text-sm leading-relaxed text-foreground/70">{event.description}</p>
+                    ) : null}
                     <div className="flex flex-wrap gap-4 text-sm text-foreground/70">
                       <span className="inline-flex items-center gap-1.5">
                         <MapPin size={16} className="text-accent" />
                         {event.location}
                       </span>
-                      <span className="inline-flex items-center gap-1.5">
+                      {event.date ? <span className="inline-flex items-center gap-1.5">
                         <CalendarDays size={16} className="text-accent" />
                         {event.date}
-                      </span>
+                      </span> : null}
                     </div>
                     {event.disabled ? (
                       <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm font-semibold text-white/45">
@@ -184,7 +209,7 @@ export function EventsSection() {
                       </span>
                     ) : (
                       <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm font-semibold text-accent transition group-hover:gap-2.5">
-                        Mais Informações
+                        {event.ctaLabel ?? "Mais Informações"}
                         <ArrowUpRight size={16} />
                       </span>
                     )}
@@ -221,6 +246,11 @@ export function EventsSection() {
               );
             })
           )}
+        </div>
+        <div className="mt-10 flex justify-center">
+          <Link href="/eventos" className="inline-flex items-center gap-3 rounded-full border border-accent/40 bg-accent/5 px-7 py-3.5 text-sm font-semibold text-accent transition hover:border-accent hover:bg-accent hover:text-accent-ink">
+            Ver todos os eventos <ArrowUpRight size={18} />
+          </Link>
         </div>
       </div>
     </section>

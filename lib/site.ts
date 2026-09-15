@@ -20,6 +20,25 @@ export const footerNav = [
   { href: "/termos-de-uso", label: "Termos de Uso" },
 ] as const;
 
+/** Lista completa de páginas públicas do site (rodapé) */
+export const sitePages = [
+  { href: "/", label: "Home" },
+  { href: "/eventos", label: "Eventos" },
+  { href: "/lista-de-espera", label: "Lista de espera" },
+  { href: "/conteudo", label: "Conteúdo" },
+  { href: "/comunidade", label: "Comunidade" },
+  { href: "/sobre", label: "Sobre" },
+  { href: "/projeto-nova-economia", label: "Projeto Nova Economia" },
+  { href: EVENT_PATH, label: "Dominando o Bitcoin" },
+  { href: "/eventos/programa-nova-economia", label: "Programa Nova Economia" },
+  { href: "/faq", label: "FAQ" },
+] as const;
+
+export const footerLegalPages = [
+  { href: "/politica-de-privacidade", label: "Política de Privacidade" },
+  { href: "/termos-de-uso", label: "Termos de Uso" },
+] as const;
+
 export const ctaNav = {
   href: "/eventos",
   label: "Oportunidade",

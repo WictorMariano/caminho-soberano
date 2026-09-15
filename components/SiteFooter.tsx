@@ -1,7 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { legalLinks, siteContact, socialLinks } from "@/lib/site";
+import {
+  footerLegalPages,
+  siteContact,
+  sitePages,
+  socialLinks,
+} from "@/lib/site";
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -68,34 +73,78 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-transparent bg-black">
-      <div className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-12">
-        {/* Linha superior: marca | contato + links | redes */}
-        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between md:gap-8">
-          <Link href="/" className="flex shrink-0 items-center gap-2.5">
-            <Image
-              src="/images/brand/logo-mark.png"
-              alt="Caminho Soberano"
-              width={36}
-              height={36}
-              className="h-9 w-auto"
-            />
-            <span className="leading-none">
-              <span className="block text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-white/75">
-                Caminho
-              </span>
-              <span className="block text-sm font-semibold uppercase tracking-[0.14em] text-white">
-                Soberano
-              </span>
-            </span>
-          </Link>
+    <footer className="relative overflow-hidden border-t border-white/10 bg-[#050b1a]">
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_0%,_rgba(70,160,255,0.12),_transparent_50%)]"
+        aria-hidden
+      />
 
-          <div className="grid flex-1 gap-8 sm:grid-cols-2 md:max-w-xl md:justify-self-center lg:gap-12">
+      <div className="relative mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
+        <div className="grid gap-12 lg:grid-cols-[1.15fr_1.85fr] lg:gap-16">
+          <div>
+            <Link href="/" className="inline-flex items-center gap-2.5">
+              <Image
+                src="/images/brand/logo-mark.png"
+                alt="Caminho Soberano"
+                width={40}
+                height={40}
+                className="h-10 w-auto"
+              />
+              <span className="leading-none">
+                <span className="block text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-white/70">
+                  Caminho
+                </span>
+                <span className="block text-sm font-semibold uppercase tracking-[0.14em] text-white">
+                  Soberano
+                </span>
+              </span>
+            </Link>
+
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/60">
+              Liberdade financeira com Bitcoin: eventos presenciais, conteúdo
+              prático e comunidade para quem busca soberania de verdade.
+            </p>
+
+            <div className="mt-6 flex items-center gap-3">
+              {socials.map(({ href, label, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] text-white/80 transition hover:border-accent/40 hover:text-accent"
+                >
+                  <Icon className="h-[17px] w-[17px]" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/45">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">
+                Páginas
+              </p>
+              <ul className="mt-4 grid grid-cols-1 gap-2.5 text-sm text-white/75 sm:grid-cols-2 sm:gap-x-5 lg:grid-cols-1">
+                {sitePages.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="transition hover:text-accent"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">
                 Contato
               </p>
-              <ul className="mt-3 space-y-2 text-sm text-white/75">
+              <ul className="mt-4 space-y-3 text-sm text-white/75">
                 <li>
                   <a
                     href={`mailto:${siteContact.email}`}
@@ -109,18 +158,27 @@ export function SiteFooter() {
                     href={siteContact.supportPhoneHref}
                     className="transition hover:text-accent"
                   >
-                    Suporte: {siteContact.supportPhone}
+                    {siteContact.supportPhone}
                   </a>
+                </li>
+                <li>
+                  <Link
+                    href="/lista-de-espera"
+                    className="inline-flex items-center gap-1.5 font-medium text-white transition hover:text-accent"
+                  >
+                    Próximos encontros
+                    <span aria-hidden>→</span>
+                  </Link>
                 </li>
               </ul>
             </div>
 
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/45">
-                Links úteis
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">
+                Legal
               </p>
-              <ul className="mt-3 space-y-2 text-sm text-white/75">
-                {legalLinks.map((link) => (
+              <ul className="mt-4 space-y-2.5 text-sm text-white/75">
+                {footerLegalPages.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
@@ -133,26 +191,10 @@ export function SiteFooter() {
               </ul>
             </div>
           </div>
-
-          <div className="flex shrink-0 items-center gap-5 md:pt-1">
-            {socials.map(({ href, label, icon: Icon }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="text-white/80 transition hover:text-accent"
-              >
-                <Icon className="h-[18px] w-[18px]" />
-              </a>
-            ))}
-          </div>
         </div>
 
-        {/* Linha inferior: copyright | agência */}
-        <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/45 sm:flex-row sm:items-end sm:justify-between">
-          <p>Copyright © {year}. Todos os direitos reservados</p>
+        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
+          <p>Copyright © {year} Caminho Soberano. Todos os direitos reservados.</p>
           <div className="sm:text-right">
             <p className="uppercase tracking-[0.16em]">Agência Machado Digital</p>
             <p className="mt-1">26.098.577/0001-71</p>

@@ -8,6 +8,13 @@ import { projetoNeMeta } from "@/lib/projeto-nova-economia";
 export const metadata: Metadata = {
   title: projetoNeMeta.title,
   description: projetoNeMeta.description,
+  alternates: { canonical: "/projeto-nova-economia" },
+  openGraph: {
+    title: projetoNeMeta.title,
+    description: projetoNeMeta.description,
+    url: "/projeto-nova-economia",
+    images: [{ url: "/images/gallery/gallery-12.jpg", alt: "Encontro Caminho Soberano" }],
+  },
 };
 
 export default function ProjetoNovaEconomiaPage() {

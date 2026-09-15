@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import { ProjetoExperience } from "@/components/projeto-nova-economia/ProjetoExperience";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import {
   ArrowUpRight,
@@ -35,6 +37,12 @@ const pillarIcons = {
   pesquisa: Search,
   educacao: GraduationCap,
   certificacao: Scale,
+} as const;
+
+const pillarImages = {
+  pesquisa: { src: "/images/events/dominando-bitcoin/benefits/strategy.jpg", alt: "Estudo e planejamento estratégico" },
+  educacao: { src: "/images/gallery/gallery-07.jpg", alt: "Participantes em workshop do Caminho Soberano" },
+  certificacao: { src: "/images/gallery/gallery-12.jpg", alt: "Profissionais reunidos em encontro do Caminho Soberano" },
 } as const;
 
 const fadeUp: Variants = {
@@ -263,6 +271,8 @@ export function ProjetoNovaEconomiaSections() {
         </div>
       </section>
 
+      <ProjetoExperience />
+
       <section className="relative overflow-hidden border-t border-border py-16 md:py-24">
         <div
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,241,0,0.05),_transparent_55%)]"
@@ -317,6 +327,11 @@ export function ProjetoNovaEconomiaSections() {
                   className="pne-project-card group rounded-[1.5rem] border p-6"
                 >
                   <div className="pne-project-card__shine" aria-hidden />
+                  <div className="relative -mx-6 -mt-6 mb-6 aspect-[4/3] overflow-hidden">
+                    <Image src={pillarImages[item.id].src} alt={pillarImages[item.id].alt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-700 motion-safe:group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#102849] via-transparent to-transparent" aria-hidden />
+                    <span className="absolute bottom-4 right-5 text-5xl font-extrabold text-white/20" aria-hidden>{item.id === "pesquisa" ? "01" : item.id === "educacao" ? "02" : "03"}</span>
+                  </div>
                   <span className="relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-accent/35 bg-accent/10 text-accent transition group-hover:shadow-[0_0_24px_rgba(255,241,0,0.25)]">
                     <Icon size={20} />
                   </span>
@@ -333,7 +348,7 @@ export function ProjetoNovaEconomiaSections() {
         </div>
       </section>
 
-      <section className="border-t border-border py-16 md:py-24">
+      <section className="overflow-hidden border-t border-border py-16 md:py-24">
         <div className="mx-auto grid max-w-6xl gap-12 px-5 md:grid-cols-2 md:items-center md:px-8">
           <motion.div
             initial={reduce ? false : { opacity: 0, x: -24 }}
@@ -369,6 +384,11 @@ export function ProjetoNovaEconomiaSections() {
             className="pne-project-card rounded-[1.75rem] border p-6 md:p-8"
           >
             <div className="pne-project-card__shine" aria-hidden />
+            <div className="relative -mx-6 -mt-6 mb-6 aspect-[4/3] overflow-hidden md:-mx-8 md:-mt-8">
+              <Image src="/images/gallery/gallery-07.jpg" alt="Aprendizado prático com notebooks em workshop do Caminho Soberano" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#102849] via-transparent to-transparent" aria-hidden />
+              <p className="absolute bottom-5 left-6 text-xs font-semibold uppercase tracking-[0.14em] text-white">Da conversa à prática</p>
+            </div>
             <p className="relative text-sm font-semibold uppercase tracking-[0.16em] text-accent">
               Público-alvo
             </p>

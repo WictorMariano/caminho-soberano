@@ -80,7 +80,7 @@ export function SiteHeader({
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-6 md:flex">
+          <nav className="hidden items-center gap-6 lg:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -103,7 +103,7 @@ export function SiteHeader({
 
             <button
               type="button"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white md:hidden"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white lg:hidden"
               aria-label={open ? "Fechar menu" : "Abrir menu"}
               onClick={() => setOpen((v) => !v)}
             >
@@ -114,7 +114,7 @@ export function SiteHeader({
 
         <div
           className={cn(
-            "pointer-events-auto mx-auto mt-2 max-w-6xl overflow-hidden rounded-3xl border border-white/15 bg-[#020b16]/85 backdrop-blur-2xl transition-all duration-300 md:hidden",
+            "pointer-events-auto mx-auto mt-2 max-w-6xl overflow-hidden rounded-3xl border border-white/15 bg-[#020b16]/85 backdrop-blur-2xl transition-all duration-300 lg:hidden",
             open
               ? "max-h-[70vh] opacity-100"
               : "pointer-events-none max-h-0 border-transparent opacity-0",
