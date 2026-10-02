@@ -71,6 +71,8 @@ export type WorkshopTicket = {
   /** Valor em reais (inteiro) */
   price: number;
   priceLabel: string;
+  /** Parcela no cartão, ex.: "R$ 20,25" (em até 12x) */
+  installmentLabel: string;
   badge?: string;
   featured?: boolean;
   image: { src: string; alt: string };
@@ -85,6 +87,7 @@ export const workshopPneTickets: WorkshopTicket[] = [
     tagline: "Participe de onde estiver, com o mesmo conteúdo.",
     price: 197,
     priceLabel: "R$ 197",
+    installmentLabel: "R$ 20,25",
     image: {
       src: "/images/events/dominando-bitcoin/benefits/strategy.jpg",
       alt: "Planejamento estratégico para a Nova Economia",
@@ -103,6 +106,7 @@ export const workshopPneTickets: WorkshopTicket[] = [
     tagline: "A experiência completa, lado a lado com a comunidade.",
     price: 997,
     priceLabel: "R$ 997",
+    installmentLabel: "R$ 102,51",
     badge: "Mais escolhido",
     featured: true,
     image: {
@@ -124,6 +128,7 @@ export const workshopPneTickets: WorkshopTicket[] = [
     tagline: "O workshop e uma noite de conexões estratégicas.",
     price: 1997,
     priceLabel: "R$ 1.997",
+    installmentLabel: "R$ 205,32",
     badge: "VIP",
     image: {
       src: "/images/gallery/gallery-12.jpg",

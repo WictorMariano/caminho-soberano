@@ -116,8 +116,10 @@ export function WorkshopPneClosing() {
             O próximo passo na Nova Economia começa agora.
           </h2>
           <p className="mt-4 text-base leading-relaxed text-white/70 md:text-lg">
-            Online a partir de R$ 197, presencial por R$ 997 ou a experiência
-            VIP com Jantar de Negócios por R$ 1.997.
+            Online por R$ 197 à vista (ou em até 12x de R$ 20,25), presencial
+            por R$ 997 à vista (ou em até 12x de R$ 102,51) e a experiência VIP
+            com Jantar de Negócios por R$ 1.997 à vista (ou em até 12x de R$
+            205,32).
           </p>
         </div>
         <a
@@ -199,12 +201,20 @@ function TicketCard({
           {ticket.tagline}
         </p>
 
-        <p className="mt-6 flex items-baseline gap-2">
-          <span className="text-4xl font-extrabold tracking-tight text-white md:text-[2.6rem]">
-            {ticket.priceLabel}
-          </span>
-          <span className="text-sm text-white/50">por pessoa</span>
-        </p>
+        <div className="mt-6">
+          <p className="flex items-baseline gap-2">
+            <span className="text-4xl font-extrabold tracking-tight text-white md:text-[2.6rem]">
+              {ticket.priceLabel}
+            </span>
+            <span className="text-sm font-medium text-white/60">à vista</span>
+          </p>
+          <p className="mt-1.5 text-sm text-white/60">
+            ou em até{" "}
+            <strong className="font-semibold text-accent">
+              12x de {ticket.installmentLabel}
+            </strong>
+          </p>
+        </div>
 
         <ul className="mt-6 flex-1 space-y-3 border-t border-white/10 pt-6">
           {ticket.benefits.map((benefit) => (

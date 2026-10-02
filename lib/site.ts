@@ -54,8 +54,11 @@ export const socialLinks = {
 
 export const siteContact = {
   email: "contato@caminhosoberano.com.br",
-  supportPhone: "+55 11 91148-5536",
-  supportPhoneHref: "tel:+5511911485536",
+  supportPhone: "+55 43 9660-0353",
+  supportPhoneHref: "tel:+554396600353",
+  supportWhatsappHref: `https://wa.me/554396600353?text=${encodeURIComponent(
+    "Olá! Vim pelo site do Caminho Soberano e gostaria de falar com o suporte.",
+  )}`,
 } as const;
 
 export const legalLinks = [

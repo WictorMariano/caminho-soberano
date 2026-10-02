@@ -24,8 +24,9 @@ export function TicketsCta({
         <ArrowDown size={17} />
       </a>
       <span className="text-sm text-white/60">
-        31 de outubro · Online, Presencial ou VIP · a partir de{" "}
-        <strong className="font-semibold text-white">R$ 197</strong>
+        31 de outubro · a partir de{" "}
+        <strong className="font-semibold text-white">R$ 197 à vista</strong> ou
+        12x de R$ 20,25
       </span>
     </div>
   );

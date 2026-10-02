@@ -35,7 +35,9 @@ const eventFacts = [
 
 export function WorkshopPneHero() {
   const reduce = useReducedMotion();
-  const startingPrice = Math.min(...workshopPneTickets.map((t) => t.price));
+  const cheapest = workshopPneTickets.reduce((a, b) =>
+    b.price < a.price ? b : a,
+  );
 
   return (
     <section className="relative overflow-hidden bg-[#020b16]">
@@ -115,10 +117,14 @@ export function WorkshopPneHero() {
               Garanta seu ingresso <ArrowDown size={17} />
             </a>
             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 py-3.5 text-sm text-white/80">
-              <Ticket size={16} className="text-accent" />A partir de{" "}
-              <strong className="font-semibold text-white">
-                R$ {startingPrice}
-              </strong>
+              <Ticket size={16} className="shrink-0 text-accent" />
+              <span>
+                A partir de{" "}
+                <strong className="font-semibold text-white">
+                  {cheapest.priceLabel} à vista
+                </strong>{" "}
+                ou 12x de {cheapest.installmentLabel}
+              </span>
             </span>
           </div>
         </motion.div>

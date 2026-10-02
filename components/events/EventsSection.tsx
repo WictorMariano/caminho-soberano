@@ -53,21 +53,22 @@ export function EventsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className="ocean-panel group mt-10 grid overflow-hidden rounded-[2rem] border border-accent/30 shadow-[0_0_0_1px_rgba(255,241,0,0.08),0_40px_80px_-40px_rgba(255,241,0,0.25)] md:grid-cols-[1.1fr_1fr]"
+          className="ocean-panel group mt-10 grid overflow-hidden rounded-[2rem] border border-accent/30 shadow-[0_0_0_1px_rgba(255,241,0,0.08),0_40px_80px_-40px_rgba(255,241,0,0.25)] lg:grid-cols-[1.15fr_1fr]"
         >
           <Link
             href={WORKSHOP_PNE_PAGE_PATH}
-            className="relative block min-h-[300px] overflow-hidden md:min-h-[520px]"
+            className="relative flex items-center overflow-hidden bg-black"
             aria-label={`Ver página do ${workshopPneMeta.title}`}
           >
-            <Image
-              src="/images/events/banners/nova-economia.jpg"
-              alt={workshopPneMeta.title}
-              fill
-              sizes="(max-width: 768px) 100vw, 55vw"
-              className="object-cover object-center transition duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-black/40" />
+            <div className="relative aspect-[1280/827] w-full">
+              <Image
+                src="/images/events/banners/nova-economia.jpg"
+                alt={workshopPneMeta.title}
+                fill
+                sizes="(max-width: 1024px) 100vw, 55vw"
+                className="object-contain transition duration-700 group-hover:scale-[1.03]"
+              />
+            </div>
             <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-black/45 px-3.5 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.14em] text-accent backdrop-blur-md md:left-6 md:top-6">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60 motion-reduce:animate-none" />
@@ -75,20 +76,25 @@ export function EventsSection() {
               </span>
               Em destaque
             </span>
-            <span className="absolute bottom-4 left-4 flex flex-col items-center rounded-2xl bg-accent px-4 py-3 text-accent-ink shadow-[0_18px_40px_-14px_rgba(255,241,0,0.55)] md:bottom-6 md:left-6">
-              <span className="text-3xl font-black leading-none">
-                {workshopPneMeta.day}
-              </span>
-              <span className="mt-1 text-xs font-bold uppercase tracking-[0.2em]">
-                {workshopPneMeta.monthAbbr}
-              </span>
-            </span>
           </Link>
 
           <div className="flex flex-col justify-center p-6 md:p-10">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-              {workshopPneMeta.shortTitle} · Evento presencial e online
-            </p>
+            <div className="flex items-center gap-4">
+              <span className="flex shrink-0 flex-col items-center rounded-2xl bg-accent px-3.5 py-2.5 text-accent-ink shadow-[0_14px_32px_-14px_rgba(255,241,0,0.55)]">
+                <span className="text-2xl font-black leading-none">
+                  {workshopPneMeta.day}
+                </span>
+                <span className="mt-1 text-[0.65rem] font-bold uppercase tracking-[0.2em]">
+                  {workshopPneMeta.monthAbbr}
+                </span>
+              </span>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                {workshopPneMeta.shortTitle}
+                <span className="block text-white/60">
+                  Evento presencial e online
+                </span>
+              </p>
+            </div>
             <h3 className="mt-3 text-2xl font-extrabold leading-tight tracking-tight text-white md:text-3xl lg:text-4xl">
               {workshopPneMeta.title}
             </h3>
@@ -126,8 +132,14 @@ export function EventsSection() {
                         ? "Presencial"
                         : "Online"}
                   </span>
-                  <span className="mt-0.5 block text-base font-bold text-white md:text-lg">
+                  <span className="mt-1 block text-base font-bold leading-tight text-white md:text-lg">
                     {ticket.priceLabel}
+                  </span>
+                  <span className="block text-[0.7rem] text-white/55">
+                    à vista
+                  </span>
+                  <span className="mt-1 block text-[0.7rem] text-white/55">
+                    ou 12x de {ticket.installmentLabel}
                   </span>
                 </li>
               ))}
