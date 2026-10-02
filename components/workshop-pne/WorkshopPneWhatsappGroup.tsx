@@ -19,7 +19,7 @@ const benefits = [
   {
     icon: Users,
     title: "Online e presencial juntos",
-    text: "Quem participa em Florianópolis e quem acompanha online faz parte da mesma comunidade, trocando experiências.",
+    text: "Quem participa em Alphaville e quem acompanha online faz parte da mesma comunidade, trocando experiências.",
   },
   {
     icon: MessageCircle,

@@ -110,7 +110,7 @@ export function WorkshopPneClosing() {
       >
         <div className="max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
-              31 de outubro · CDL Florianópolis e online
+              31 de outubro · Alphaville, Barueri (SP) e online
             </p>
           <h2 className="mt-3 text-3xl font-bold leading-tight tracking-tight text-white md:text-5xl">
             O próximo passo na Nova Economia começa agora.

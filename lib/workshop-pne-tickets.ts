@@ -14,12 +14,14 @@ export const workshopPneMeta = {
   monthAbbr: "OUT",
   weekday: "Sábado",
   startsAt: "2026-10-31",
-  city: "Florianópolis, SC",
-  venue: "CDL Florianópolis",
-  venueFull: "CDL Florianópolis, Santa Catarina",
+  city: "Barueri, SP",
+  venue: "Olimpo Experience Alphaville",
+  venueFull: "Olimpo Experience Alphaville, Barueri (SP)",
+  address:
+    "Alameda Mamoré, 503, Alphaville Centro Industrial e Empresarial, Barueri, São Paulo",
   format: "Presencial e online",
   description:
-    "Workshop presencial na CDL Florianópolis, em Santa Catarina, e online, em 31 de outubro de 2026. Um dia de imersão para entender o que está mudando na economia, experimentar ferramentas práticas e planejar os próximos passos do seu negócio e da sua carreira. Escolha entre Online, Presencial ou Presencial com Jantar de Negócios VIP.",
+    "Workshop presencial no Olimpo Experience Alphaville, em Barueri (SP), e online, em 31 de outubro de 2026. Um dia de imersão para entender o que está mudando na economia, experimentar ferramentas práticas e planejar os próximos passos do seu negócio e da sua carreira. Escolha entre Online, Presencial ou Presencial com Jantar de Negócios VIP.",
 } as const;
 
 export type WorkshopSpeaker = {

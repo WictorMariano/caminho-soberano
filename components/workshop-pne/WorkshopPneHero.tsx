@@ -86,8 +86,8 @@ export function WorkshopPneHero() {
           <p className="mt-6 max-w-xl text-lg font-medium leading-relaxed text-white/85">
             Um dia para compreender o que está mudando, experimentar as
             ferramentas da Nova Economia e planejar seus próximos passos. Viva
-            a experiência na CDL Florianópolis ou acompanhe ao vivo de onde
-            estiver.
+            a experiência no Olimpo Experience Alphaville ou acompanhe ao vivo
+            de onde estiver.
           </p>
 
           <dl className="mt-8 grid gap-3 sm:grid-cols-3">
@@ -150,8 +150,8 @@ export function WorkshopPneHero() {
               <p className="mt-2 text-base font-semibold text-white md:text-lg">
                 {workshopPneMeta.venue}
               </p>
-              <p className="mt-1 text-xs text-white/55">
-                {workshopPneMeta.city}
+              <p className="mt-1 text-xs leading-relaxed text-white/55">
+                {workshopPneMeta.address}
               </p>
             </div>
             <div className="p-4 md:p-5">
