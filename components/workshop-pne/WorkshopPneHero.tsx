@@ -29,7 +29,7 @@ const eventFacts = [
   {
     icon: MapPin,
     label: "Presencial em",
-    value: workshopPneMeta.city,
+    value: workshopPneMeta.venue,
   },
 ] as const;
 
@@ -86,7 +86,8 @@ export function WorkshopPneHero() {
           <p className="mt-6 max-w-xl text-lg font-medium leading-relaxed text-white/85">
             Um dia para compreender o que está mudando, experimentar as
             ferramentas da Nova Economia e planejar seus próximos passos. Viva
-            a experiência em São Paulo ou acompanhe ao vivo de onde estiver.
+            a experiência na CDL Florianópolis ou acompanhe ao vivo de onde
+            estiver.
           </p>
 
           <dl className="mt-8 grid gap-3 sm:grid-cols-3">
@@ -147,10 +148,10 @@ export function WorkshopPneHero() {
                 <MapPin size={14} /> Presencial
               </p>
               <p className="mt-2 text-base font-semibold text-white md:text-lg">
-                {workshopPneMeta.city}
+                {workshopPneMeta.venue}
               </p>
               <p className="mt-1 text-xs text-white/55">
-                Imersão com networking
+                {workshopPneMeta.city}
               </p>
             </div>
             <div className="p-4 md:p-5">

@@ -14,10 +14,12 @@ export const workshopPneMeta = {
   monthAbbr: "OUT",
   weekday: "Sábado",
   startsAt: "2026-10-31",
-  city: "São Paulo, SP",
+  city: "Florianópolis, SC",
+  venue: "CDL Florianópolis",
+  venueFull: "CDL Florianópolis, Santa Catarina",
   format: "Presencial e online",
   description:
-    "Workshop presencial em São Paulo e online, em 31 de outubro de 2026. Um dia de imersão para entender o que está mudando na economia, experimentar ferramentas práticas e planejar os próximos passos do seu negócio e da sua carreira. Escolha entre Online, Presencial ou Presencial com Jantar de Negócios VIP.",
+    "Workshop presencial na CDL Florianópolis, em Santa Catarina, e online, em 31 de outubro de 2026. Um dia de imersão para entender o que está mudando na economia, experimentar ferramentas práticas e planejar os próximos passos do seu negócio e da sua carreira. Escolha entre Online, Presencial ou Presencial com Jantar de Negócios VIP.",
 } as const;
 
 export type WorkshopSpeaker = {
@@ -47,11 +49,11 @@ export const workshopPneSpeakers: WorkshopSpeaker[] = [
       "Prepare hoje para prosperar no futuro. O futuro não acontece, é construído.",
   },
   {
-    id: "alexandre-pacheco",
-    name: "Alexandre Pacheco",
+    id: "alessandro-pacheco",
+    name: "Alessandro Pacheco",
     role: "Fundador e Coordenador Geral do Projeto Nova Economia",
     badge: "Palestrante",
-    image: "/images/speakers/alexandre-pacheco.jpg",
+    image: "/images/speakers/alessandro-pacheco.jpg",
     imagePosition: "35% center",
     bio: "Experiência executiva em inovação, estratégia e transformação organizacional. Co-desenvolvedor do BT Model, metodologia de análise e transformação de negócios, e do BT Game, ferramenta de simulação estratégica aplicada. Dedica-se à pesquisa dos impactos da evolução da infraestrutura financeira sobre empresas, mercados e profissões.",
     tags: ["BT Model", "BT Game", "Estratégia"],

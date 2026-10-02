@@ -65,9 +65,9 @@ const events: EventItem[] = [
   {
     id: "workshop-pne",
     title: workshopPneMeta.title,
-    location: `${workshopPneMeta.city} e online`,
+    location: `${workshopPneMeta.venue} e online`,
     date: workshopPneMeta.dateFull,
-    region: "Sudeste",
+    region: "Sul",
     image: "/images/events/banners/nova-economia.jpg",
     href: WORKSHOP_PNE_PAGE_PATH,
     badge: "Workshop PNE",
