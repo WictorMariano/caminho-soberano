@@ -3,6 +3,7 @@ import type { MetadataRoute } from "next";
 import { EVENT_PATH } from "@/lib/event-bitcoin-pratica";
 import { siteUrl } from "@/lib/seo";
 import { PNE_PATH } from "@/lib/workshop-pne";
+import { WORKSHOP_PNE_PAGE_PATH } from "@/lib/workshop-pne-tickets";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -12,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/eventos",
     "/lista-de-espera",
     "/projeto-nova-economia",
+    WORKSHOP_PNE_PAGE_PATH,
     "/comunidade",
     EVENT_PATH,
     PNE_PATH,

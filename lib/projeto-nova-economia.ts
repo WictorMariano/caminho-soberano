@@ -11,7 +11,7 @@ export const projetoNeMeta = {
   purposeQuote:
     "Nosso propósito é aproximar profissionais dos conceitos da Nova Economia, traduzindo esses temas para uma linguagem empresarial, prática e estratégica.",
   contactName: "Alessandro Boscolo Pacheco",
-  contactRole: "Fundador e Coordenador Geral — Projeto Nova Economia",
+  contactRole: "Fundador e Coordenador Geral do Projeto Nova Economia",
   contactEmail: "alessandro@projetonovaeconomia.com.br",
   contactEmailHref: "mailto:alessandro@projetonovaeconomia.com.br",
   instagram: "https://www.instagram.com/projetonovaeconomia/",
@@ -103,8 +103,8 @@ export const projetoNeNotUs = [
 
 export const projetoNeHypothesis = {
   quote:
-    "Toda grande transformação da infraestrutura financeira ao longo da história exigiu adaptação da profissão contábil. Não como opção — como imperativo.",
-  body: "O SPED criou novos especialistas em auditoria eletrônica. O PIX redefiniu a conciliação bancária. O Open Finance expandiu o escopo dos serviços contábeis. Nossa hipótese é que a Nova Economia seguirá esse mesmo padrão — e que os profissionais que compreenderem essas mudanças antes da maioria construirão vantagem competitiva e posição de liderança.",
+    "Toda grande transformação da infraestrutura financeira ao longo da história exigiu adaptação da profissão contábil. Não como opção, mas como imperativo.",
+  body: "O SPED criou novos especialistas em auditoria eletrônica. O PIX redefiniu a conciliação bancária. O Open Finance expandiu o escopo dos serviços contábeis. Nossa hipótese é que a Nova Economia seguirá esse mesmo padrão e que os profissionais que compreenderem essas mudanças antes da maioria construirão vantagem competitiva e posição de liderança.",
 } as const;
 
 export const projetoNePillars = [
@@ -128,9 +128,9 @@ export const projetoNePillars = [
 export const projetoNeImmersion = {
   eyebrow: "Primeira Iniciativa",
   title: "Imersão Executiva para Contadores",
-  text: "A Imersão Executiva é o primeiro laboratório de validação do Projeto Nova Economia. Seu propósito não é formar especialistas em blockchain ou direito digital — mas preparar profissionais da contabilidade para compreender a evolução da infraestrutura financeira e seus impactos sobre empresas, clientes e modelos de negócio.",
+  text: "A Imersão Executiva é o primeiro laboratório de validação do Projeto Nova Economia. Seu propósito não é formar especialistas em blockchain ou direito digital, mas preparar profissionais da contabilidade para compreender a evolução da infraestrutura financeira e seus impactos sobre empresas, clientes e modelos de negócio.",
   quote:
-    "A Imersão Executiva não é o objetivo do Projeto Nova Economia. É seu primeiro laboratório — e o início de uma agenda nacional de desenvolvimento profissional.",
+    "A Imersão Executiva não é o objetivo do Projeto Nova Economia. É seu primeiro laboratório e o início de uma agenda nacional de desenvolvimento profissional.",
   audience: [
     "Lideranças de CRCs",
     "Coordenadores de Ciências Contábeis",
@@ -171,7 +171,7 @@ export const projetoNeWhitePaper = {
 } as const;
 
 export const projetoNeContactBio =
-  "Alessandro Boscolo Pacheco possui experiência executiva em inovação, estratégia e transformação organizacional. É o co-desenvolvedor do BT Model — metodologia de análise e transformação de negócios — e do BT Game, ferramenta de simulação estratégica aplicada. Atualmente dedica-se à pesquisa dos impactos da evolução da infraestrutura financeira sobre empresas, mercados e profissões.";
+  "Alessandro Boscolo Pacheco possui experiência executiva em inovação, estratégia e transformação organizacional. É o co-desenvolvedor do BT Model, metodologia de análise e transformação de negócios, e do BT Game, ferramenta de simulação estratégica aplicada. Atualmente dedica-se à pesquisa dos impactos da evolução da infraestrutura financeira sobre empresas, mercados e profissões.";
 
 export const projetoNeContactQuote =
   "Toda transformação financeira cria novos líderes. O Projeto Nova Economia nasce para ajudar a formar os próximos.";

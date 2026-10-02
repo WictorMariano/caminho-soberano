@@ -273,12 +273,9 @@ export function PneTestimonials() {
           >
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div className="max-w-xl">
-                <div className="flex items-center gap-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-                    Vídeos reais
-                  </p>
-                  <span className="h-px w-10 bg-accent/70" aria-hidden />
-                </div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                  Vídeos reais
+                </p>
                 <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white md:text-4xl lg:text-[2.65rem] lg:leading-[1.1]">
                   Depoimentos e{" "}
                   <span className="text-accent">comentários</span>

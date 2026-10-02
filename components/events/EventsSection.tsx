@@ -9,6 +9,10 @@ import { MapPin, CalendarDays, ArrowUpRight } from "lucide-react";
 import { EVENT_PATH } from "@/lib/event-bitcoin-pratica";
 import { PROJETO_NE_PATH } from "@/lib/projeto-nova-economia";
 import { nextGathering } from "@/lib/waitlist";
+import {
+  WORKSHOP_PNE_PAGE_PATH,
+  workshopPneMeta,
+} from "@/lib/workshop-pne-tickets";
 import { cn } from "@/lib/utils";
 
 type Region =
@@ -57,6 +61,18 @@ const events: EventItem[] = [
     description:
       "Conheça a iniciativa que conecta pesquisa, educação e desenvolvimento profissional para preparar a contabilidade para a Nova Economia.",
     ctaLabel: "Conhecer o projeto",
+  },
+  {
+    id: "workshop-pne",
+    title: workshopPneMeta.title,
+    location: "Online e presencial",
+    region: "Todos",
+    image: "/images/events/banners/nova-economia.jpg",
+    href: WORKSHOP_PNE_PAGE_PATH,
+    badge: "Workshop PNE",
+    description:
+      "Ingressos Online (R$ 197), Presencial (R$ 997) ou Presencial + Jantar de Negócios VIP (R$ 1.997).",
+    ctaLabel: "Ver ingressos",
   },
   nextGathering,
   {
