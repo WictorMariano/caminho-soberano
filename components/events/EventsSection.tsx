@@ -2,259 +2,153 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
-import { MapPin, CalendarDays, ArrowUpRight } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  CalendarDays,
+  MapPin,
+  MonitorPlay,
+} from "lucide-react";
 
-import { EVENT_PATH } from "@/lib/event-bitcoin-pratica";
-import { PROJETO_NE_PATH } from "@/lib/projeto-nova-economia";
-import { nextGathering } from "@/lib/waitlist";
 import {
   WORKSHOP_PNE_PAGE_PATH,
   workshopPneMeta,
+  workshopPneTickets,
 } from "@/lib/workshop-pne-tickets";
-import { cn } from "@/lib/utils";
 
-type Region =
-  | "Todos"
-  | "Centro - Oeste"
-  | "Norte"
-  | "Sul"
-  | "Nordeste"
-  | "Sudeste";
-
-type EventItem = {
-  id: string;
-  title: string;
-  location: string;
-  date?: string;
-  /** ISO date used to sort: closest upcoming first, past last */
-  startsAt?: string;
-  region: Region;
-  image: string;
-  href?: string;
-  badge?: string;
-  description?: string;
-  ctaLabel?: string;
-  /** Card informativo sem link */
-  disabled?: boolean;
-};
-
-const regions: Region[] = [
-  "Todos",
-  "Centro - Oeste",
-  "Norte",
-  "Sul",
-  "Nordeste",
-  "Sudeste",
-];
-
-const events: EventItem[] = [
+const facts = [
   {
-    id: "projeto-nova-economia",
-    title: "Projeto Nova Economia",
-    location: "Iniciativa nacional",
-    region: "Todos",
-    image: "/images/gallery/gallery-07.jpg",
-    href: PROJETO_NE_PATH,
-    badge: "Pesquisa e educação executiva",
-    description:
-      "Conheça a iniciativa que conecta pesquisa, educação e desenvolvimento profissional para preparar a contabilidade para a Nova Economia.",
-    ctaLabel: "Conhecer o projeto",
+    icon: CalendarDays,
+    label: `${workshopPneMeta.dateFull} · ${workshopPneMeta.weekday}`,
   },
-  {
-    id: "workshop-pne",
-    title: workshopPneMeta.title,
-    location: `${workshopPneMeta.venue} e online`,
-    date: workshopPneMeta.dateFull,
-    region: "Sul",
-    image: "/images/events/banners/nova-economia.jpg",
-    href: WORKSHOP_PNE_PAGE_PATH,
-    badge: "Workshop PNE",
-    description:
-      "Ingressos Online (R$ 197), Presencial (R$ 997) ou Presencial + Jantar de Negócios VIP (R$ 1.997).",
-    ctaLabel: "Ver ingressos",
-  },
-  nextGathering,
-  {
-    id: "autocustodia",
-    title: "Workshop de Autocustódia",
-    location: "Local a confirmar",
-    date: "Outubro · data a confirmar",
-    startsAt: "2026-10-15",
-    region: "Sul",
-    image: "/images/events/banners/protect.jpg",
-    badge: "Workshop",
-    disabled: true,
-  },
-  {
-    id: "bitcoin-pratica",
-    title: "Caminho Soberano: Dominando o Bitcoin na Prática",
-    location: "São Paulo, SP",
-    date: "18 a 21 de novembro",
-    startsAt: "2026-11-18",
-    region: "Sudeste",
-    image: "/images/events/banners/soberania.jpg",
-    href: EVENT_PATH,
-  },
-];
-
-function sortByClosest(a: EventItem, b: EventItem, now = Date.now()) {
-  // Iniciativas permanentes ficam em destaque, sem uma data de evento fictícia.
-  if (!a.startsAt || !b.startsAt) {
-    if (!a.startsAt && !b.startsAt) return 0;
-    return !a.startsAt ? -1 : 1;
-  }
-  const aTime = new Date(a.startsAt).getTime();
-  const bTime = new Date(b.startsAt).getTime();
-  const aUpcoming = aTime >= now;
-  const bUpcoming = bTime >= now;
-
-  // Upcoming first (soonest), then past (most recent past first)
-  if (aUpcoming !== bUpcoming) return aUpcoming ? -1 : 1;
-  return aUpcoming ? aTime - bTime : bTime - aTime;
-}
+  { icon: MapPin, label: workshopPneMeta.venueFull },
+  { icon: MonitorPlay, label: "Presencial e online, ao vivo" },
+] as const;
 
 export function EventsSection() {
-  const [active, setActive] = useState<Region>("Todos");
-
-  const filtered = useMemo(() => {
-    const list =
-      active === "Todos"
-        ? events
-        : events.filter((event) => event.region === active || event.region === "Todos");
-    return [...list].sort(sortByClosest);
-  }, [active]);
+  const reduce = useReducedMotion();
 
   return (
     <section id="eventos" className="relative overflow-hidden py-20 md:py-28">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(70,160,255,0.1),_transparent_55%)]" />
       <div className="relative mx-auto max-w-6xl px-5 md:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={reduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5 }}
           className="max-w-2xl"
         >
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
-            Eventos
+            Próximo evento
           </p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
             Participe dos eventos que irão transformar sua vida!
           </h2>
         </motion.div>
 
-        <div className="mt-8 flex gap-2 overflow-x-auto pb-2 scrollbar-none">
-          {regions.map((region) => (
-            <button
-              key={region}
-              type="button"
-              onClick={() => setActive(region)}
-              className={cn(
-                "shrink-0 rounded-full border px-4 py-2 text-sm transition",
-                active === region
-                  ? "border-accent bg-accent text-accent-ink"
-                  : "border-border text-foreground/70 hover:border-white/40 hover:text-white",
-              )}
-            >
-              {region}
-            </button>
-          ))}
-        </div>
+        <motion.article
+          initial={reduce ? false : { opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6 }}
+          className="ocean-panel group mt-10 grid overflow-hidden rounded-[2rem] border border-accent/30 shadow-[0_0_0_1px_rgba(255,241,0,0.08),0_40px_80px_-40px_rgba(255,241,0,0.25)] md:grid-cols-[1.1fr_1fr]"
+        >
+          <Link
+            href={WORKSHOP_PNE_PAGE_PATH}
+            className="relative block min-h-[300px] overflow-hidden md:min-h-[520px]"
+            aria-label={`Ver página do ${workshopPneMeta.title}`}
+          >
+            <Image
+              src="/images/events/banners/nova-economia.jpg"
+              alt={workshopPneMeta.title}
+              fill
+              sizes="(max-width: 768px) 100vw, 55vw"
+              className="object-cover object-center transition duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-black/40" />
+            <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-black/45 px-3.5 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.14em] text-accent backdrop-blur-md md:left-6 md:top-6">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60 motion-reduce:animate-none" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+              </span>
+              Em destaque
+            </span>
+            <span className="absolute bottom-4 left-4 flex flex-col items-center rounded-2xl bg-accent px-4 py-3 text-accent-ink shadow-[0_18px_40px_-14px_rgba(255,241,0,0.55)] md:bottom-6 md:left-6">
+              <span className="text-3xl font-black leading-none">
+                {workshopPneMeta.day}
+              </span>
+              <span className="mt-1 text-xs font-bold uppercase tracking-[0.2em]">
+                {workshopPneMeta.monthAbbr}
+              </span>
+            </span>
+          </Link>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2 md:items-stretch">
-          {filtered.length === 0 ? (
-            <p className="text-muted md:col-span-2">
-              Nenhum evento nesta região no momento. Em breve novas datas.
+          <div className="flex flex-col justify-center p-6 md:p-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+              {workshopPneMeta.shortTitle} · Evento presencial e online
             </p>
-          ) : (
-            filtered.map((event, index) => {
-              const CardInner = (
-                <div className="flex h-full flex-col">
-                  <div className="relative aspect-[16/11] overflow-hidden">
-                    <Image
-                      src={event.image}
-                      alt={event.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className={cn(
-                        "object-cover object-center transition duration-700",
-                        !event.disabled && "group-hover:scale-105",
-                        event.disabled && "opacity-90",
-                      )}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                    {event.badge ? (
-                      <span className="absolute left-3 top-3 rounded-full border border-accent/35 bg-accent/15 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-accent backdrop-blur-sm">
-                        {event.badge}
-                      </span>
-                    ) : null}
-                  </div>
-                  <div className="flex flex-1 flex-col space-y-4 p-6">
-                    <h3 className="text-xl font-semibold leading-snug">
-                      {event.title}
-                    </h3>
-                    {event.description ? (
-                      <p className="text-sm leading-relaxed text-foreground/70">{event.description}</p>
-                    ) : null}
-                    <div className="flex flex-wrap gap-4 text-sm text-foreground/70">
-                      <span className="inline-flex items-center gap-1.5">
-                        <MapPin size={16} className="text-accent" />
-                        {event.location}
-                      </span>
-                      {event.date ? <span className="inline-flex items-center gap-1.5">
-                        <CalendarDays size={16} className="text-accent" />
-                        {event.date}
-                      </span> : null}
-                    </div>
-                    {event.disabled ? (
-                      <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm font-semibold text-white/45">
-                        Em breve
-                      </span>
-                    ) : (
-                      <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm font-semibold text-accent transition group-hover:gap-2.5">
-                        {event.ctaLabel ?? "Mais Informações"}
-                        <ArrowUpRight size={16} />
-                      </span>
-                    )}
-                  </div>
-                </div>
-              );
+            <h3 className="mt-3 text-2xl font-extrabold leading-tight tracking-tight text-white md:text-3xl lg:text-4xl">
+              {workshopPneMeta.title}
+            </h3>
+            <p className="mt-4 text-sm leading-relaxed text-white/70 md:text-base">
+              Um dia para compreender o que está mudando, experimentar as
+              ferramentas da Nova Economia e planejar seus próximos passos.
+            </p>
 
-              return (
-                <motion.article
-                  key={event.id}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.45, delay: index * 0.08 }}
-                  className={cn(
-                    "ocean-panel h-full overflow-hidden rounded-3xl border",
-                    event.disabled ? "cursor-default" : "group",
-                  )}
+            <ul className="mt-6 space-y-2.5">
+              {facts.map(({ icon: Icon, label }) => (
+                <li
+                  key={label}
+                  className="flex items-center gap-2.5 text-sm text-white/85"
                 >
-                  {event.disabled ? (
-                    <div className="block h-full" aria-disabled="true">
-                      {CardInner}
-                    </div>
-                  ) : event.href ? (
-                    <Link href={event.href} className="block h-full">
-                      {CardInner}
-                    </Link>
-                  ) : (
-                    <a href="#comunidade" className="block h-full">
-                      {CardInner}
-                    </a>
-                  )}
-                </motion.article>
-              );
-            })
-          )}
-        </div>
+                  <Icon size={16} className="shrink-0 text-accent" />
+                  {label}
+                </li>
+              ))}
+            </ul>
+
+            <ul className="mt-6 grid grid-cols-3 gap-2">
+              {workshopPneTickets.map((ticket) => (
+                <li
+                  key={ticket.id}
+                  className={
+                    ticket.featured
+                      ? "rounded-xl border border-accent/50 bg-accent/10 px-3 py-2.5"
+                      : "rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5"
+                  }
+                >
+                  <span className="block text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-white/55">
+                    {ticket.id === "vip"
+                      ? "VIP + Jantar"
+                      : ticket.id === "presencial"
+                        ? "Presencial"
+                        : "Online"}
+                  </span>
+                  <span className="mt-0.5 block text-base font-bold text-white md:text-lg">
+                    {ticket.priceLabel}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <Link
+              href={WORKSHOP_PNE_PAGE_PATH}
+              className="mt-8 inline-flex items-center justify-center gap-2 self-start rounded-full bg-accent px-7 py-3.5 text-sm font-bold text-accent-ink shadow-[0_12px_32px_-10px_rgba(255,241,0,0.45)] transition hover:gap-3 hover:brightness-95"
+            >
+              Ver página do evento
+              <ArrowRight size={17} />
+            </Link>
+          </div>
+        </motion.article>
+
         <div className="mt-10 flex justify-center">
-          <Link href="/eventos" className="inline-flex items-center gap-3 rounded-full border border-accent/40 bg-accent/5 px-7 py-3.5 text-sm font-semibold text-accent transition hover:border-accent hover:bg-accent hover:text-accent-ink">
-            Ver todos os eventos <ArrowUpRight size={18} />
+          <Link
+            href="/eventos"
+            className="inline-flex items-center gap-3 rounded-full border border-accent/40 bg-accent/5 px-7 py-3.5 text-sm font-semibold text-accent transition hover:border-accent hover:bg-accent hover:text-accent-ink"
+          >
+            Ver outros eventos <ArrowUpRight size={18} />
           </Link>
         </div>
       </div>
