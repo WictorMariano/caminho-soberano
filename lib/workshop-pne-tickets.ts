@@ -7,8 +7,17 @@ export const workshopPneCheckoutUrl =
 export const workshopPneMeta = {
   title: "Workshop Profissionais da Nova Economia",
   shortTitle: "Workshop PNE",
+  dateFull: "31 de outubro de 2026",
+  dateShort: "31 de outubro",
+  dateCompact: "31/10/2026",
+  day: "31",
+  monthAbbr: "OUT",
+  weekday: "Sábado",
+  startsAt: "2026-10-31",
+  city: "São Paulo, SP",
+  format: "Presencial e online",
   description:
-    "Um dia de imersão para entender o que está mudando na economia, experimentar ferramentas práticas e planejar os próximos passos do seu negócio e da sua carreira. Escolha entre as modalidades Online, Presencial ou Presencial com Jantar de Negócios VIP.",
+    "Workshop presencial em São Paulo e online, em 31 de outubro de 2026. Um dia de imersão para entender o que está mudando na economia, experimentar ferramentas práticas e planejar os próximos passos do seu negócio e da sua carreira. Escolha entre Online, Presencial ou Presencial com Jantar de Negócios VIP.",
 } as const;
 
 export type WorkshopSpeaker = {

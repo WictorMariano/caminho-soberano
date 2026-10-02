@@ -109,9 +109,9 @@ export function WorkshopPneClosing() {
         transition={{ duration: 0.6 }}
       >
         <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
-            Sua vaga no Workshop PNE
-          </p>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
+              31 de outubro · São Paulo e online
+            </p>
           <h2 className="mt-3 text-3xl font-bold leading-tight tracking-tight text-white md:text-5xl">
             O próximo passo na Nova Economia começa agora.
           </h2>

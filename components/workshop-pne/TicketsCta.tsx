@@ -24,7 +24,7 @@ export function TicketsCta({
         <ArrowDown size={17} />
       </a>
       <span className="text-sm text-white/60">
-        Online, Presencial ou VIP · a partir de{" "}
+        31 de outubro · Online, Presencial ou VIP · a partir de{" "}
         <strong className="font-semibold text-white">R$ 197</strong>
       </span>
     </div>

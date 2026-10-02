@@ -5,6 +5,7 @@ import { PneTestimonials } from "@/components/workshop/pne/PneTestimonials";
 import { WorkshopPneHero } from "@/components/workshop-pne/WorkshopPneHero";
 import { WorkshopPneSections } from "@/components/workshop-pne/WorkshopPneSections";
 import { WorkshopPneSpeakers } from "@/components/workshop-pne/WorkshopPneSpeakers";
+import { WorkshopPneWhatsappGroup } from "@/components/workshop-pne/WorkshopPneWhatsappGroup";
 import {
   WorkshopPneClosing,
   WorkshopPneTickets,
@@ -36,6 +37,7 @@ export default function WorkshopPnePage() {
     <PageShell flushHero>
       <WorkshopPneHero />
       <WorkshopPneSections />
+      <WorkshopPneWhatsappGroup />
       <WorkshopPneTickets />
       <PneTestimonials />
       <WorkshopPneSpeakers />
