@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import { MapPin, CalendarDays, ArrowUpRight } from "lucide-react";
 
 import { EVENT_PATH } from "@/lib/event-bitcoin-pratica";
-import { PNE_PATH, pneMeta } from "@/lib/workshop-pne";
 import { PROJETO_NE_PATH } from "@/lib/projeto-nova-economia";
 import { nextGathering } from "@/lib/waitlist";
 import { cn } from "@/lib/utils";
@@ -60,17 +59,6 @@ const events: EventItem[] = [
     ctaLabel: "Conhecer o projeto",
   },
   nextGathering,
-  {
-    id: "pne",
-    title: "Programa Nova Economia",
-    location: pneMeta.city,
-    date: pneMeta.dateShort,
-    startsAt: "2026-08-29",
-    region: pneMeta.region,
-    image: "/images/events/banners/nova-economia.jpg",
-    href: PNE_PATH,
-    badge: "Workshop PNE",
-  },
   {
     id: "autocustodia",
     title: "Workshop de Autocustódia",
