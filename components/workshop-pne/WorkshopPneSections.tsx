@@ -18,6 +18,7 @@ import {
 
 import { TicketsCta } from "@/components/workshop-pne/TicketsCta";
 import { WorkshopPneExperience } from "@/components/workshop-pne/WorkshopPneExperience";
+import { WorkshopPneLab } from "@/components/workshop-pne/WorkshopPneLab";
 import { WorkshopPneTimeline } from "@/components/workshop-pne/WorkshopPneTimeline";
 import {
   projetoNeChallengeLead,
@@ -368,9 +369,10 @@ export function WorkshopPneSections() {
             </motion.div>
           </motion.div>
 
-          <TicketsCta className="mt-14" />
         </div>
       </section>
+
+      <WorkshopPneLab />
 
       <WorkshopPneExperience />
 
