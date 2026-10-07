@@ -3,7 +3,7 @@ import { EVENT_PATH } from "@/lib/event-bitcoin-pratica";
 /** Links do menu — apenas páginas reais do site */
 export const mainNav = [
   { href: "/", label: "Home" },
-  { href: "/eventos", label: "Eventos" },
+  { href: "/#eventos", label: "Eventos" },
   { href: "/conteudo", label: "Conteúdo" },
   { href: "/comunidade", label: "Comunidade" },
   { href: "/sobre", label: "Sobre" },

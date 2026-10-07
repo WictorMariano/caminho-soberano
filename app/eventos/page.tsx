@@ -1,59 +1,21 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowUpRight,
-  CalendarDays,
-  MapPin,
-  Users,
-  Shield,
-  Network,
-  BookOpen,
-} from "lucide-react";
+import { Users, Shield, Network, BookOpen } from "lucide-react";
 
 import { EventosHero } from "@/components/events/EventosHero";
+import { WorkshopPneEventCard } from "@/components/events/EventsSection";
 import { PageShell } from "@/components/PageShell";
-import { EVENT_PATH, eventMeta } from "@/lib/event-bitcoin-pratica";
-import { PNE_PATH, pneMeta } from "@/lib/workshop-pne";
-import { nextGathering } from "@/lib/waitlist";
+import {
+  WORKSHOP_PNE_PAGE_PATH,
+  workshopPneMeta,
+} from "@/lib/workshop-pne-tickets";
 
 export const metadata: Metadata = {
   title: "Eventos",
   description:
     "Confira os eventos presenciais do Caminho Soberano e garanta sua vaga.",
 };
-
-const events = [
-  nextGathering,
-  {
-    id: "pne",
-    title: "Programa Nova Economia",
-    location: pneMeta.location,
-    date: pneMeta.dateShort,
-    startsAt: "2026-08-29",
-    image: "/images/events/dominando-bitcoin/benefits/immersion.jpg",
-    href: PNE_PATH,
-    badge: "Workshop PNE" as string | null,
-  },
-  {
-    id: "bitcoin-pratica",
-    title: eventMeta.title,
-    location: eventMeta.location,
-    date: eventMeta.dateShort,
-    startsAt: "2026-11-18",
-    image: "/images/events/dominando-bitcoin/hero.png",
-    href: EVENT_PATH,
-    badge: null as string | null,
-  },
-].sort((a, b) => {
-  const now = Date.now();
-  const aTime = new Date(a.startsAt).getTime();
-  const bTime = new Date(b.startsAt).getTime();
-  const aUpcoming = aTime >= now;
-  const bUpcoming = bTime >= now;
-  if (aUpcoming !== bUpcoming) return aUpcoming ? -1 : 1;
-  return aUpcoming ? aTime - bTime : bTime - aTime;
-});
 
 const expectativas = [
   {
@@ -115,50 +77,7 @@ export default function EventosPage() {
         className="border-t border-border pb-16 pt-4 md:pb-24"
       >
         <div className="mx-auto max-w-6xl px-5 md:px-8">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {events.map((event) => (
-              <Link
-                key={event.id}
-                href={event.href}
-                className="group overflow-hidden rounded-[1.75rem] border border-border bg-black/30 transition hover:border-accent/50"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={event.image}
-                    alt={event.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  {event.badge ? (
-                    <span className="absolute left-3 top-3 rounded-full border border-accent/35 bg-accent/15 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-accent backdrop-blur-sm">
-                      {event.badge}
-                    </span>
-                  ) : null}
-                </div>
-                <div className="p-5">
-                  <h2 className="text-lg font-semibold leading-snug">
-                    {event.title}
-                  </h2>
-                  <div className="mt-3 flex flex-col gap-1.5 text-sm text-foreground/65">
-                    <span className="inline-flex items-center gap-1.5">
-                      <MapPin size={14} className="text-accent" />
-                      {event.location}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5">
-                      <CalendarDays size={14} className="text-accent" />
-                      {event.date}
-                    </span>
-                  </div>
-                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-accent">
-                    Ver evento
-                    <ArrowUpRight size={16} />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <WorkshopPneEventCard className="mt-8" />
         </div>
       </section>
 
@@ -257,14 +176,14 @@ export default function EventosPage() {
       <section className="border-t border-border py-16 md:py-24">
         <div className="mx-auto max-w-3xl px-5 text-center md:px-8">
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-            Próximo encontro: São Paulo
+            Próximo encontro: {workshopPneMeta.shortTitle}
           </h2>
           <p className="mt-4 text-base leading-relaxed text-foreground/70 md:text-lg">
-            {eventMeta.title}, {eventMeta.dateShort}, em{" "}
-            {eventMeta.location}. Vagas limitadas.
+            {workshopPneMeta.dateFull}, no {workshopPneMeta.venueFull} e
+            online, ao vivo. Vagas limitadas.
           </p>
           <Link
-            href={EVENT_PATH}
+            href={WORKSHOP_PNE_PAGE_PATH}
             className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-accent-ink transition hover:brightness-95"
           >
             Garantir minha vaga

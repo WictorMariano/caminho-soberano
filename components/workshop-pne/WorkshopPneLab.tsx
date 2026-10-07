@@ -11,7 +11,6 @@ import {
   Landmark,
   Rocket,
   Sparkles,
-  Wallet,
   Wrench,
 } from "lucide-react";
 
@@ -258,17 +257,23 @@ export function WorkshopPneLab() {
 
             <motion.article
               variants={fadeUp}
-              className="pne-project-card group flex gap-5 rounded-[1.75rem] border p-5 md:p-6"
+              className="pne-project-card group flex flex-col justify-center rounded-[1.75rem] border p-5 md:p-6"
             >
               <div className="pne-project-card__shine" aria-hidden />
-              <div className="relative flex h-28 w-24 shrink-0 items-center justify-center rounded-2xl border border-accent/30 bg-gradient-to-br from-accent/20 to-accent/5 text-accent md:h-32 md:w-28">
-                <Wallet size={36} strokeWidth={1.5} />
-              </div>
               <div className="relative">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">
                   Na prática
                 </p>
-                <h4 className="mt-1 text-xl font-bold text-white">LiqPay</h4>
+                <h4 className="mt-3">
+                  <Image
+                    src="/images/partners/liqpay.svg"
+                    alt="LiqPay"
+                    width={255}
+                    height={53}
+                    unoptimized
+                    className="h-8 w-auto md:h-9"
+                  />
+                </h4>
                 <p className="mt-2 text-sm leading-relaxed text-white/70">
                   Aplicação prática da nova infraestrutura financeira, para ver
                   na hora como os conceitos viram operação.
