@@ -1,6 +1,5 @@
 import { PNE_PATH } from "@/lib/workshop-pne";
 
-export const PROJETO_NE_PATH = "/projeto-nova-economia" as const;
 export const PROJETO_NE_EXTERNAL = "https://projetonovaeconomia.com.br/" as const;
 
 export const projetoNeMeta = {

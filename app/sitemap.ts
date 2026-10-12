@@ -12,7 +12,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/eventos",
     "/lista-de-espera",
-    "/projeto-nova-economia",
     WORKSHOP_PNE_PAGE_PATH,
     "/comunidade",
     EVENT_PATH,

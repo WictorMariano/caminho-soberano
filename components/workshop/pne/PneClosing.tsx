@@ -6,8 +6,8 @@ import { CalendarDays, MapPin, Users } from "lucide-react";
 
 import { FaqAccordion } from "@/components/faq/FaqAccordion";
 import { PneCtaLink } from "@/components/workshop/pne/PneCtaLink";
-import { PROJETO_NE_PATH } from "@/lib/projeto-nova-economia";
 import { pneFaqs, pneMeta } from "@/lib/workshop-pne";
+import { WORKSHOP_PNE_PAGE_PATH } from "@/lib/workshop-pne-tickets";
 
 export function PneClosing() {
   const reduce = useReducedMotion();
@@ -52,10 +52,10 @@ export function PneClosing() {
           <div className="mt-8 flex flex-col items-center gap-3">
             <PneCtaLink />
             <Link
-              href={PROJETO_NE_PATH}
+              href={WORKSHOP_PNE_PAGE_PATH}
               className="text-sm font-medium text-white/60 underline-offset-2 transition hover:text-accent hover:underline"
             >
-              Conheça o Projeto Nova Economia
+              Conheça o Workshop PNE de outubro
             </Link>
           </div>
         </motion.div>

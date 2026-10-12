@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Lock } from "lucide-react";
 import Image from "next/image";
 
 import {
@@ -93,7 +94,7 @@ export function SiteFooter() {
       />
 
       <div className="relative mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
-        <div className="grid gap-12 lg:grid-cols-[1.15fr_1.85fr] lg:gap-16">
+        <div className="grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-12">
           <div>
             <Link href="/" className="inline-flex items-center gap-2.5">
               <Image
@@ -134,7 +135,7 @@ export function SiteFooter() {
             </div>
           </div>
 
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.15fr)_auto_minmax(0,1fr)] lg:gap-7">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">
                 Páginas
@@ -161,7 +162,7 @@ export function SiteFooter() {
                 <li>
                   <a
                     href={`mailto:${siteContact.email}`}
-                    className="transition hover:text-accent"
+                    className="transition [overflow-wrap:anywhere] hover:text-accent"
                   >
                     {siteContact.email}
                   </a>
@@ -171,7 +172,7 @@ export function SiteFooter() {
                     href={siteContact.supportWhatsappHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 rounded-full bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-[#062b14] shadow-[0_10px_24px_-12px_rgba(37,211,102,0.7)] transition hover:brightness-95"
+                    className="inline-flex items-center gap-2.5 whitespace-nowrap rounded-full bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-[#062b14] shadow-[0_10px_24px_-12px_rgba(37,211,102,0.7)] transition hover:brightness-95"
                   >
                     <WhatsappIcon className="h-[18px] w-[18px]" />
                     Falar no WhatsApp
@@ -213,7 +214,17 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
-          <p>Copyright © {year} Caminho Soberano. Todos os direitos reservados.</p>
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
+            <p>Copyright © {year} Caminho Soberano. Todos os direitos reservados.</p>
+            <Link
+              href="/admin/login"
+              rel="nofollow"
+              className="inline-flex items-center gap-1.5 text-white/45 transition hover:text-accent"
+            >
+              <Lock size={12} aria-hidden />
+              Área administrativa
+            </Link>
+          </div>
           <div className="sm:text-right">
             <p className="uppercase tracking-[0.16em]">Agência Machado Digital</p>
             <p className="mt-1">26.098.577/0001-71</p>
