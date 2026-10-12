@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowDown,
   CalendarDays,
+  Clock,
   MapPin,
   MonitorPlay,
   Ticket,
@@ -20,6 +21,11 @@ const eventFacts = [
     icon: CalendarDays,
     label: "Data",
     value: `${workshopPneMeta.dateCompact} · ${workshopPneMeta.weekday}`,
+  },
+  {
+    icon: Clock,
+    label: "Horário",
+    value: workshopPneMeta.time,
   },
   {
     icon: MonitorPlay,
@@ -74,7 +80,8 @@ export function WorkshopPneHero() {
               {workshopPneMeta.dateFull}
             </span>
             <span className="text-base font-semibold text-accent md:text-lg">
-              {workshopPneMeta.weekday} · {workshopPneMeta.city} e online
+              {workshopPneMeta.weekday} · {workshopPneMeta.time} ·{" "}
+              {workshopPneMeta.city} e online
             </span>
           </p>
 
@@ -92,7 +99,7 @@ export function WorkshopPneHero() {
             de onde estiver.
           </p>
 
-          <dl className="mt-8 grid gap-3 sm:grid-cols-3">
+          <dl className="mt-8 grid gap-3 sm:grid-cols-2">
             {eventFacts.map(({ icon: Icon, label, value }) => (
               <div
                 key={label}

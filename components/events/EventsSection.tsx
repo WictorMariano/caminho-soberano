@@ -20,7 +20,7 @@ import {
 const facts = [
   {
     icon: CalendarDays,
-    label: `${workshopPneMeta.dateFull} · ${workshopPneMeta.weekday}`,
+    label: `${workshopPneMeta.dateFull} · ${workshopPneMeta.weekday} · ${workshopPneMeta.time}`,
   },
   { icon: MapPin, label: workshopPneMeta.venueFull },
   { icon: MonitorPlay, label: "Presencial e online, ao vivo" },

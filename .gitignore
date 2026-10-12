@@ -42,3 +42,5 @@ next-env.d.ts
 
 # source videos (published copies live in /public/videos)
 /videos/
+
+.vercel

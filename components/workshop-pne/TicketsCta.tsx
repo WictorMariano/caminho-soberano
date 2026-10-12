@@ -24,7 +24,7 @@ export function TicketsCta({
         <ArrowDown size={17} />
       </a>
       <span className="text-sm text-white/60">
-        31 de outubro · a partir de{" "}
+        31 de outubro, das 8h às 18h · a partir de{" "}
         <strong className="font-semibold text-white">R$ 197 à vista</strong> ou
         12x de R$ 20,25
       </span>
