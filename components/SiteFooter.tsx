@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Lock } from "lucide-react";
 import Image from "next/image";
 
 import {
@@ -214,17 +213,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
-            <p>Copyright © {year} Caminho Soberano. Todos os direitos reservados.</p>
-            <Link
-              href="/admin/login"
-              rel="nofollow"
-              className="inline-flex items-center gap-1.5 text-white/45 transition hover:text-accent"
-            >
-              <Lock size={12} aria-hidden />
-              Área administrativa
-            </Link>
-          </div>
+          <p>Copyright © {year} Caminho Soberano. Todos os direitos reservados.</p>
           <div className="sm:text-right">
             <p className="uppercase tracking-[0.16em]">Agência Machado Digital</p>
             <p className="mt-1">26.098.577/0001-71</p>

@@ -1,6 +1,8 @@
 import type { AdminSession } from "@/lib/admin/dal";
 
-type AdminClient = Extract<AdminSession, { status: "admin" }>["supabase"];
+type AdminClient = NonNullable<
+  Extract<AdminSession, { status: "admin"; demo: false }>["supabase"]
+>;
 
 export type WaitlistSignup = {
   id: string;

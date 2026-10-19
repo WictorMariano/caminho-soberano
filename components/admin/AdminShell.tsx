@@ -15,8 +15,8 @@ export function AdminShell({
   children: React.ReactNode;
 }) {
   return (
-    <div className="lg:grid lg:min-h-screen lg:grid-cols-[260px_1fr]">
-      <aside className="border-b border-white/10 bg-[#061426] p-4 lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col lg:border-b-0 lg:border-r lg:p-6">
+    <div className="lg:grid lg:min-h-screen lg:grid-cols-[280px_1fr]">
+      <aside className="border-b border-white/10 bg-[#061426] p-4 lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col lg:overflow-y-auto lg:border-b-0 lg:border-r lg:p-6">
         <div className="flex items-center justify-between gap-3 lg:block">
           <Link href="/admin" className="flex items-center gap-2.5">
             <Image src="/images/brand/logo-mark.png" alt="" width={36} height={36} className="h-9 w-auto" />

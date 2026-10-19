@@ -3,6 +3,10 @@ import type { NextRequest } from "next/server";
 import { requireAdmin } from "@/lib/admin/dal";
 import { fetchCommunitySignups, fetchWaitlistSignups } from "@/lib/admin/data";
 import {
+  demoCommunitySignups,
+  demoWaitlistSignups,
+} from "@/lib/admin/demo";
+import {
   communityCsv,
   filterCommunity,
   filterWaitlist,
@@ -15,18 +19,22 @@ export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ lista: string }> },
 ) {
-  const { supabase } = await requireAdmin();
+  const session = await requireAdmin();
   const { lista } = await params;
   const query = Object.fromEntries(request.nextUrl.searchParams);
   const today = new Date().toISOString().slice(0, 10);
 
   let csv: string;
   if (lista === "lista-de-espera") {
-    const rows = filterWaitlist(await fetchWaitlistSignups(supabase), parseWaitlistFilters(query));
-    csv = waitlistCsv(rows);
+    const source = session.demo
+      ? demoWaitlistSignups
+      : await fetchWaitlistSignups(session.supabase);
+    csv = waitlistCsv(filterWaitlist(source, parseWaitlistFilters(query)));
   } else if (lista === "grupo-whatsapp") {
-    const rows = filterCommunity(await fetchCommunitySignups(supabase), parseCommunityFilters(query));
-    csv = communityCsv(rows);
+    const source = session.demo
+      ? demoCommunitySignups
+      : await fetchCommunitySignups(session.supabase);
+    csv = communityCsv(filterCommunity(source, parseCommunityFilters(query)));
   } else {
     return new Response("Lista não encontrada", { status: 404 });
   }

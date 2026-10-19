@@ -20,7 +20,7 @@ export default async function AdminLoginPage({
   const { erro } = await searchParams;
   const notice =
     session.status === "unconfigured"
-      ? "A área administrativa ainda não foi conectada ao banco de dados. Configure as variáveis do Supabase para liberar o acesso."
+      ? "O login com e-mail ainda depende do Supabase. Por enquanto, use Entrar como convidado para explorar o painel com dados de exemplo."
       : erro === "sem-permissao" || session.status === "forbidden"
         ? "Seu usuário entrou, mas não tem permissão de administrador. Peça para incluírem seu e-mail na lista de administradores."
         : null;
