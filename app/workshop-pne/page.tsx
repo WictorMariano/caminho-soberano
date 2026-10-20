@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/PageShell";
 import { PneTestimonials } from "@/components/workshop/pne/PneTestimonials";
 import { WorkshopPneHero } from "@/components/workshop-pne/WorkshopPneHero";
+import { WorkshopPneSchedule } from "@/components/workshop-pne/WorkshopPneSchedule";
 import { WorkshopPneSections } from "@/components/workshop-pne/WorkshopPneSections";
 import { WorkshopPneSpeakers } from "@/components/workshop-pne/WorkshopPneSpeakers";
 import { WorkshopPneWhatsappGroup } from "@/components/workshop-pne/WorkshopPneWhatsappGroup";
@@ -37,6 +38,7 @@ export default function WorkshopPnePage() {
     <PageShell flushHero>
       <WorkshopPneHero />
       <WorkshopPneSections />
+      <WorkshopPneSchedule />
       <WorkshopPneWhatsappGroup />
       <WorkshopPneTickets />
       <PneTestimonials />

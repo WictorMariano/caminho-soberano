@@ -25,6 +25,85 @@ export const workshopPneMeta = {
     "Workshop presencial no Olimpo Experience Alphaville, em Barueri (SP), e online, em 31 de outubro de 2026, das 8h às 18h. Um dia de imersão para entender o que está mudando na economia, experimentar ferramentas práticas e planejar os próximos passos do seu negócio e da sua carreira. Escolha entre Online, Presencial ou Presencial com Jantar de Negócios VIP.",
 } as const;
 
+export const workshopPneJourney = [
+  "Descobrir",
+  "Experimentar",
+  "Jogar",
+  "Inovar",
+] as const;
+
+export const workshopPneObjective =
+  "Conectar os participantes às transformações da Nova Economia por meio de experiências práticas com tecnologias Web3, investimentos descentralizados, gamificação e inovação de modelos de negócio.";
+
+export type WorkshopScheduleItem = {
+  id: string;
+  time: string;
+  title: string;
+  speaker: string;
+  isBreak?: boolean;
+};
+
+export const workshopPneSchedule: WorkshopScheduleItem[] = [
+  {
+    id: "abertura",
+    time: "08h30 às 08h50",
+    title: "Abertura e contextualização da Nova Economia",
+    speaker: "Tarcísio (Caminho Soberano)",
+  },
+  {
+    id: "pratica",
+    time: "08h50 às 12h00",
+    title:
+      "Nova Economia na prática: Bitcoin, blockchain, Web3, carteiras digitais, LiqPay e Deflow",
+    speaker: "Tarcísio (Caminho Soberano) e Elídio (Blindado)",
+  },
+  {
+    id: "almoco",
+    time: "12h00 às 13h30",
+    title: "Almoço",
+    speaker: "Intervalo",
+    isBreak: true,
+  },
+  {
+    id: "defi",
+    time: "13h30 às 14h00",
+    title: "Investimentos DeFi: oportunidades na Web3 e demonstração prática",
+    speaker: "Rafael Marques",
+  },
+  {
+    id: "bt-game",
+    time: "14h00 às 16h30",
+    title: "BT Game: experiência gamificada sobre Bitcoin e Nova Economia",
+    speaker: "Alê Pacheco (Caminho Soberano)",
+  },
+  {
+    id: "bt-model",
+    time: "16h30 às 16h45",
+    title: "BT Model: visão sistêmica dos negócios e Cartas de Inovação",
+    speaker: "Alê Pacheco (Caminho Soberano)",
+  },
+  {
+    id: "desafio",
+    time: "16h45 às 17h25",
+    title:
+      "Desafio de Inovação: novos negócios ou inovação em negócios existentes",
+    speaker: "Equipes participantes",
+  },
+  {
+    id: "propostas",
+    time: "17h25 às 17h55",
+    title:
+      "Apresentação das propostas: 3 a 4 componentes principais do BT Model",
+    speaker: "Equipes participantes",
+  },
+  {
+    id: "encerramento",
+    time: "17h55 às 18h00",
+    title: "Encerramento e próximos passos",
+    speaker: "Tarcísio e Alê Pacheco (Caminho Soberano)",
+  },
+];
+
 export type WorkshopSpeaker = {
   id: string;
   name: string;
