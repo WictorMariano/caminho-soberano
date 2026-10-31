@@ -3,25 +3,32 @@
 import { useEffect, useState } from "react";
 import { Timer } from "lucide-react";
 
-/** Virada do 1º lote — 18/08/2026 00:00 (horário de Brasília, UTC-3) */
-const LOTE_DEADLINE = new Date("2026-08-18T03:00:00.000Z").getTime();
+/** 1º lote — 15/11/2026 00:00 (horário de Brasília, UTC-3) */
+const FIRST_LOT = new Date("2026-11-15T03:00:00.000Z").getTime();
+/** 2º lote — 17/11/2026 00:00 (horário de Brasília, UTC-3) */
+const SECOND_LOT = new Date("2026-11-17T03:00:00.000Z").getTime();
 
 /** Azul forte — glow no estilo AccentBenefitCard da IA Divulgadora */
-const GLOW = "#3b9eff";
-const GLOW_RGB = "59,158,255";
+const GLOW = "#f7931a";
+const GLOW_RGB = "247,147,26";
+
+type LotPhase = "first" | "second" | "closed";
 
 type TimeLeft = {
   days: number;
   hours: number;
   minutes: number;
   seconds: number;
-  expired: boolean;
+  phase: LotPhase;
 };
 
 function getTimeLeft(now: number): TimeLeft {
-  const diff = Math.max(0, LOTE_DEADLINE - now);
+  const phase: LotPhase =
+    now < FIRST_LOT ? "first" : now < SECOND_LOT ? "second" : "closed";
+  const deadline = phase === "second" ? SECOND_LOT : FIRST_LOT;
+  const diff = phase === "closed" ? 0 : Math.max(0, deadline - now);
   if (diff === 0) {
-    return { days: 0, hours: 0, minutes: 0, seconds: 0, expired: true };
+    return { days: 0, hours: 0, minutes: 0, seconds: 0, phase };
   }
 
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -29,7 +36,7 @@ function getTimeLeft(now: number): TimeLeft {
   const minutes = Math.floor((diff / (1000 * 60)) % 60);
   const seconds = Math.floor((diff / 1000) % 60);
 
-  return { days, hours, minutes, seconds, expired: false };
+  return { days, hours, minutes, seconds, phase };
 }
 
 function pad(value: number) {
@@ -47,17 +54,17 @@ function DigitBlock({ value, label }: { value: number; label: string }) {
   const digits = pad(value);
 
   return (
-    <div className="flex min-w-0 flex-1 flex-col items-center gap-2.5">
-      <div className="relative w-full overflow-hidden rounded-xl border border-white/10 bg-black/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+    <div className="flex min-w-0 flex-1 flex-col items-center gap-1.5">
+      <div className="relative w-full overflow-hidden rounded-lg border border-white/10 bg-black/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
         <div
           className="pointer-events-none absolute inset-x-0 top-1/2 h-px -translate-y-px bg-black/40"
           aria-hidden
         />
-        <p className="relative py-3.5 text-center font-mono text-[1.75rem] font-bold tabular-nums leading-none tracking-tight text-white sm:py-4 sm:text-3xl md:text-[2.5rem]">
+        <p className="relative py-2 text-center font-mono text-xl font-bold tabular-nums leading-none tracking-tight text-white sm:text-2xl">
           {digits}
         </p>
       </div>
-      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-white/45 sm:text-[0.7rem]">
+      <p className="text-[0.6rem] font-semibold uppercase tracking-[0.16em] text-white/45">
         {label}
       </p>
     </div>
@@ -67,7 +74,7 @@ function DigitBlock({ value, label }: { value: number; label: string }) {
 function Separator() {
   return (
     <div
-      className="flex shrink-0 flex-col justify-center gap-2 self-stretch pb-7 pt-1"
+      className="flex shrink-0 flex-col justify-center gap-1.5 self-stretch pb-5 pt-0.5"
       aria-hidden
     >
       <span
@@ -103,58 +110,69 @@ export function LotCountdown() {
     hours: 0,
     minutes: 0,
     seconds: 0,
-    expired: false,
+    phase: "first" as const,
   };
 
   return (
-    <div className="mx-auto mt-14 max-w-2xl md:mt-16">
+    <div className="mx-auto mt-6 max-w-xl">
       <div
         className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-black/35 backdrop-blur-md transition hover:border-white/20"
         style={{
-          boxShadow: `0 0 0 1px rgba(${GLOW_RGB},0.18), 0 24px 48px -24px rgba(${GLOW_RGB},0.4)`,
+          boxShadow: `0 0 0 1px rgba(${GLOW_RGB},0.18), 0 16px 32px -20px rgba(${GLOW_RGB},0.4)`,
         }}
       >
         <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-28 opacity-70"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-16 opacity-70"
           style={{
             background: `linear-gradient(to top, rgba(${GLOW_RGB},0.28), transparent)`,
           }}
           aria-hidden
         />
 
-        <div className="relative z-10 px-5 py-7 sm:px-8 sm:py-9">
-          <div className="mb-4 flex items-center justify-center gap-2.5">
+        <div className="relative z-10 px-4 py-4 sm:px-5 sm:py-4">
+          <div className="flex items-center justify-center gap-3">
+            <h3 className="text-center text-base font-semibold leading-snug tracking-tight text-white sm:text-lg">
+              {display.phase === "closed"
+                ? "O 2º lote encerrou"
+                : display.phase === "second"
+                  ? "O 2º lote fecha em breve"
+                  : "O 1º lote fecha em breve"}
+            </h3>
             <div
-              className="flex h-10 w-10 items-center justify-center rounded-full border backdrop-blur-sm sm:h-11 sm:w-11"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border"
               style={{
                 borderColor: `${GLOW}66`,
                 background: `rgba(${GLOW_RGB},0.16)`,
-                boxShadow: `0 0 22px rgba(${GLOW_RGB},0.35)`,
+                boxShadow: `0 0 16px rgba(${GLOW_RGB},0.3)`,
               }}
             >
               <Timer
-                className="h-5 w-5"
+                className="h-4 w-4"
                 style={{ color: GLOW }}
                 strokeWidth={1.75}
               />
             </div>
           </div>
-
-          <h3 className="text-center text-xl font-semibold leading-snug tracking-tight text-white sm:text-2xl md:text-[1.75rem]">
-            {display.expired
-              ? "O 1º lote encerrou"
-              : "O 1º lote fecha em breve"}
-          </h3>
-          <p className="mx-auto mt-2.5 max-w-md text-center text-xs leading-relaxed text-white/55 sm:text-sm">
-            Em{" "}
-            <strong className="font-semibold text-white">18/08/2026</strong> o
-            preço sobe{" "}
-            <strong className="font-semibold text-accent">20%</strong>. Cada
-            segundo conta para manter o valor atual.
+          <p className="mx-auto mt-1.5 max-w-md text-center text-[0.7rem] leading-relaxed text-white/55 sm:text-xs">
+            {display.phase === "first" ? (
+              <>
+                Em{" "}
+                <strong className="font-semibold text-white">15/11/2026</strong>{" "}
+                o preço sobe{" "}
+                <strong className="font-semibold text-accent">20%</strong>. O
+                2º lote encerra em 17/11/2026.
+              </>
+            ) : (
+              <>
+                O 2º lote encerra em{" "}
+                <strong className="font-semibold text-white">17/11/2026</strong>
+                .
+              </>
+            )}
           </p>
 
           <div
-            className="mt-7 flex items-start justify-center gap-1.5 sm:gap-2.5"
+            className="mt-3.5 flex items-start justify-center gap-1.5 sm:gap-2"
             aria-live="polite"
             aria-atomic="true"
           >
@@ -166,8 +184,8 @@ export function LotCountdown() {
             ))}
           </div>
 
-          {!display.expired ? (
-            <p className="mt-6 text-center text-xs font-medium tracking-wide text-white/40">
+          {display.phase !== "closed" ? (
+            <p className="mt-3 text-center text-[0.65rem] font-medium tracking-wide text-white/40">
               Após a virada, o mesmo ingresso custa mais, sem exceção.
             </p>
           ) : null}

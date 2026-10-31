@@ -227,7 +227,7 @@ body {
   }
 }
 
-/* Tema oceano — página do evento Dominando o Bitcoin */
+/* Tema oceano — site e Programa Nova Economia */
 .theme-ocean {
   --background: #0b1f38;
   --foreground: #e8f1fa;
@@ -244,6 +244,22 @@ body {
   background: var(--background);
 }
 
+/* Laranja só na página Dominando o Bitcoin */
+.theme-bitcoin {
+  --background: #120904;
+  --foreground: #fff4ea;
+  --muted: #c9a78a;
+  --surface: #1c1008;
+  --surface-elevated: #2a180c;
+  --border: rgba(247, 147, 26, 0.22);
+  --accent: #f7931a;
+  --accent-ink: #1a0c02;
+  --teal: #c2410c;
+  --cs-glow: rgba(247, 147, 26, 0.28);
+  color: var(--foreground);
+  background: var(--background);
+}
+
 .theme-ocean ::selection {
   background: var(--accent);
   color: var(--accent-ink);
@@ -254,6 +270,30 @@ body {
     radial-gradient(ellipse 70% 55% at 78% 18%, rgba(70, 160, 255, 0.22), transparent 60%),
     radial-gradient(ellipse 50% 40% at 20% 80%, rgba(30, 90, 150, 0.28), transparent 55%),
     linear-gradient(155deg, #0d2544 0%, #0b1f38 42%, #091a30 100%);
+}
+
+.theme-bitcoin ::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.theme-bitcoin .ocean-hero-bg {
+  background:
+    radial-gradient(ellipse 70% 55% at 78% 18%, rgba(247, 147, 26, 0.22), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(180, 70, 10, 0.28), transparent 55%),
+    linear-gradient(155deg, #1a0e06 0%, #120904 42%, #0c0603 100%);
+}
+
+.theme-bitcoin .pne-project-card {
+  background: rgba(28, 14, 6, 0.78);
+  border-color: rgba(247, 147, 26, 0.18);
+}
+
+.theme-bitcoin .pne-project-card:hover {
+  border-color: rgba(247, 147, 26, 0.45);
+  box-shadow:
+    0 0 0 1px rgba(247, 147, 26, 0.12),
+    0 20px 40px -24px rgba(247, 147, 26, 0.45);
 }
 
 .theme-ocean .ocean-panel {
@@ -336,7 +376,96 @@ body {
   box-shadow: 0 0 14px #3b9eff;
 }
 
-/* CTA “Entre no Movimento” — mesma iluminação azul */
+.theme-bitcoin .benefit-soon-card {
+  background:
+    linear-gradient(
+      155deg,
+      rgba(32, 26, 22, 0.96) 0%,
+      rgba(22, 18, 16, 0.98) 55%,
+      rgba(16, 13, 12, 1) 100%
+    );
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 18px 40px -24px rgba(0, 0, 0, 0.55);
+}
+
+.theme-bitcoin .benefit-soon-card:hover {
+  background:
+    linear-gradient(
+      155deg,
+      rgba(40, 34, 30, 0.98) 0%,
+      rgba(26, 22, 20, 0.99) 55%,
+      rgba(18, 15, 14, 1) 100%
+    );
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 22px 44px -24px rgba(0, 0, 0, 0.6);
+}
+
+.theme-bitcoin .benefit-soon-card__shine {
+  background:
+    linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      transparent 36%,
+      transparent 70%,
+      rgba(255, 255, 255, 0.04) 100%
+    );
+}
+
+.theme-bitcoin .benefit-soon-card__glow {
+  background: linear-gradient(to top, rgba(247, 147, 26, 0.16), transparent);
+}
+
+.theme-bitcoin .benefit-soon-card__line {
+  background: linear-gradient(90deg, transparent, #f7931a, transparent);
+  box-shadow: none;
+}
+
+.theme-bitcoin .audience-card {
+  background-image:
+    linear-gradient(rgba(28, 14, 6, 0.94), rgba(28, 14, 6, 0.94)),
+    linear-gradient(rgba(247, 147, 26, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(247, 147, 26, 0.16) 1px, transparent 1px);
+}
+
+.theme-bitcoin .ocean-glow-panel {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 0 0 1px rgba(247, 147, 26, 0.2),
+    0 24px 48px -24px rgba(247, 147, 26, 0.4),
+    0 30px 60px -28px rgba(0, 0, 0, 0.7);
+}
+
+.theme-bitcoin .ocean-glow-panel__glow {
+  background: linear-gradient(to top, rgba(247, 147, 26, 0.32), transparent);
+}
+
+.theme-bitcoin .ocean-glow-panel__line {
+  background: linear-gradient(90deg, transparent, #f7931a, transparent);
+  box-shadow: 0 0 14px #f7931a;
+}
+
+.theme-bitcoin h1,
+.theme-bitcoin h2 {
+  text-wrap: balance;
+}
+
+.theme-bitcoin footer {
+  background-color: #120904;
+  border-top-color: rgba(247, 147, 26, 0.28);
+}
+
+.theme-bitcoin footer > .pointer-events-none {
+  background: radial-gradient(
+    ellipse at 20% 0%,
+    rgba(247, 147, 26, 0.2),
+    transparent 52%
+  );
+}
+
+/* CTA “Entre no Movimento” — iluminação azul nas demais páginas */
 .ocean-glow-panel {
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow:

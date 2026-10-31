@@ -1,13 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import {
-  ArrowLeftRight,
-  BriefcaseBusiness,
-  Handshake,
-  Play,
-  ShieldCheck,
-} from "lucide-react";
+import { KeyRound, Landmark, Link2, Play, Users } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
@@ -45,22 +39,22 @@ const clips = [
 
 const benefits = [
   {
-    icon: BriefcaseBusiness,
+    icon: Users,
     title: "Rede de negócios",
     text: "Empresários, profissionais e investidores alinhados à soberania.",
   },
   {
-    icon: ShieldCheck,
+    icon: KeyRound,
     title: "P2P de confiança",
     text: "Trocas peer-to-peer com reputação construída presencialmente.",
   },
   {
-    icon: ArrowLeftRight,
+    icon: Link2,
     title: "Troca de valor",
     text: "Serviços, produtos e parcerias dentro do ecossistema.",
   },
   {
-    icon: Handshake,
+    icon: Landmark,
     title: "Parcerias longas",
     text: "Networking que vira colaboração contínua depois do evento.",
   },
@@ -106,7 +100,7 @@ function ClipTile({
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.5 }}
       className={cn(
-        "group relative overflow-hidden rounded-2xl border border-white/12 bg-[#071525]",
+        "group relative overflow-hidden rounded-2xl border border-white/12 bg-[#1c1008]",
         className,
       )}
     >
@@ -123,7 +117,7 @@ function ClipTile({
           featured ? "min-h-[320px] md:min-h-[420px]" : "min-h-[160px] md:min-h-[200px]",
         )}
       />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#020b16]/90 via-[#020b16]/15 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#120904]/90 via-[#120904]/15 to-transparent" />
       {!playing && !reduce ? (
         <span className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-accent/50 bg-black/35 text-accent backdrop-blur-sm">
@@ -154,7 +148,7 @@ export function RedeSoberanaSection() {
   return (
     <section
       id="network"
-      className="relative overflow-hidden bg-[#020b16] py-20 md:py-28"
+      className="relative overflow-hidden bg-[#120904] py-20 md:py-28"
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.45]"
@@ -168,11 +162,11 @@ export function RedeSoberanaSection() {
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute -left-24 top-1/4 h-72 w-72 rounded-full bg-[rgba(70,160,255,0.12)] blur-[80px]"
+        className="pointer-events-none absolute -left-24 top-1/4 h-72 w-72 rounded-full bg-[rgba(247,147,26,0.16)] blur-[80px]"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute -right-16 bottom-1/4 h-80 w-80 rounded-full bg-[rgba(255,241,0,0.06)] blur-[90px]"
+        className="pointer-events-none absolute -right-16 bottom-1/4 h-80 w-80 rounded-full bg-[rgba(247,147,26,0.08)] blur-[90px]"
         aria-hidden
       />
 
@@ -220,7 +214,7 @@ export function RedeSoberanaSection() {
               transition={{ duration: 0.4, delay: i * 0.06 }}
               className="text-left"
             >
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-accent/30 bg-accent/10 text-accent">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/12 bg-white/[0.06] text-white/85">
                 <Icon size={18} strokeWidth={1.75} />
               </span>
               <h3 className="mt-3 text-base font-semibold text-white md:text-lg">

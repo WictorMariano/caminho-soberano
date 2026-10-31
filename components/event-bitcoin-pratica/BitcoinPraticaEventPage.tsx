@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   CalendarDays,
@@ -10,105 +11,114 @@ import {
   MapPin,
 } from "lucide-react";
 
-import { AudienceSection } from "@/components/event-bitcoin-pratica/AudienceSection";
 import { BenefitsSection } from "@/components/event-bitcoin-pratica/BenefitsSection";
+import { BitcoinHeroMarquee } from "@/components/event-bitcoin-pratica/BitcoinHeroMarquee";
+import { BitcoinNetworkField } from "@/components/event-bitcoin-pratica/BitcoinNetworkField";
+import { BitcoinTutorials } from "@/components/event-bitcoin-pratica/BitcoinTutorials";
 import { BonusSection } from "@/components/event-bitcoin-pratica/BonusSection";
-import { HeroStoriesSlider } from "@/components/event-bitcoin-pratica/HeroStoriesSlider";
+import { EventInviteSection } from "@/components/event-bitcoin-pratica/EventInviteSection";
+import { EventScheduleScroll } from "@/components/event-bitcoin-pratica/EventScheduleScroll";
+import { EventTestimonials } from "@/components/event-bitcoin-pratica/EventTestimonials";
+import { PastEventsGallery } from "@/components/event-bitcoin-pratica/PastEventsGallery";
 import { RedeSoberanaSection } from "@/components/event-bitcoin-pratica/RedeSoberanaSection";
 import { PricingCards } from "@/components/event-bitcoin-pratica/PricingCards";
 import { LotCountdown } from "@/components/event-bitcoin-pratica/LotCountdown";
-import { SpeakerFlipCard } from "@/components/event-bitcoin-pratica/SpeakerFlipCard";
+import { OnlineAttendanceSection } from "@/components/event-bitcoin-pratica/OnlineAttendanceSection";
+import { SpeakerDialogGrid } from "@/components/event-bitcoin-pratica/SpeakerDialog";
 import { SiteFooter } from "@/components/SiteFooter";
-import { SiteHeader } from "@/components/SiteHeader";
-import {
-  eventMeta,
-  scheduleUrl,
-  speakers,
-} from "@/lib/event-bitcoin-pratica";
-
-const heroStories = [
-  {
-    id: "ocean",
-    posterSrc: "/images/events/dominando-bitcoin/ocean.jpg",
-    label: "Caminho Soberano",
-  },
-  {
-    id: "tarcisio",
-    posterSrc: "/images/events/dominando-bitcoin/speakers/tarcisio.jpg",
-    label: "Tarcísio Machado",
-  },
-  {
-    id: "evento",
-    posterSrc: "/images/events/dominando-bitcoin/hero.png",
-    label: "Imersão presencial",
-  },
-];
+import { eventMeta, scheduleUrl } from "@/lib/event-bitcoin-pratica";
 
 export function BitcoinPraticaEventPage() {
+  const reduce = useReducedMotion();
+
   return (
-    <div className="theme-ocean min-h-full">
-      <SiteHeader floating ctaHref="#ingresso" />
+    <div className="theme-bitcoin min-h-full">
       <main>
-        {/* Hero */}
-        <section className="relative min-h-[100svh] overflow-hidden">
-          <div className="ocean-hero-bg absolute inset-0" />
-          <div
-            className="pointer-events-none absolute inset-0 opacity-[0.07] mix-blend-overlay"
-            style={{
-              backgroundImage:
-                "url(/images/events/dominando-bitcoin/noise.png)",
-              backgroundSize: "180px",
-            }}
-          />
+        <section className="relative overflow-hidden md:min-h-[100svh]">
+          <div className="absolute inset-0 ocean-hero-bg" />
+          <BitcoinNetworkField reducedMotion={!!reduce} />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#120904]/40 via-transparent to-[#120904]" />
 
-          <div className="relative z-10 mx-auto grid min-h-[100svh] max-w-6xl items-center gap-10 px-5 pb-16 pt-32 md:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:pb-20 lg:pt-28">
+          <div className="relative z-10 mx-auto grid max-w-6xl md:min-h-[100svh] md:grid-cols-2 md:items-stretch">
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
+              initial={reduce ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65 }}
-              className="max-w-xl"
+              transition={{ duration: 0.55 }}
+              className="flex flex-col justify-center px-5 py-10 md:px-8 md:py-16 lg:pr-10"
             >
-              <div className="mb-6 flex flex-wrap gap-2.5 text-sm text-foreground/85">
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/12 bg-white/[0.06] px-3.5 py-1.5 backdrop-blur">
-                  <MapPin size={14} className="text-accent" />
-                  {eventMeta.location}
+              <Link href="/" className="mb-7 inline-flex w-fit items-center gap-3">
+                <Image
+                  src="/images/brand/logo-mark.png"
+                  alt="Caminho Soberano"
+                  width={40}
+                  height={40}
+                  className="h-9 w-auto md:h-10"
+                  priority
+                />
+                <span className="leading-none">
+                  <span className="block text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-white/75 md:text-[0.7rem]">
+                    Caminho
+                  </span>
+                  <span className="block text-sm font-semibold uppercase tracking-[0.14em] text-white md:text-base">
+                    Soberano
+                  </span>
                 </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/12 bg-white/[0.06] px-3.5 py-1.5 backdrop-blur">
-                  <CalendarDays size={14} className="text-accent" />
-                  {eventMeta.dateShort}
-                </span>
-              </div>
+              </Link>
 
-              <h1 className="text-[2.1rem] font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.35rem]">
-                {eventMeta.title}
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white">
+                {eventMeta.edition}
+              </p>
+              <h1 className="mt-3 max-w-[12em] text-balance text-[2.15rem] font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.25rem]">
+                Dominando o <span className="text-accent">Bitcoin</span> na prática
               </h1>
-              <p className="mt-5 max-w-lg text-base leading-relaxed text-white/75 md:text-lg">
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-white/78 md:text-lg">
                 Quatro dias de imersão para você dominar o Bitcoin, blindar seu
                 patrimônio e finalmente viver livre. Soberania não se pede. Se
                 exerce.
               </p>
+
+              <div className="mt-5 flex flex-wrap gap-2.5 text-sm">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-white/88">
+                  <CalendarDays size={14} className="text-accent" />
+                  {eventMeta.dateFull}
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-white/88">
+                  <Clock3 size={14} className="text-accent" />
+                  {eventMeta.time}
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-white/88">
+                  <MapPin size={14} className="text-accent" />
+                  {eventMeta.location}
+                </span>
+              </div>
+
               <a
                 href="#ingresso"
-                className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-accent-ink transition hover:brightness-95"
+                className="mt-8 inline-flex w-fit items-center justify-center rounded-full bg-accent px-7 py-3.5 text-base font-bold text-accent-ink transition hover:brightness-105"
               >
                 Comprar ingresso
-                <ArrowRight size={16} />
               </a>
+
+              <div className="relative mt-10 md:hidden">
+                <BitcoinHeroMarquee />
+              </div>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 28 }}
+              initial={reduce ? false : { opacity: 0, x: 24 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.12 }}
-              className="relative"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="relative hidden min-h-full md:block"
             >
-              <HeroStoriesSlider stories={heroStories} />
+              <BitcoinHeroMarquee className="absolute inset-0 min-h-0" />
             </motion.div>
           </div>
         </section>
 
-        {/* Para quem é */}
-        <AudienceSection />
+        <EventInviteSection />
+
+        <BitcoinTutorials />
+        <PastEventsGallery />
 
         {/* Benefícios */}
         <BenefitsSection />
@@ -119,7 +129,7 @@ export function BitcoinPraticaEventPage() {
         {/* Palestrantes → Local → Ingressos → Bônus → CTA — fundo contínuo */}
         <div className="relative">
           <div
-            className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#0b1f38_0%,#071525_10%,#000b1f_20%,#000000_32%,#000b1f_42%,#000000_52%,#000b1f_62%,#0b1f38_74%,#061525_88%,#000000_100%)]"
+            className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#120904_0%,#0c0603_18%,#000000_34%,#140a04_52%,#000000_70%,#120904_100%)]"
             aria-hidden
           />
 
@@ -129,18 +139,7 @@ export function BitcoinPraticaEventPage() {
                 Palestrantes Confirmados
               </h2>
 
-              <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {speakers.map((speaker) => (
-                  <SpeakerFlipCard
-                    key={speaker.name}
-                    name={speaker.name}
-                    image={speaker.image}
-                    instagram={speaker.instagram}
-                    twitter={speaker.twitter}
-                    bio={speaker.bio}
-                  />
-                ))}
-              </div>
+              <SpeakerDialogGrid />
             </div>
           </section>
 
@@ -210,32 +209,37 @@ export function BitcoinPraticaEventPage() {
             </div>
           </section>
 
-          <section id="ingresso" className="relative py-20 md:py-28">
+          <EventScheduleScroll />
+
+          <section id="ingresso" className="relative overflow-hidden py-16 md:py-24">
+            <Image
+              src="/images/gallery/gallery-13.jpg"
+              alt=""
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-black/75" aria-hidden />
             <div className="relative mx-auto max-w-6xl px-5 md:px-8">
               <div className="mx-auto max-w-2xl text-center">
                 <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
                   Garanta o ingresso pelo menor preço
                 </h2>
-                <p className="mt-4 text-base leading-relaxed text-white/70 md:text-lg">
-                  Os valores abaixo são do{" "}
-                  <strong className="font-semibold text-white">
-                    1º lote
-                  </strong>
-                  . Em 18/08 o preço sobe{" "}
-                  <strong className="font-semibold text-accent">20%</strong>.
-                  Escolha seu acesso e trave o valor de hoje.
-                </p>
+                <LotCountdown />
               </div>
               <PricingCards />
-              <LotCountdown />
             </div>
           </section>
 
+          <OnlineAttendanceSection />
+
           <BonusSection />
+
+          <EventTestimonials />
 
           <section className="relative py-16 md:py-24">
             <div className="relative mx-auto max-w-6xl px-5 md:px-8">
-              <div className="ocean-glow-panel relative min-h-[440px] overflow-hidden rounded-[1.75rem] bg-[#0d2544] md:min-h-[500px] md:rounded-[2rem]">
+              <div className="ocean-glow-panel relative min-h-[440px] overflow-hidden rounded-[1.75rem] bg-[#1a0e06] md:min-h-[500px] md:rounded-[2rem]">
                 <div className="absolute inset-y-0 right-0 w-full md:w-[58%]">
                   <Image
                     src="/images/events/dominando-bitcoin/hero.png"
@@ -247,17 +251,15 @@ export function BitcoinPraticaEventPage() {
                 </div>
 
                 <div
-                  className="absolute inset-0 bg-gradient-to-r from-[#0d2544] from-0% via-[#0d2544] via-35% to-transparent to-78% md:from-[#0d2544] md:from-0% md:via-[#0d2544] md:via-42% md:to-transparent md:to-72%"
+                  className="absolute inset-0 bg-gradient-to-r from-[#1a0e06] from-0% via-[#1a0e06] via-35% to-transparent to-78% md:from-[#1a0e06] md:from-0% md:via-[#1a0e06] md:via-42% md:to-transparent md:to-72%"
                   aria-hidden
                 />
                 <div className="ocean-glow-panel__glow" aria-hidden />
                 <div className="ocean-glow-panel__line" aria-hidden />
 
                 <div className="relative z-10 flex min-h-[440px] max-w-xl flex-col justify-center px-7 py-12 sm:px-10 md:min-h-[500px] md:px-14 md:py-16">
-                  <h2 className="text-3xl font-bold tracking-tight text-white md:text-5xl">
-                    Entre no
-                    <br />
-                    Movimento
+                  <h2 className="max-w-[12em] text-balance text-3xl font-bold tracking-tight text-white md:text-5xl">
+                    Entre agora no movimento
                   </h2>
                   <p className="mt-6 text-base leading-relaxed text-white/80 md:text-lg">
                     O mundo caminha para mais controle, mais vigilância e menos

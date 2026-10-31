@@ -30,11 +30,11 @@ export function BenefitsSection() {
       className="relative overflow-hidden bg-background py-20 md:py-28"
     >
       <div
-        className="pointer-events-none absolute -left-[4%] top-[30%] h-80 w-80 rounded-full bg-[rgba(70,160,255,0.1)] blur-[60px]"
+        className="pointer-events-none absolute -left-[4%] top-[30%] h-80 w-80 rounded-full bg-[rgba(247,147,26,0.12)] blur-[60px]"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute -right-[5%] top-[20%] h-96 w-96 rounded-full bg-[rgba(70,160,255,0.14)] blur-[60px]"
+        className="pointer-events-none absolute -right-[5%] top-[20%] h-96 w-96 rounded-full bg-[rgba(247,147,26,0.16)] blur-[60px]"
         aria-hidden
       />
 
@@ -102,7 +102,7 @@ export function BenefitsSection() {
                         sizes="180px"
                         className="object-cover transition duration-500 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#071525]/55 via-transparent to-white/10" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#120904]/55 via-transparent to-white/10" />
                     </div>
                   </div>
                 </div>
@@ -117,7 +117,7 @@ export function BenefitsSection() {
                       sizes="100vw"
                       className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#071525]/50 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#120904]/50 via-transparent to-transparent" />
                   </div>
                 </div>
 
@@ -125,9 +125,9 @@ export function BenefitsSection() {
                   {item.tags.map((tag) => (
                     <li
                       key={tag}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-[rgba(70,160,255,0.22)] bg-[rgba(70,160,255,0.08)] px-2.5 py-1.5 text-[0.68rem] text-white/75"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.06] px-2.5 py-1.5 text-[0.68rem] text-white/70"
                     >
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#5eb0ff]" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-white/45" />
                       {tag}
                     </li>
                   ))}

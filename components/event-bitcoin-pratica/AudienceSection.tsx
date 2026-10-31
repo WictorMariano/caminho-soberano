@@ -30,8 +30,8 @@ function AudienceChip({
   const Icon = icons[icon];
 
   return (
-    <div className="audience-card flex shrink-0 items-center gap-3 rounded-2xl border border-[#2a3a55]/90 px-3.5 py-3 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.8)]">
-      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#1a2740] text-white">
+    <div className="audience-card flex shrink-0 items-center gap-3 rounded-2xl border border-accent/25 px-3.5 py-3 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.8)]">
+      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#2a180c] text-accent">
         <Icon size={20} strokeWidth={1.75} />
       </span>
       <span className="whitespace-nowrap pr-1 text-sm font-semibold tracking-tight text-white md:text-[0.95rem]">

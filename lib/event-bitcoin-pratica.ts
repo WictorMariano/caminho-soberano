@@ -136,24 +136,80 @@ export const ticketBenefits = [
   "Clareza filosófica e estratégica sobre soberania individual",
 ];
 
+export const ticketCheckoutUrl =
+  "https://www.instagram.com/ocaminhosoberano/";
+
+export const onlineAttendance = {
+  name: "Acompanhar online",
+  tagline: "Assista à imersão ao vivo, de onde estiver.",
+  image: "/images/events/dominando-bitcoin/benefits/strategy.jpg",
+  benefits: [
+    "Transmissão ao vivo dos quatro dias",
+    "Assista de qualquer lugar",
+    "Acesso às palestras e ao conteúdo prático",
+  ],
+} as const;
+
 export const tickets = [
   {
     id: "bronze",
     name: "Ingresso Bronze",
     price: "R$ 297",
     featured: false,
+    tagline: "Entrada presencial no 1º lote.",
+    image: "/images/events/dominando-bitcoin/benefits/bitcoin-practice.jpg",
+    benefits: [
+      "Imersão presencial de 18 a 21 de novembro",
+      "Bitcoin na prática, da wallet à operação",
+      "Networking com a comunidade soberana",
+    ],
   },
   {
     id: "prata",
     name: "Ingresso Prata",
     price: "R$ 997",
     featured: false,
+    tagline: "Presencial com mais proximidade e prática.",
+    image: "/images/events/dominando-bitcoin/benefits/protection.jpg",
+    benefits: [
+      "Tudo do ingresso Bronze",
+      "Mais tempo de prática com carteira e autocustódia",
+      "Acesso ao grupo VIP de WhatsApp",
+    ],
   },
   {
     id: "ouro",
     name: "Ingresso Ouro",
     price: "R$ 1.497",
     featured: true,
+    tagline: "A experiência completa da imersão.",
+    image: "/images/events/dominando-bitcoin/benefits/immersion.jpg",
+    benefits: [
+      "Tudo do ingresso Prata",
+      "Condição especial no portfólio Caminho Soberano",
+      "Acesso direto à rede de lideranças do evento",
+    ],
+  },
+] as const;
+
+export const eventTestimonials = [
+  {
+    name: "Tarcísio Machado",
+    role: "Fundador do Caminho Soberano",
+    quote:
+      "Soberania não se pede. Se exerce. O Bitcoin entra como ferramenta real de liberdade, patrimônio e autonomia.",
+  },
+  {
+    name: "Elídio Segundo",
+    role: "Autocustódia e proteção patrimonial",
+    quote:
+      "Cheguei ao Bitcoin para proteger patrimônio de bloqueios. Hoje ensino a blindar o dinheiro e construir fora do sistema.",
+  },
+  {
+    name: "Gabriel Della",
+    role: "Vault Capital",
+    quote:
+      "Mais de R$ 60 milhões sob gestão e uma convicção: soberania financeira se aprende na prática, não na teoria solta.",
   },
 ] as const;
 
