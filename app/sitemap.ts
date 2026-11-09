@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { EVENT_PATH } from "@/lib/event-bitcoin-pratica";
+import { DEFI_EVENT_PATH } from "@/lib/event-defi-soberano";
 import { siteUrl } from "@/lib/seo";
 import { PNE_PATH } from "@/lib/workshop-pne";
 import { WORKSHOP_PNE_PAGE_PATH } from "@/lib/workshop-pne-tickets";
@@ -15,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     WORKSHOP_PNE_PAGE_PATH,
     "/comunidade",
     EVENT_PATH,
+    DEFI_EVENT_PATH,
     PNE_PATH,
     "/conteudo",
     "/sobre",

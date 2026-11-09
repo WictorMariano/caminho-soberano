@@ -3,8 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Award, Flag, Sparkles } from "lucide-react";
 
-import { CoursePoster } from "@/components/membros/CoursePoster";
-import { HeroCarousel } from "@/components/membros/HeroCarousel";
+import { SchoolGrid } from "@/components/edu/SchoolGrid";
 import { BadgeIcon } from "@/components/platform/BadgeIcon";
 import { requireMember } from "@/lib/membros/session";
 import {
@@ -13,8 +12,8 @@ import {
   trails,
 } from "@/lib/membros/catalog";
 import { memberLevels } from "@/lib/membros/demo";
+import { getCurriculum } from "@/lib/edu/curriculum";
 import {
-  courses,
   demoMemberState,
   getBadge,
 } from "@/lib/platform/demo";
@@ -23,6 +22,7 @@ export const metadata: Metadata = { title: "Início" };
 
 export default async function MembrosHomePage() {
   const { name } = await requireMember();
+  const schools = getCurriculum();
   const level = memberLevels.find((l) => l.current);
   const earnedBadges = demoMemberState.earnedBadgeIds
     .map((id) => getBadge(id))
@@ -39,7 +39,7 @@ export default async function MembrosHomePage() {
             Olá, {name}
           </h1>
           <p className="mt-1.5 hidden max-w-xl text-sm text-slate-400 sm:block">
-            Cursos, trilhas e desafios para construir soberania — com progresso
+            Edu, trilhas e desafios para construir soberania — com progresso
             e conquistas.
           </p>
         </div>
@@ -59,30 +59,23 @@ export default async function MembrosHomePage() {
         </Link>
       </header>
 
-      <HeroCarousel courses={courses} />
-
-      <section>
-        <div className="mb-4 flex items-end justify-between gap-3">
+      <section className="space-y-4">
+        <div className="flex items-end justify-between gap-3">
           <div>
-            <h2 className="text-xl font-bold tracking-tight">
-              Principais cursos
-            </h2>
+            <h2 className="text-xl font-bold tracking-tight">Edu</h2>
             <p className="mt-1 text-sm text-slate-400">
-              Escolha um curso e avance aula a aula.
+              A Escola de Soberania Financeira está aberta. As outras escolas
+              aparecem bloqueadas.
             </p>
           </div>
           <Link
-            href="/membros/cursos"
+            href="/membros/edu"
             className="hidden text-sm font-semibold text-accent hover:underline sm:inline"
           >
-            Ver todos
+            Abrir Edu
           </Link>
         </div>
-        <div className="-mx-4 flex gap-3 overflow-x-auto px-4 pb-2 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:px-0">
-          {courses.map((course) => (
-            <CoursePoster key={course.id} course={course} />
-          ))}
-        </div>
+        <SchoolGrid schools={schools} />
       </section>
 
       <section>

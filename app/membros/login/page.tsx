@@ -48,7 +48,7 @@ export default async function MembrosLoginPage() {
             <GraduationCap size={22} className="text-accent" /> Entrar
           </h1>
           <p className="mt-2 text-sm text-slate-400">
-            Materiais, videoaulas e o progresso da sua jornada.
+            Entre com o e-mail e a senha da sua conta.
           </p>
           <MemberLoginForm />
         </div>

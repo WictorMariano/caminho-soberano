@@ -38,11 +38,16 @@ export async function login(
   });
   if (error || !data.user) return { error: "E-mail ou senha incorretos." };
 
-  const { data: admin } = await supabase
+  const { data: admin, error: adminError } = await supabase
     .from("admins")
     .select("user_id")
     .eq("user_id", data.user.id)
     .maybeSingle();
+
+  if (adminError) {
+    await supabase.auth.signOut();
+    return { error: "Não foi possível consultar os administradores. Tente de novo em instantes." };
+  }
 
   if (!admin) {
     await supabase.auth.signOut();

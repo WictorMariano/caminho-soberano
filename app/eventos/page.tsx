@@ -1,15 +1,25 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Users, Shield, Network, BookOpen } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  CalendarDays,
+  MapPin,
+  Network,
+  Shield,
+  Users,
+} from "lucide-react";
 
 import { EventosHero } from "@/components/events/EventosHero";
-import { WorkshopPneEventCard } from "@/components/events/EventsSection";
-import { PageShell } from "@/components/PageShell";
 import {
-  WORKSHOP_PNE_PAGE_PATH,
-  workshopPneMeta,
-} from "@/lib/workshop-pne-tickets";
+  DefiEventCard,
+  WorkshopPneEventCard,
+} from "@/components/events/EventsSection";
+import { PageShell } from "@/components/PageShell";
+import { EVENT_PATH, eventMeta } from "@/lib/event-bitcoin-pratica";
+import { DEFI_EVENT_PATH } from "@/lib/event-defi-soberano";
+import { PNE_PATH, pneMeta } from "@/lib/workshop-pne";
 
 export const metadata: Metadata = {
   title: "Eventos",
@@ -76,8 +86,86 @@ export default function EventosPage() {
         id="lista-eventos"
         className="border-t border-border pb-16 pt-4 md:pb-24"
       >
-        <div className="mx-auto max-w-6xl px-5 md:px-8">
-          <WorkshopPneEventCard className="mt-8" />
+        <div className="mx-auto max-w-6xl space-y-6 px-5 md:px-8">
+          <DefiEventCard className="mt-8" />
+
+          <Link
+            href={EVENT_PATH}
+            className="block overflow-hidden rounded-[2rem] border border-accent/30 bg-[#081c34] transition hover:border-accent/55"
+          >
+            <div className="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
+              <div className="relative min-h-[200px] overflow-hidden">
+                <Image
+                  src="/images/events/banners/soberania.jpg"
+                  alt=""
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 55vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#081c34] via-[#081c34]/70 to-transparent" />
+                <div className="relative flex h-full flex-col justify-end p-6 md:p-10">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                    Próxima imersão
+                  </p>
+                  <h3 className="mt-3 max-w-md text-2xl font-extrabold tracking-tight text-white md:text-3xl">
+                    Dominando o Bitcoin na prática
+                  </h3>
+                </div>
+              </div>
+              <div className="flex flex-col justify-center p-6 md:p-10">
+                <p className="text-sm leading-relaxed text-white/70 md:text-base">
+                  Quatro dias em São Paulo para dominar wallets, segurança,
+                  proteção patrimonial e networking soberano.
+                </p>
+                <div className="mt-5 flex flex-wrap gap-3 text-sm text-white/75">
+                  <span className="inline-flex items-center gap-1.5">
+                    <MapPin size={14} className="text-accent" />
+                    {eventMeta.location}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <CalendarDays size={14} className="text-accent" />
+                    {eventMeta.dateShort}
+                  </span>
+                </div>
+                <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-accent">
+                  Ver página do evento <ArrowRight size={16} />
+                </span>
+              </div>
+            </div>
+          </Link>
+
+          <WorkshopPneEventCard />
+
+          <Link
+            href={PNE_PATH}
+            className="block overflow-hidden rounded-[2rem] border border-white/10 bg-surface transition hover:border-accent/35"
+          >
+            <div className="grid gap-0 md:grid-cols-[0.9fr_1.1fr]">
+              <div className="relative min-h-[180px]">
+                <Image
+                  src="/images/gallery/gallery-03.png"
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6 md:p-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                  Realizado · {pneMeta.dateShort}
+                </p>
+                <h3 className="mt-3 text-2xl font-extrabold tracking-tight md:text-3xl">
+                  {pneMeta.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-foreground/70 md:text-base">
+                  {pneMeta.tagline} · {pneMeta.city}
+                </p>
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent">
+                  Ver página do evento <ArrowRight size={16} />
+                </span>
+              </div>
+            </div>
+          </Link>
         </div>
       </section>
 
@@ -176,17 +264,17 @@ export default function EventosPage() {
       <section className="border-t border-border py-16 md:py-24">
         <div className="mx-auto max-w-3xl px-5 text-center md:px-8">
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-            Próximo encontro: {workshopPneMeta.shortTitle}
+            Entre na lista do DeFi Soberano
           </h2>
           <p className="mt-4 text-base leading-relaxed text-foreground/70 md:text-lg">
-            {workshopPneMeta.dateFull}, no {workshopPneMeta.venueFull} e
-            online, ao vivo. Vagas limitadas.
+            Cadastro gratuito, sem compromisso. Avisamos quando data, local e
+            condições forem definidos.
           </p>
           <Link
-            href={WORKSHOP_PNE_PAGE_PATH}
+            href={DEFI_EVENT_PATH}
             className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-accent-ink transition hover:brightness-95"
           >
-            Garantir minha vaga
+            Quero entrar na lista
             <span aria-hidden>→</span>
           </Link>
         </div>

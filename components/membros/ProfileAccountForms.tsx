@@ -1,15 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState, useState } from "react";
+
+import {
+  atualizarEmailMembro,
+  atualizarSenhaMembro,
+  type AccountState,
+} from "@/app/membros/actions";
 
 const fieldClass =
   "mt-1.5 w-full rounded-xl border border-white/15 bg-[#061426] px-3.5 py-3 text-base text-white outline-none transition placeholder:text-slate-500 focus:border-accent focus:ring-2 focus:ring-accent/20";
 
+const initialState: AccountState = { error: null, message: null };
+
 export function ProfileAccountForms({ email }: { email: string }) {
-  const [currentEmail, setCurrentEmail] = useState(email);
-  const [emailDraft, setEmailDraft] = useState(email);
-  const [passwordMsg, setPasswordMsg] = useState<string | null>(null);
-  const [emailMsg, setEmailMsg] = useState<string | null>(null);
+  const [emailState, emailAction, emailPending] = useActionState(atualizarEmailMembro, initialState);
+  const [passwordState, passwordAction, passwordPending] = useActionState(atualizarSenhaMembro, initialState);
   const [notify, setNotify] = useState(true);
   const [reduceMotion, setReduceMotion] = useState(false);
 
@@ -18,48 +24,32 @@ export function ProfileAccountForms({ email }: { email: string }) {
       <section className="rounded-2xl border border-white/10 bg-[#0b1c30] p-5">
         <h2 className="text-base font-semibold text-white">Conta</h2>
         <p className="mt-1 text-sm text-slate-400">
-          E-mail atual: <span className="text-slate-200">{currentEmail}</span>
+          E-mail atual: <span className="text-slate-200">{email}</span>
         </p>
 
-        <form
-          className="mt-5 space-y-3"
-          onSubmit={(e) => {
-            e.preventDefault();
-            setCurrentEmail(emailDraft.trim() || currentEmail);
-            setEmailMsg("E-mail atualizado na demonstração.");
-            window.setTimeout(() => setEmailMsg(null), 2200);
-          }}
-        >
+        <form action={emailAction} className="mt-5 space-y-3">
           <label className="block text-xs font-medium text-slate-300">
             Trocar e-mail
             <input
               type="email"
-              value={emailDraft}
-              onChange={(e) => setEmailDraft(e.target.value)}
+              name="email"
+              defaultValue={email}
               className={fieldClass}
               required
             />
           </label>
           <button
             type="submit"
-            className="w-full rounded-xl bg-accent px-4 py-3 text-sm font-bold text-accent-ink active:scale-[0.99] sm:w-auto"
+            disabled={emailPending}
+            className="w-full rounded-xl bg-accent px-4 py-3 text-sm font-bold text-accent-ink active:scale-[0.99] disabled:opacity-70 sm:w-auto"
           >
-            Salvar e-mail
+            {emailPending ? "Salvando..." : "Salvar e-mail"}
           </button>
-          {emailMsg ? (
-            <p className="text-sm text-accent">{emailMsg}</p>
-          ) : null}
+          {emailState.error ? <p className="text-sm text-red-300">{emailState.error}</p> : null}
+          {emailState.message ? <p className="text-sm text-accent">{emailState.message}</p> : null}
         </form>
 
-        <form
-          className="mt-8 space-y-3 border-t border-white/10 pt-6"
-          onSubmit={(e) => {
-            e.preventDefault();
-            setPasswordMsg("Senha atualizada na demonstração.");
-            (e.currentTarget as HTMLFormElement).reset();
-            window.setTimeout(() => setPasswordMsg(null), 2200);
-          }}
-        >
+        <form action={passwordAction} className="mt-8 space-y-3 border-t border-white/10 pt-6">
           <label className="block text-xs font-medium text-slate-300">
             Senha atual
             <input
@@ -77,19 +67,30 @@ export function ProfileAccountForms({ email }: { email: string }) {
               name="next"
               autoComplete="new-password"
               required
-              minLength={6}
+              minLength={8}
+              className={fieldClass}
+            />
+          </label>
+          <label className="block text-xs font-medium text-slate-300">
+            Confirmar nova senha
+            <input
+              type="password"
+              name="confirm"
+              autoComplete="new-password"
+              required
+              minLength={8}
               className={fieldClass}
             />
           </label>
           <button
             type="submit"
-            className="w-full rounded-xl border border-white/15 px-4 py-3 text-sm font-semibold text-white transition hover:border-accent hover:text-accent active:scale-[0.99] sm:w-auto"
+            disabled={passwordPending}
+            className="w-full rounded-xl border border-white/15 px-4 py-3 text-sm font-semibold text-white transition hover:border-accent hover:text-accent active:scale-[0.99] disabled:opacity-70 sm:w-auto"
           >
-            Trocar senha
+            {passwordPending ? "Salvando..." : "Trocar senha"}
           </button>
-          {passwordMsg ? (
-            <p className="text-sm text-accent">{passwordMsg}</p>
-          ) : null}
+          {passwordState.error ? <p className="text-sm text-red-300">{passwordState.error}</p> : null}
+          {passwordState.message ? <p className="text-sm text-accent">{passwordState.message}</p> : null}
         </form>
       </section>
 
@@ -106,14 +107,10 @@ export function ProfileAccountForms({ email }: { email: string }) {
               role="switch"
               aria-checked={notify}
               onClick={() => setNotify((v) => !v)}
-              className={`relative h-7 w-12 rounded-full transition ${
-                notify ? "bg-accent" : "bg-white/15"
-              }`}
+              className={`relative h-7 w-12 rounded-full transition ${notify ? "bg-accent" : "bg-white/15"}`}
             >
               <span
-                className={`absolute top-0.5 h-6 w-6 rounded-full bg-white transition ${
-                  notify ? "left-5" : "left-0.5"
-                }`}
+                className={`absolute top-0.5 h-6 w-6 rounded-full bg-white transition ${notify ? "left-5" : "left-0.5"}`}
               />
             </button>
           </li>
@@ -127,14 +124,10 @@ export function ProfileAccountForms({ email }: { email: string }) {
               role="switch"
               aria-checked={reduceMotion}
               onClick={() => setReduceMotion((v) => !v)}
-              className={`relative h-7 w-12 rounded-full transition ${
-                reduceMotion ? "bg-accent" : "bg-white/15"
-              }`}
+              className={`relative h-7 w-12 rounded-full transition ${reduceMotion ? "bg-accent" : "bg-white/15"}`}
             >
               <span
-                className={`absolute top-0.5 h-6 w-6 rounded-full bg-white transition ${
-                  reduceMotion ? "left-5" : "left-0.5"
-                }`}
+                className={`absolute top-0.5 h-6 w-6 rounded-full bg-white transition ${reduceMotion ? "left-5" : "left-0.5"}`}
               />
             </button>
           </li>

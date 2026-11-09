@@ -5,7 +5,7 @@ import { startTransition, useActionState, type FormEvent } from "react";
 import { ArrowUpRight, ShieldCheck } from "lucide-react";
 import { submitWaitlist } from "@/app/lista-de-espera/actions";
 import { HoneypotField, SignupError, SignupSuccess } from "@/components/waitlist/SignupFeedback";
-import { brazilianStates, interestOptions } from "@/lib/waitlist";
+import { brazilianStates, featuredInterest, interestOptions } from "@/lib/waitlist";
 import { initialSignupState } from "@/lib/waitlist-form";
 
 const fieldClass = "mt-2 w-full min-w-0 rounded-xl border border-white/15 bg-[#081626] px-3.5 py-3 text-base text-white outline-none transition placeholder:text-slate-500 focus:border-accent focus:ring-2 focus:ring-accent/20";
@@ -73,9 +73,35 @@ export function WaitlistForm() {
           <legend className="pr-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">02 / O que você quer aprender?</legend>
           <p className="mb-3 text-xs text-slate-400">Escolha quantos temas quiser.</p>
           <div className="grid grid-cols-2 gap-2">
-            {interestOptions.map((interest) => <label key={interest} className="flex cursor-pointer items-center gap-2 rounded-xl border border-white/10 bg-white/[0.025] p-3 text-xs leading-snug text-slate-300 transition hover:border-white/30 has-checked:border-accent/60 has-checked:bg-accent/10 has-checked:text-accent">
-              <input type="checkbox" name="interests" value={interest} className="h-4 w-4 shrink-0 accent-[#fff100]" />{interest}
-            </label>)}
+            {interestOptions.map((interest) => {
+              const featured = interest === featuredInterest;
+              return (
+                <label
+                  key={interest}
+                  className={
+                    featured
+                      ? "col-span-2 flex cursor-pointer items-center gap-2 rounded-xl border border-accent/50 bg-accent/10 p-3.5 text-sm font-semibold leading-snug text-accent transition hover:border-accent has-checked:border-accent has-checked:bg-accent/20"
+                      : "flex cursor-pointer items-center gap-2 rounded-xl border border-white/10 bg-white/[0.025] p-3 text-xs leading-snug text-slate-300 transition hover:border-white/30 has-checked:border-accent/60 has-checked:bg-accent/10 has-checked:text-accent"
+                  }
+                >
+                  <input
+                    type="checkbox"
+                    name="interests"
+                    value={interest}
+                    defaultChecked={featured}
+                    className="h-4 w-4 shrink-0 accent-[#fff100]"
+                  />
+                  <span className="flex flex-1 items-center justify-between gap-2">
+                    {interest}
+                    {featured ? (
+                      <span className="rounded-full border border-accent/40 bg-accent/15 px-2 py-0.5 text-[0.6rem] font-bold uppercase tracking-[0.14em] text-accent">
+                        Em destaque
+                      </span>
+                    ) : null}
+                  </span>
+                </label>
+              );
+            })}
           </div>
         </fieldset>
         <fieldset className="border-t border-white/10 pt-5">
@@ -87,7 +113,7 @@ export function WaitlistForm() {
             </label>
             <StateSelect id="waitlist-preferred-state" name="preferredState" label="Estado desejado" />
           </div>
-          <label className="mt-4 flex cursor-pointer items-start gap-2.5 text-xs leading-relaxed text-slate-300"><input type="checkbox" name="octoberEvent" defaultChecked className="mt-0.5 h-4 w-4 shrink-0 accent-[#fff100]" />Tenho interesse no encontro de 31 de outubro, em São Paulo.</label>
+          <label className="mt-4 flex cursor-pointer items-start gap-2.5 text-xs leading-relaxed text-slate-300"><input type="checkbox" name="octoberEvent" defaultChecked className="mt-0.5 h-4 w-4 shrink-0 accent-[#fff100]" />Tenho interesse no DeFi Soberano, em São Paulo.</label>
         </fieldset>
         <label className="flex cursor-pointer items-start gap-2.5 text-[11px] leading-relaxed text-slate-400"><input type="checkbox" name="consent" required className="mt-0.5 h-4 w-4 shrink-0 accent-[#fff100]" /><span>Quero receber novidades sobre eventos por e-mail e WhatsApp e li a <Link href="/politica-de-privacidade" className="text-slate-200 underline underline-offset-2 hover:text-accent">Política de Privacidade</Link>. Posso cancelar o recebimento a qualquer momento.</span></label>
         <div>

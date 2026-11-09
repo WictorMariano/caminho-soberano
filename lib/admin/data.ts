@@ -18,6 +18,13 @@ export type WaitlistSignup = {
   october_event: boolean;
 };
 
+export type MemberAccount = {
+  user_id: string;
+  created_at: string;
+  name: string;
+  email: string;
+};
+
 export type CommunitySignup = {
   id: string;
   created_at: string;
@@ -38,6 +45,16 @@ export async function fetchWaitlistSignups(supabase: AdminClient): Promise<Waitl
     .limit(MAX_ROWS);
   if (error) throw error;
   return (data ?? []) as WaitlistSignup[];
+}
+
+export async function fetchMembers(supabase: AdminClient): Promise<MemberAccount[]> {
+  const { data, error } = await supabase
+    .from("members")
+    .select("user_id, created_at, name, email")
+    .order("created_at", { ascending: false })
+    .limit(MAX_ROWS);
+  if (error) throw error;
+  return (data ?? []) as MemberAccount[];
 }
 
 export async function fetchCommunitySignups(supabase: AdminClient): Promise<CommunitySignup[]> {

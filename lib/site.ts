@@ -1,4 +1,5 @@
 import { EVENT_PATH } from "@/lib/event-bitcoin-pratica";
+import { DEFI_EVENT_PATH } from "@/lib/event-defi-soberano";
 
 /** Links do menu — apenas páginas reais do site */
 export const mainNav = [
@@ -30,6 +31,7 @@ export const sitePages = [
   { href: "/sobre", label: "Sobre" },
   { href: "/workshop-pne", label: "Workshop PNE" },
   { href: EVENT_PATH, label: "Dominando o Bitcoin" },
+  { href: DEFI_EVENT_PATH, label: "DeFi Soberano" },
   { href: "/eventos/programa-nova-economia", label: "Programa Nova Economia" },
   { href: "/faq", label: "FAQ" },
 ] as const;

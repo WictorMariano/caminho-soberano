@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 
 import { PageHeader, StatCard } from "@/components/admin/AdminUi";
+import { LiveDashboard } from "@/components/admin/LiveDashboard";
 import { requireAdmin } from "@/lib/admin/dal";
 import {
   captureLists,
@@ -21,6 +22,8 @@ export const metadata: Metadata = { title: "Dashboard" };
 
 export default async function AdminDashboardPage() {
   const session = await requireAdmin();
+  if (!session.demo) return <LiveDashboard supabase={session.supabase} />;
+
   const stats = platformStats();
 
   return (

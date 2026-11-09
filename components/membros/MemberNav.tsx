@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import {
   Award,
   BookOpen,
-  Clapperboard,
+  GraduationCap,
   Flag,
   LayoutDashboard,
   Route,
@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/membros", label: "Início", icon: LayoutDashboard },
-  { href: "/membros/cursos", label: "Cursos", icon: Clapperboard },
+  { href: "/membros/edu", label: "Edu", icon: GraduationCap },
   { href: "/membros/trilhas", label: "Trilhas", icon: Route },
   { href: "/membros/desafios", label: "Desafios", icon: Flag },
   { href: "/membros/materiais", label: "Materiais", icon: BookOpen },

@@ -73,6 +73,65 @@ create policy "Admin ve o proprio cadastro"
   to authenticated
   using (user_id = auth.uid());
 
+-- Contas da área de membros (cadastro com e-mail e senha)
+create table if not exists public.members (
+  user_id uuid primary key references auth.users (id) on delete cascade,
+  email text not null,
+  name text not null check (char_length(name) between 2 and 120),
+  created_at timestamptz not null default now()
+);
+
+create index if not exists members_created_at_idx on public.members (created_at desc);
+
+alter table public.members enable row level security;
+
+drop policy if exists "Membro ve o proprio cadastro" on public.members;
+create policy "Membro ve o proprio cadastro"
+  on public.members for select
+  to authenticated
+  using (user_id = auth.uid());
+
+drop policy if exists "Membro atualiza o proprio cadastro" on public.members;
+create policy "Membro atualiza o proprio cadastro"
+  on public.members for update
+  to authenticated
+  using (user_id = auth.uid())
+  with check (user_id = auth.uid());
+
+drop policy if exists "Admins leem os membros" on public.members;
+create policy "Admins leem os membros"
+  on public.members for select
+  to authenticated
+  using (public.is_admin());
+
+-- Lista de espera da imersão DeFi Soberano
+create table if not exists public.defi_waitlist_signups (
+  id uuid primary key default gen_random_uuid(),
+  created_at timestamptz not null default now(),
+  name text not null check (char_length(name) between 2 and 120),
+  email text not null check (char_length(email) <= 254),
+  whatsapp text not null check (char_length(whatsapp) <= 24),
+  city text not null check (char_length(city) <= 100),
+  state char(2) not null,
+  defi_level text not null,
+  main_interest text not null,
+  sp_availability text not null,
+  mentorship_interest text not null,
+  marketing_opt_in boolean not null default false,
+  consent boolean not null default false
+);
+
+create index if not exists defi_waitlist_signups_created_at_idx
+  on public.defi_waitlist_signups (created_at desc);
+
+alter table public.defi_waitlist_signups enable row level security;
+
+drop policy if exists "Admins leem a lista DeFi" on public.defi_waitlist_signups;
+create policy "Admins leem a lista DeFi"
+  on public.defi_waitlist_signups for select
+  to authenticated
+  using (public.is_admin());
+
 -- Os formulários gravam pelo servidor do site com a chave service role,
 -- por isso não existe nenhuma política de insert para o público.
 
@@ -82,3 +141,11 @@ create policy "Admin ve o proprio cadastro"
 -- insert into public.admins (user_id, email)
 -- select id, email from auth.users where email = 'admin@exemplo.com'
 -- on conflict (user_id) do nothing;
+
+insert into public.admins (user_id, email)
+select id, email from auth.users where email = 'marianowictor@gmail.com'
+on conflict (user_id) do nothing;
+
+insert into public.members (user_id, email, name)
+select id, email, 'Wictor' from auth.users where email = 'marianowictor@gmail.com'
+on conflict (user_id) do nothing;

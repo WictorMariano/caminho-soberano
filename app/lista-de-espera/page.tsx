@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, BellRing, CalendarDays, MessageCircle, Network, Sparkles } from "lucide-react";
-import { WorkshopPneEventCard } from "@/components/events/EventsSection";
+import { DefiEventCard } from "@/components/events/EventsSection";
 import { PageShell } from "@/components/PageShell";
 import { CommunityWaitlistForm } from "@/components/waitlist/CommunityWaitlistForm";
 import { WaitlistHero } from "@/components/waitlist/WaitlistHero";
 import { WAITLIST_PATH } from "@/lib/waitlist";
 
 const title = "Próximos encontros · Fila de espera";
-const description = "Conheça a fila de espera dos eventos Caminho Soberano e entre para a comunidade no WhatsApp. Bitcoin, autocustódia, IA e Nova Economia.";
+const description = "Entre na lista de espera do DeFi Soberano e da comunidade Caminho Soberano. Bitcoin, DeFi, autocustódia, IA e Nova Economia.";
 
 export const metadata: Metadata = {
   title, description,
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 const communityBenefits = [
   { icon: BellRing, title: "Novidades em primeira mão", text: "Saiba antes de todo mundo sobre novos eventos, lotes de ingressos e cidades confirmadas." },
-  { icon: Sparkles, title: "Conteúdo que vale a pena", text: "Bitcoin, autocustódia, IA e Nova Economia em uma linguagem prática, para aplicar no dia a dia." },
+  { icon: Sparkles, title: "Conteúdo que vale a pena", text: "Bitcoin, DeFi, autocustódia, IA e Nova Economia em uma linguagem prática, para aplicar no dia a dia." },
   { icon: Network, title: "Conexões de verdade", text: "Converse com contadores, empreendedores e profissionais que estão no mesmo caminho que você." },
   { icon: CalendarDays, title: "Encontros perto de você", text: "Sua cidade e sua região ajudam a decidir onde acontecem os próximos eventos." },
 ];
@@ -45,7 +45,7 @@ export default function WaitlistPage() {
             </div>
             <Link href="/eventos" className="inline-flex items-center gap-2 text-sm font-semibold text-accent">Ver todos os eventos <ArrowUpRight size={16} /></Link>
           </div>
-          <WorkshopPneEventCard className="mt-10" />
+          <DefiEventCard className="mt-10" tone="ocean" />
         </div>
       </section>
 

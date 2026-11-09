@@ -244,6 +244,91 @@ body {
   background: var(--background);
 }
 
+/* Teal só na página DeFi Soberano */
+.theme-defi {
+  --background: #061018;
+  --foreground: #e8f7f4;
+  --muted: #8aadb0;
+  --surface: #0b1c26;
+  --surface-elevated: #12303a;
+  --border: rgba(62, 207, 190, 0.2);
+  --accent: #3ecfbe;
+  --accent-ink: #041512;
+  --teal: #1f6f72;
+  --cs-glow: rgba(62, 207, 190, 0.22);
+  color: var(--foreground);
+  background: var(--background);
+}
+
+.theme-defi ::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.theme-defi .defi-hero-bg {
+  background:
+    radial-gradient(ellipse 65% 50% at 82% 12%, rgba(62, 207, 190, 0.18), transparent 58%),
+    radial-gradient(ellipse 45% 40% at 12% 78%, rgba(24, 96, 110, 0.35), transparent 55%),
+    linear-gradient(160deg, #07141d 0%, #061018 45%, #040d14 100%);
+}
+
+.theme-defi .defi-grid {
+  background-image:
+    linear-gradient(rgba(62, 207, 190, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(62, 207, 190, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 70% 60% at 70% 30%, black, transparent 75%);
+}
+
+.theme-defi .ocean-hero-bg {
+  background:
+    radial-gradient(ellipse 70% 55% at 78% 18%, rgba(62, 207, 190, 0.2), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(24, 96, 110, 0.32), transparent 55%),
+    linear-gradient(155deg, #07141d 0%, #061018 42%, #040d14 100%);
+}
+
+.theme-defi .benefit-soon-card {
+  background:
+    linear-gradient(
+      155deg,
+      rgba(18, 40, 48, 0.96) 0%,
+      rgba(10, 24, 32, 0.98) 55%,
+      rgba(6, 16, 24, 1) 100%
+    );
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 18px 40px -24px rgba(0, 0, 0, 0.55);
+}
+
+.theme-defi .benefit-soon-card:hover {
+  border-color: rgba(62, 207, 190, 0.35);
+}
+
+.theme-defi .benefit-soon-card__line {
+  background: linear-gradient(90deg, transparent, #3ecfbe, transparent);
+  box-shadow: 0 0 14px rgba(62, 207, 190, 0.55);
+}
+
+.theme-defi .benefit-soon-card__glow {
+  background: linear-gradient(to top, rgba(62, 207, 190, 0.22), transparent);
+}
+
+.theme-defi .audience-card {
+  background: rgba(8, 24, 32, 0.9);
+}
+
+.theme-defi .ocean-glow-panel {
+  background: #081820;
+}
+
+.theme-defi .ocean-glow-panel__glow {
+  background: radial-gradient(ellipse at 70% 80%, rgba(62, 207, 190, 0.22), transparent 55%);
+}
+
+.theme-defi .ocean-glow-panel__line {
+  background: linear-gradient(90deg, transparent, rgba(62, 207, 190, 0.55), transparent);
+}
+
 /* Laranja só na página Dominando o Bitcoin */
 .theme-bitcoin {
   --background: #120904;

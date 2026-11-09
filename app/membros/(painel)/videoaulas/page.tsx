@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function MembrosVideoaulasRedirect() {
-  redirect("/membros/cursos");
+  redirect("/membros/edu");
 }

@@ -10,7 +10,8 @@ import {
   ListChecks,
   MessageCircle,
   Users,
-  Clapperboard,
+  UserRound,
+  GraduationCap,
   Flag,
   HelpCircle,
   Layers,
@@ -29,6 +30,7 @@ const groups = [
       { href: "/admin/listas", label: "Listas", icon: Layers },
       { href: "/admin/leads", label: "Leads", icon: Users },
       { href: "/admin/paginas", label: "Páginas de captura", icon: FileText },
+      { href: "/admin/membros", label: "Membros", icon: UserRound },
       { href: "/admin/lista-de-espera", label: "Lista de espera", icon: ListChecks },
       { href: "/admin/grupo-whatsapp", label: "Grupo WhatsApp", icon: MessageCircle },
     ],
@@ -36,7 +38,7 @@ const groups = [
   {
     label: "Área de membros",
     links: [
-      { href: "/admin/cursos", label: "Cursos", icon: Clapperboard },
+      { href: "/admin/edu", label: "Edu", icon: GraduationCap },
       { href: "/admin/desafios", label: "Desafios", icon: Flag },
       { href: "/admin/quizzes", label: "Quizzes", icon: HelpCircle },
       { href: "/admin/insignias", label: "Insígnias", icon: Award },

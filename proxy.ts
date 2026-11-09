@@ -11,14 +11,18 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (pathname.startsWith("/membros")) {
+    const { response, hasUser } = await updateSession(request);
     const isDemo = request.cookies.get(MEMBER_DEMO_COOKIE)?.value === "1";
-    if (!isDemo && pathname !== MEMBERS_LOGIN) {
+    const isPublic = pathname === MEMBERS_LOGIN || pathname === "/membros/cadastro";
+    if (!hasUser && !isDemo && !isPublic) {
       const loginUrl = request.nextUrl.clone();
       loginUrl.pathname = MEMBERS_LOGIN;
       loginUrl.search = "";
-      return NextResponse.redirect(loginUrl);
+      const redirect = NextResponse.redirect(loginUrl);
+      response.cookies.getAll().forEach((cookie) => redirect.cookies.set(cookie));
+      return redirect;
     }
-    return NextResponse.next();
+    return response;
   }
 
   const { response, hasUser } = await updateSession(request);

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  Clapperboard,
+  GraduationCap,
   Flag,
   House,
   Route,
@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 
 const tabs = [
   { href: "/membros", label: "Início", icon: House, exact: true },
-  { href: "/membros/cursos", label: "Cursos", icon: Clapperboard },
+  { href: "/membros/edu", label: "Edu", icon: GraduationCap },
   { href: "/membros/desafios", label: "Desafios", icon: Flag },
   { href: "/membros/trilhas", label: "Trilhas", icon: Route },
   { href: "/membros/perfil", label: "Perfil", icon: UserRound },

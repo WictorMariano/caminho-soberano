@@ -12,6 +12,7 @@ export const waitlistHeroPhotos = [
 ] as const;
 
 export const interestOptions = [
+  "DeFi",
   "Programa Nova Economia",
   "Bitcoin na prática",
   "Autocustódia",
@@ -19,6 +20,8 @@ export const interestOptions = [
   "Soberania patrimonial",
   "Outros programas",
 ] as const;
+
+export const featuredInterest = "DeFi" as const;
 
 export const brazilianStates = [
   ["AC", "Acre"], ["AL", "Alagoas"], ["AP", "Amapá"], ["AM", "Amazonas"],

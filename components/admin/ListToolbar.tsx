@@ -55,14 +55,14 @@ export function ListToolbar({
   );
 }
 
-export function TableShell({ children, empty, count, total }: { children: React.ReactNode; empty: boolean; count: number; total: number }) {
+export function TableShell({ children, empty, count, total, noun = "inscritos", emptyLabel = "Nenhum inscrito encontrado." }: { children: React.ReactNode; empty: boolean; count: number; total: number; noun?: string; emptyLabel?: string }) {
   return (
     <div className="mt-6">
       <p className="mb-3 text-xs text-slate-400">
-        {count === total ? `${total.toLocaleString("pt-BR")} inscritos` : `${count.toLocaleString("pt-BR")} de ${total.toLocaleString("pt-BR")} inscritos`}
+        {count === total ? `${total.toLocaleString("pt-BR")} ${noun}` : `${count.toLocaleString("pt-BR")} de ${total.toLocaleString("pt-BR")} ${noun}`}
       </p>
       {empty ? (
-        <p className="rounded-2xl border border-white/10 bg-[#081a2e] px-5 py-10 text-center text-sm text-slate-400">Nenhum inscrito encontrado.</p>
+        <p className="rounded-2xl border border-white/10 bg-[#081a2e] px-5 py-10 text-center text-sm text-slate-400">{emptyLabel}</p>
       ) : (
         <div className="overflow-x-auto rounded-2xl border border-white/10 bg-[#081a2e]">
           <table className="w-full min-w-[900px] text-left text-sm">{children}</table>
