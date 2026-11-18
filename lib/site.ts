@@ -33,6 +33,7 @@ export const sitePages = [
   { href: EVENT_PATH, label: "Dominando o Bitcoin" },
   { href: DEFI_EVENT_PATH, label: "DeFi Soberano" },
   { href: "/eventos/programa-nova-economia", label: "Programa Nova Economia" },
+  { href: "/membros/login", label: "Área de membros" },
   { href: "/faq", label: "FAQ" },
 ] as const;
 
@@ -44,6 +45,11 @@ export const footerLegalPages = [
 export const ctaNav = {
   href: "/eventos",
   label: "Oportunidade",
+} as const;
+
+export const membersLoginNav = {
+  href: "/membros/login",
+  label: "Login",
 } as const;
 
 export const socialLinks = {

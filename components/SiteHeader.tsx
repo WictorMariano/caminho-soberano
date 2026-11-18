@@ -5,13 +5,16 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
-import { ctaNav, mainNav } from "@/lib/site";
+import { ctaNav, mainNav, membersLoginNav } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 type SiteHeaderProps = {
   homeHref?: string;
   ctaHref?: string;
   ctaLabel?: string;
+  loginHref?: string;
+  loginLabel?: string;
+  showLogin?: boolean;
   navLinks?: { href: string; label: string }[];
   /** Menu flutuante com glassmorphism (padrão do evento) */
   floating?: boolean;
@@ -21,6 +24,9 @@ export function SiteHeader({
   homeHref = "/",
   ctaHref = ctaNav.href,
   ctaLabel = ctaNav.label,
+  loginHref = membersLoginNav.href,
+  loginLabel = membersLoginNav.label,
+  showLogin = true,
   navLinks = [...mainNav],
   floating = true,
 }: SiteHeaderProps) {
@@ -93,6 +99,14 @@ export function SiteHeader({
           </nav>
 
           <div className="flex items-center gap-2">
+            {showLogin ? (
+              <Link
+                href={loginHref}
+                className="hidden items-center rounded-full border border-white/25 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:border-accent/50 hover:text-accent sm:inline-flex md:px-5"
+              >
+                {loginLabel}
+              </Link>
+            ) : null}
             <Link
               href={ctaHref}
               className="hidden items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-accent-ink transition hover:brightness-95 sm:inline-flex md:px-5"
@@ -131,6 +145,15 @@ export function SiteHeader({
                 {link.label}
               </Link>
             ))}
+            {showLogin ? (
+              <Link
+                href={loginHref}
+                onClick={() => setOpen(false)}
+                className="inline-flex w-fit rounded-full border border-white/25 px-5 py-2.5 text-sm font-semibold text-white"
+              >
+                {loginLabel}
+              </Link>
+            ) : null}
             <Link
               href={ctaHref}
               onClick={() => setOpen(false)}
@@ -192,6 +215,14 @@ export function SiteHeader({
               {link.label}
             </Link>
           ))}
+          {showLogin ? (
+            <Link
+              href={loginHref}
+              className="inline-flex items-center rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition hover:border-accent/50 hover:text-accent"
+            >
+              {loginLabel}
+            </Link>
+          ) : null}
           <Link
             href={ctaHref}
             className="inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-ink transition hover:brightness-95"
@@ -230,6 +261,15 @@ export function SiteHeader({
               {link.label}
             </Link>
           ))}
+          {showLogin ? (
+            <Link
+              href={loginHref}
+              onClick={() => setOpen(false)}
+              className="inline-flex w-fit rounded-full border border-border px-6 py-3 text-base font-semibold"
+            >
+              {loginLabel}
+            </Link>
+          ) : null}
           <Link
             href={ctaHref}
             onClick={() => setOpen(false)}
