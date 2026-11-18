@@ -13,6 +13,13 @@ export type AccountState = { error: string | null; message: string | null };
 
 const initialAccount: AccountState = { error: null, message: null };
 
+const demoCookieOptions = {
+  httpOnly: true,
+  sameSite: "lax" as const,
+  path: "/",
+  maxAge: 60 * 60 * 24 * 7,
+};
+
 function readName(value: FormDataEntryValue | null) {
   return String(value ?? "").trim().replace(/\s+/g, " ");
 }
@@ -88,35 +95,51 @@ export async function loginMembro(
   formData: FormData,
 ): Promise<AuthState> {
   if (!isSupabaseConfigured()) {
-    return { error: "O login ainda não está ligado ao banco." };
+    return {
+      error:
+        "O login com e-mail precisa do Supabase. Use Entrar como convidado para ver a área demo.",
+    };
   }
 
   const email = readEmail(formData.get("email"));
   const password = String(formData.get("password") ?? "");
   if (!email || !password) return { error: "Informe e-mail e senha." };
 
-  const supabase = await createSupabaseServerClient();
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error || !data.user) return { error: "E-mail ou senha incorretos." };
+  try {
+    const supabase = await createSupabaseServerClient();
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error || !data.user) return { error: "E-mail ou senha incorretos." };
 
-  const admin = createSupabaseAdminClient();
-  const { data: existing } = await admin
-    .from("members")
-    .select("user_id")
-    .eq("user_id", data.user.id)
-    .maybeSingle();
-  if (existing) {
-    await admin.from("members").update({ email }).eq("user_id", data.user.id);
-  } else {
-    await admin.from("members").insert({
-      user_id: data.user.id,
-      email,
-      name: displayNameFromUser(data.user.user_metadata?.name, email),
-    });
+    const admin = createSupabaseAdminClient();
+    const { data: existing } = await admin
+      .from("members")
+      .select("user_id")
+      .eq("user_id", data.user.id)
+      .maybeSingle();
+    if (existing) {
+      await admin.from("members").update({ email }).eq("user_id", data.user.id);
+    } else {
+      await admin.from("members").insert({
+        user_id: data.user.id,
+        email,
+        name: displayNameFromUser(data.user.user_metadata?.name, email),
+      });
+    }
+  } catch {
+    return {
+      error:
+        "Não foi possível falar com o banco agora. Use Entrar como convidado para ver a área demo.",
+    };
   }
 
   const jar = await cookies();
   jar.delete(MEMBER_DEMO_COOKIE);
+  redirect("/membros");
+}
+
+export async function entrarComoConvidadoMembro() {
+  const jar = await cookies();
+  jar.set(MEMBER_DEMO_COOKIE, "1", demoCookieOptions);
   redirect("/membros");
 }
 
