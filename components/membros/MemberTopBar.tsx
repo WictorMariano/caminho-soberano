@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { MemberAvatar } from "@/components/membros/MemberAvatar";
+import { MemberNotificationsBell } from "@/components/membros/MemberNotificationsBell";
 
 export function MemberTopBar({ name }: { name: string }) {
   return (
@@ -22,13 +23,16 @@ export function MemberTopBar({ name }: { name: string }) {
             Caminho Soberano
           </span>
         </Link>
-        <Link
-          href="/membros/perfil"
-          aria-label="Abrir perfil"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full transition active:scale-95"
-        >
-          <MemberAvatar name={name} size="sm" />
-        </Link>
+        <div className="flex items-center gap-1.5">
+          <MemberNotificationsBell />
+          <Link
+            href="/membros/perfil"
+            aria-label="Abrir perfil"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full transition active:scale-95"
+          >
+            <MemberAvatar name={name} size="sm" />
+          </Link>
+        </div>
       </div>
     </header>
   );

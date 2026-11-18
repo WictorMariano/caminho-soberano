@@ -5,6 +5,7 @@ import { ExternalLink } from "lucide-react";
 import { MemberAvatar } from "@/components/membros/MemberAvatar";
 import { MemberBottomNav } from "@/components/membros/MemberBottomNav";
 import { MemberNav } from "@/components/membros/MemberNav";
+import { MemberNotificationsBell } from "@/components/membros/MemberNotificationsBell";
 import { MemberTopBar } from "@/components/membros/MemberTopBar";
 
 export function MemberShell({
@@ -67,7 +68,10 @@ export function MemberShell({
       {/* Mobile + content */}
       <div className="flex min-h-dvh min-w-0 flex-col">
         <MemberTopBar name={name} />
-        <main className="min-w-0 flex-1 overscroll-y-contain px-4 pb-28 pt-5 [-webkit-overflow-scrolling:touch] sm:px-5 md:px-8 md:pt-8 lg:px-10 lg:pb-10 lg:pt-10">
+        <div className="sticky top-0 z-30 hidden items-center justify-end border-b border-white/10 bg-[#020b16]/90 px-8 py-3 backdrop-blur-xl lg:flex lg:px-10">
+          <MemberNotificationsBell />
+        </div>
+        <main className="min-w-0 flex-1 overscroll-y-contain px-4 pb-28 pt-5 [-webkit-overflow-scrolling:touch] sm:px-5 md:px-8 md:pt-8 lg:px-10 lg:pb-10 lg:pt-6">
           {children}
         </main>
         <MemberBottomNav />

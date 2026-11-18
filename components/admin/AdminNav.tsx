@@ -4,10 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   Award,
+  BellRing,
   BookOpen,
   FileText,
   LayoutDashboard,
   ListChecks,
+  Megaphone,
   MessageCircle,
   Users,
   UserRound,
@@ -39,6 +41,8 @@ const groups = [
     label: "Área de membros",
     links: [
       { href: "/admin/edu", label: "Edu", icon: GraduationCap },
+      { href: "/admin/anuncios", label: "Anúncios", icon: Megaphone },
+      { href: "/admin/avisos", label: "Avisos", icon: BellRing },
       { href: "/admin/desafios", label: "Desafios", icon: Flag },
       { href: "/admin/quizzes", label: "Quizzes", icon: HelpCircle },
       { href: "/admin/insignias", label: "Insígnias", icon: Award },

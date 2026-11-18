@@ -740,9 +740,9 @@ export function platformStats() {
 export const demoMemberState = {
   name: "Convidado",
   email: "membro@local",
-  activeCourseId: "course-fundamentos",
-  completedLessonIds: ["les-f1", "les-f2"],
-  earnedBadgeIds: ["badge-streak"],
+  activeCourseId: "course-pratica",
+  completedLessonIds: ["les-f1", "les-f2", "les-f3", "les-f4", "les-p1", "les-p2"],
+  earnedBadgeIds: ["badge-fundamentos", "badge-streak"],
   xp: 140,
   nextLevelXp: 250,
 };
